@@ -3,11 +3,20 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
 
 TRACK_B = Path(__file__).resolve().parent.parent
+
+
+def _subprocess_env() -> dict[str, str]:
+    env = os.environ.copy()
+    if sys.platform == 'win32':
+        env['PYTHONUTF8'] = '1'
+        env['PYTHONIOENCODING'] = 'utf-8'
+    return env
 
 
 def _fail(msg: str) -> None:
@@ -36,6 +45,7 @@ def main() -> None:
         cwd=TRACK_B,
         capture_output=True,
         text=True,
+        env=_subprocess_env(),
     )
     if starter.returncode != 0:
         _fail(f'starter.py failed:\n{starter.stderr}')
@@ -45,6 +55,9 @@ def main() -> None:
         cwd=TRACK_B,
         capture_output=True,
         text=True,
+        encoding='utf-8',
+        errors='replace',
+        env=_subprocess_env(),
     )
     if experiment.returncode != 0:
         _fail(f'experiment.py failed:\n{experiment.stderr}')
@@ -80,6 +93,7 @@ def main() -> None:
         cwd=TRACK_B,
         capture_output=True,
         text=True,
+        env=_subprocess_env(),
     )
     if tests.returncode != 0:
         print(tests.stdout, tests.stderr, sep='')

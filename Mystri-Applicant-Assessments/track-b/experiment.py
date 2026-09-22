@@ -3,12 +3,14 @@ import argparse
 import json
 from pathlib import Path
 
+from console_io import configure_utf8_stdout
 from starter import load_inputs
 from integrated_model import format_executive_summary, run_and_write_trace
 from approaches import rank_approaches_for_daybreak
 
 
 def main():
+    configure_utf8_stdout()
     parser = argparse.ArgumentParser(description='Daybreak Integrated Collaborating Model (DICM)')
     parser.add_argument(
         '--write',

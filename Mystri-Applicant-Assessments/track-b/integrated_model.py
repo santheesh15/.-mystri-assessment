@@ -169,7 +169,7 @@ def run_integrated_pipeline(
         triage_counts[row.disposition] += 1
 
     steps = [
-        IntegratedStep(0, 'Data & policy validation', 'system → coordinator on errors', summarize_validation(validation)),
+        IntegratedStep(0, 'Data & policy validation', 'system -> coordinator on errors', summarize_validation(validation)),
         IntegratedStep(0.25, 'Customer register verification', 'system discards spam; coordinator audit', summarize_customer_verification(customer)),
         IntegratedStep(0.5, 'Customer file intake (multi-format)', 'media_intake + technician', f"{len(media_checks)} sample files"),
         IntegratedStep(1, 'Daily huddle', f"coordinator + duty lead {duty['duty_lead']}", f"uncertain={uncertain}"),

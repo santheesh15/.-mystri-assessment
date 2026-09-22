@@ -16,6 +16,7 @@
   ],
   "python_modules": [
     "experiment.py",
+    "console_io.py",
     "integrated_model.py",
     "queue_engine.py",
     "data_policy.py",
