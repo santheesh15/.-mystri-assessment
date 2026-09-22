@@ -47,8 +47,11 @@ Assignment algorithm: sort tasks hardest-first, assign to the **least busy** tec
 | 2 | Inbox reply triage | Suggest label (photo received / opt-out / unclear) | Auto-update CRM row | `ai_assist.classify_customer_reply` |
 | 3 | Technician prep | Checklist for service type | Quote customer or order parts | `ai_assist.technician_prep_checklist` |
 | 4 | Photo path | Route to human review; flag data conflicts | Auto-approve “good photo” | `ai_assist.photo_screening_decision` |
+| 5 | **Multi-format intake** | Detect JPEG/PNG/WebP/GIF/PDF/CSV/text; HEIC/unknown → human | Pretend all uploads are one format | `media_intake.assess_attachment` |
 
-Production: swap template/keyword stubs for an **approved LLM API** with token caps and audit logs. Assessment uses **mock AI** so reviewers can run without keys.
+**Image processing principles used (stdlib prototype):** magic-byte identification, PNG IHDR dimension parse, JPEG SOF marker scan, minimum resolution gate, coarse brightness proxy on byte samples. **Blur, glare, and OCR** are explicitly **technician/human** or future Pillow/Tesseract— not auto-quoted here.
+
+Production: normalize HEIC→JPEG, optional OpenCV blur detection, OCR for serial numbers in text attachments.
 
 ---
 

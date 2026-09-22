@@ -16,6 +16,7 @@ from cost_model import build_cost_structure
 from lane_model import duty_lead_for_snapshot, prioritized_board
 from approaches import hybrid_incorporation_summary
 from data_policy import summarize_validation, validate_all
+from media_intake import assess_demo_pack
 
 
 @dataclass(frozen=True)
@@ -29,6 +30,7 @@ class IntegratedStep:
 def run_integrated_pipeline(cases, requests, scenario, events=None) -> dict:
     events = events or []
     validation = validate_all(cases, requests, events)
+    media_checks = assess_demo_pack()
     snapshot = scenario['snapshot_at']
     triage = triage_all(cases, requests, scenario)
     board = build_team_board(cases, requests, scenario, triage)
@@ -79,6 +81,13 @@ def run_integrated_pipeline(cases, requests, scenario, events=None) -> dict:
             summarize_validation(validation),
         ),
         IntegratedStep(
+            0.5,
+            'Customer file intake (multi-format)',
+            'media_intake + technician',
+            f"{len(media_checks)} sample files; formats "
+            f"{sorted({m['detected_format'] for m in media_checks})}",
+        ),
+        IntegratedStep(
             1,
             'Daily huddle',
             f"coordinator + duty lead {duty['duty_lead']}",
@@ -125,6 +134,7 @@ def run_integrated_pipeline(cases, requests, scenario, events=None) -> dict:
         ),
         'collaboration_flow': [s.__dict__ for s in steps],
         'data_policy_validation': validation,
+        'customer_media_intake_samples': media_checks,
         'hybrid_layers': hybrid_incorporation_summary(),
         'duty_lead': duty,
         'departure_board': departure,

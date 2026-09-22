@@ -27,6 +27,11 @@
 └───────────────────────────┬─────────────────────────────────┘
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
+│ 0b. Customer files — JPEG/PNG/WebP/PDF/text/HEIC routing   │
+│    Image: IHDR/SOF checks; HEIC/unknown → human convert      │
+└───────────────────────────┬─────────────────────────────────┘
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
 │ 1. Huddle (15 min) — Coordinator + rotating duty lead       │
 │    • Top rows on departure board (wait + quote value)       │
 │    • All uncertain / Park-lane cases                          │

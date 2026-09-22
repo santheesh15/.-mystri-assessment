@@ -11,7 +11,7 @@ class IntegratedModelTests(unittest.TestCase):
             inputs['cases'], inputs['requests'], inputs['scenario'], inputs['events']
         )
         self.assertEqual(report['name'], 'Daybreak Integrated Collaborating Model (DICM)')
-        self.assertEqual(len(report['collaboration_flow']), 7)
+        self.assertEqual(len(report['collaboration_flow']), 8)
         self.assertIn('team_workboard', report)
         self.assertIn('cost_structure', report)
         self.assertIn('ai_assist', report)
