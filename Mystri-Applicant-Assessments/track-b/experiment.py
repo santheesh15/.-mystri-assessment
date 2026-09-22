@@ -19,7 +19,9 @@ def main():
     args = parser.parse_args()
 
     inputs = load_inputs()
-    integrated = run_integrated_pipeline(inputs['cases'], inputs['requests'], inputs['scenario'])
+    integrated = run_integrated_pipeline(
+        inputs['cases'], inputs['requests'], inputs['scenario'], inputs['events']
+    )
 
     report = {
         'integrated_model': integrated,

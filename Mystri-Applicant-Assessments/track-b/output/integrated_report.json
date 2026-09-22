@@ -5,6 +5,12 @@
     "one_line_pitch": "Keep inbox and spreadsheet; add rules, lanes, tiered techs, rotating lead, and capped AI drafts with file-upload links\u2014humans approve every customer touch.",
     "collaboration_flow": [
       {
+        "order": 0,
+        "name": "Data & policy validation",
+        "owner": "system \u2192 coordinator on errors",
+        "output_summary": "errors=0 warnings=4 policy=4 pipeline_ok=True"
+      },
+      {
         "order": 1,
         "name": "Daily huddle",
         "owner": "coordinator + duty lead T1",
@@ -41,6 +47,81 @@
         "output_summary": "Net scenario minutes/week saved 89; tool cap INR 900.0"
       }
     ],
+    "data_policy_validation": {
+      "ok_to_run_pipeline": true,
+      "note": "Warnings/policies do not stop the pipeline; rows are handled per finding.",
+      "counts": {
+        "error": 0,
+        "warning": 4,
+        "policy": 4
+      },
+      "findings": [
+        {
+          "severity": "policy",
+          "source": "customer_policy",
+          "record_id": "R001",
+          "field": "status+received_at",
+          "message": "pending conflicts with received_at (data standards breach)",
+          "handling": "Park automation; coordinator reconciles with customer"
+        },
+        {
+          "severity": "policy",
+          "source": "customer_policy",
+          "record_id": "R012",
+          "field": "followup_allowed",
+          "message": "Customer opt-out / no follow-up flag set",
+          "handling": "Never auto-contact; policy enforced in rules engine"
+        },
+        {
+          "severity": "policy",
+          "source": "customer_policy",
+          "record_id": "R018",
+          "field": "status+received_at",
+          "message": "pending conflicts with received_at (data standards breach)",
+          "handling": "Park automation; coordinator reconciles with customer"
+        },
+        {
+          "severity": "policy",
+          "source": "customer_policy",
+          "record_id": "R028",
+          "field": "followup_allowed",
+          "message": "Customer opt-out / no follow-up flag set",
+          "handling": "Never auto-contact; policy enforced in rules engine"
+        },
+        {
+          "severity": "warning",
+          "source": "events",
+          "record_id": "E005",
+          "field": "event_id",
+          "message": "Duplicate event delivery in export",
+          "handling": "Dedupe before effort metrics (already done in analysis)"
+        },
+        {
+          "severity": "warning",
+          "source": "events",
+          "record_id": "E032",
+          "field": "event_id",
+          "message": "Duplicate event delivery in export",
+          "handling": "Dedupe before effort metrics (already done in analysis)"
+        },
+        {
+          "severity": "warning",
+          "source": "events",
+          "record_id": "E059",
+          "field": "event_id",
+          "message": "Duplicate event delivery in export",
+          "handling": "Dedupe before effort metrics (already done in analysis)"
+        },
+        {
+          "severity": "warning",
+          "source": "events",
+          "record_id": "E087",
+          "field": "event_id",
+          "message": "Duplicate event delivery in export",
+          "handling": "Dedupe before effort metrics (already done in analysis)"
+        }
+      ]
+    },
     "hybrid_layers": [
       {
         "layer": "Keep (existing shop habit)",

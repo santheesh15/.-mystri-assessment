@@ -7,9 +7,11 @@ from starter import load_inputs
 class IntegratedModelTests(unittest.TestCase):
     def test_pipeline_produces_collaboration_flow(self):
         inputs = load_inputs()
-        report = run_integrated_pipeline(inputs['cases'], inputs['requests'], inputs['scenario'])
+        report = run_integrated_pipeline(
+            inputs['cases'], inputs['requests'], inputs['scenario'], inputs['events']
+        )
         self.assertEqual(report['name'], 'Daybreak Integrated Collaborating Model (DICM)')
-        self.assertEqual(len(report['collaboration_flow']), 6)
+        self.assertEqual(len(report['collaboration_flow']), 7)
         self.assertIn('team_workboard', report)
         self.assertIn('cost_structure', report)
         self.assertIn('ai_assist', report)
@@ -17,7 +19,9 @@ class IntegratedModelTests(unittest.TestCase):
 
     def test_prevented_bad_reminders_non_empty_on_pack(self):
         inputs = load_inputs()
-        report = run_integrated_pipeline(inputs['cases'], inputs['requests'], inputs['scenario'])
+        report = run_integrated_pipeline(
+            inputs['cases'], inputs['requests'], inputs['scenario'], inputs['events']
+        )
         self.assertGreater(len(report['comparison']['prevented_bad_reminders']), 0)
 
 

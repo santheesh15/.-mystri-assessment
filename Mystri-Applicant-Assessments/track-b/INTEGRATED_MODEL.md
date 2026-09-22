@@ -22,6 +22,11 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
+│ 0. Data & policy validation — syntax, standards, opt-outs   │
+│    Errors → coordinator fix export; policies → rules/Park   │
+└───────────────────────────┬─────────────────────────────────┘
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
 │ 1. Huddle (15 min) — Coordinator + rotating duty lead       │
 │    • Top rows on departure board (wait + quote value)       │
 │    • All uncertain / Park-lane cases                          │

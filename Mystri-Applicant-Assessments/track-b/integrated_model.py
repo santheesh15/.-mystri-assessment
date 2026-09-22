@@ -15,6 +15,7 @@ from ai_assist import enrich_coordinator_tasks, photo_screening_decision, techni
 from cost_model import build_cost_structure
 from lane_model import duty_lead_for_snapshot, prioritized_board
 from approaches import hybrid_incorporation_summary
+from data_policy import summarize_validation, validate_all
 
 
 @dataclass(frozen=True)
@@ -25,7 +26,9 @@ class IntegratedStep:
     output_summary: str
 
 
-def run_integrated_pipeline(cases, requests, scenario) -> dict:
+def run_integrated_pipeline(cases, requests, scenario, events=None) -> dict:
+    events = events or []
+    validation = validate_all(cases, requests, events)
     snapshot = scenario['snapshot_at']
     triage = triage_all(cases, requests, scenario)
     board = build_team_board(cases, requests, scenario, triage)
@@ -69,6 +72,12 @@ def run_integrated_pipeline(cases, requests, scenario) -> dict:
         triage_counts[row.disposition] += 1
 
     steps = [
+        IntegratedStep(
+            0,
+            'Data & policy validation',
+            'system → coordinator on errors',
+            summarize_validation(validation),
+        ),
         IntegratedStep(
             1,
             'Daily huddle',
@@ -115,6 +124,7 @@ def run_integrated_pipeline(cases, requests, scenario) -> dict:
             'and capped AI drafts with file-upload links—humans approve every customer touch.'
         ),
         'collaboration_flow': [s.__dict__ for s in steps],
+        'data_policy_validation': validation,
         'hybrid_layers': hybrid_incorporation_summary(),
         'duty_lead': duty,
         'departure_board': departure,
@@ -144,6 +154,7 @@ def format_executive_summary(report: dict) -> str:
     for s in report['collaboration_flow']:
         lines.append(f"  {s['order']}. {s['name']} [{s['owner']}] — {s['output_summary']}")
     lines.append('')
+    lines.append(f"Validation: {summarize_validation(report['data_policy_validation'])}")
     lines.append(f"Duty lead this week: {report['duty_lead']['duty_lead']} (backup {report['duty_lead']['backup_lead']})")
     lines.append(f"Lanes: {report['lane_counts']}")
     c = report['comparison']
