@@ -20,43 +20,43 @@
         "order": 0.5,
         "name": "Customer file intake (multi-format)",
         "owner": "media_intake + technician",
-        "output_summary": "4 sample files; formats ['heic', 'plain_text', 'png', 'unknown']"
+        "output_summary": "4 sample files"
       },
       {
         "order": 1,
         "name": "Daily huddle",
         "owner": "coordinator + duty lead T1",
-        "output_summary": "Review 2 uncertain rows and top 5 departure-board cases"
+        "output_summary": "uncertain=2"
       },
       {
         "order": 2,
         "name": "Lane classification",
         "owner": "rules + lane_model",
-        "output_summary": "Express/Standard/Park counts: {'park': 7, 'standard': 6}"
+        "output_summary": "{'park': 7, 'standard': 6}"
       },
       {
         "order": 3,
         "name": "Customer contact gate",
         "owner": "coordinator (approve)",
-        "output_summary": "5 draft follow-ups vs 13 naive pending"
+        "output_summary": "5 drafts vs 13 naive"
       },
       {
         "order": 4,
         "name": "Parallel technician work",
         "owner": "tiered T1\u2013T4",
-        "output_summary": "8 tasks; load {'coordinator': 8, 'T1': 2, 'T2': 2, 'T3': 2, 'T4': 2}"
+        "output_summary": "{'coordinator': 8, 'T1': 2, 'T2': 2, 'T3': 2, 'T4': 2}"
       },
       {
         "order": 5,
         "name": "AI assist",
         "owner": "coordinator + technicians",
-        "output_summary": "9 suggestions; all require human gate"
+        "output_summary": "9 suggestions"
       },
       {
         "order": 6,
         "name": "Cost check",
         "owner": "owner",
-        "output_summary": "Net scenario minutes/week saved 89; tool cap INR 900.0"
+        "output_summary": "net_min=89"
       }
     ],
     "data_policy_validation": {
@@ -1502,6 +1502,136 @@
         }
       ]
     },
+    "customer_delivery_simulation": [
+      {
+        "request_id": "R009",
+        "case_id": "C009",
+        "item": "fault_photo",
+        "contact": "case-009@example.invalid",
+        "channel": "email",
+        "draft_preview": "Subject: Photo still needed for your washing machine repair (case C009)\nTo: c009@example.invalid\n\nHello,\n\nPlease reply t"
+      },
+      {
+        "request_id": "R024",
+        "case_id": "C024",
+        "item": "fault_photo",
+        "contact": "case-024@example.invalid",
+        "channel": "email",
+        "draft_preview": "Subject: Photo still needed for your washing machine repair (case C024)\nTo: c024@example.invalid\n\nHello,\n\nPlease reply t"
+      },
+      {
+        "request_id": "R025",
+        "case_id": "C009",
+        "item": "site_access",
+        "contact": "case-009@example.invalid",
+        "channel": "email",
+        "draft_preview": "Subject: Photo still needed for your washing machine repair (case C009)\nTo: c009@example.invalid\n\nHello,\n\nPlease reply t"
+      },
+      {
+        "request_id": "R026",
+        "case_id": "C024",
+        "item": "serial_number",
+        "contact": "case-024@example.invalid",
+        "channel": "email",
+        "draft_preview": "Subject: Photo still needed for your washing machine repair (case C024)\nTo: c024@example.invalid\n\nHello,\n\nPlease reply t"
+      },
+      {
+        "request_id": "R027",
+        "case_id": "C017",
+        "item": "quote_approval",
+        "contact": "case-017@example.invalid",
+        "channel": "email",
+        "draft_preview": "Subject: Photo still needed for your air conditioner repair (case C017)\nTo: c017@example.invalid\n\nHello,\n\nPlease reply t"
+      }
+    ],
+    "pipeline_trace_lines": [
+      "2026-09-22T12:03:06Z seq=0001 phase=START message=Track B DICM pipeline run begins detail=snapshot=2026-09-07T09:00:00+05:30",
+      "2026-09-22T12:03:06Z seq=0002 phase=START message=Assessment mode detail=dry_run_only",
+      "2026-09-22T12:03:06Z seq=0003 phase=LOAD message=Input registers loaded detail=cases=24 requests=30 events=128",
+      "2026-09-22T12:03:06Z seq=0004 phase=VALIDATE message=errors=0 warnings=4 policy=4 pipeline_ok=True",
+      "2026-09-22T12:03:06Z seq=0005 phase=VALIDATE message=policy:customer_policy detail=R001 status+received_at pending conflicts with received_at (data standards breach)",
+      "2026-09-22T12:03:06Z seq=0006 phase=VALIDATE message=policy:customer_policy detail=R012 followup_allowed Customer opt-out / no follow-up flag set",
+      "2026-09-22T12:03:06Z seq=0007 phase=VALIDATE message=policy:customer_policy detail=R018 status+received_at pending conflicts with received_at (data standards breach)",
+      "2026-09-22T12:03:06Z seq=0008 phase=VALIDATE message=policy:customer_policy detail=R028 followup_allowed Customer opt-out / no follow-up flag set",
+      "2026-09-22T12:03:06Z seq=0009 phase=VALIDATE message=warning:events detail=E005 event_id Duplicate event delivery in export",
+      "2026-09-22T12:03:06Z seq=0010 phase=VALIDATE message=warning:events detail=E032 event_id Duplicate event delivery in export",
+      "2026-09-22T12:03:06Z seq=0011 phase=VALIDATE message=warning:events detail=E059 event_id Duplicate event delivery in export",
+      "2026-09-22T12:03:06Z seq=0012 phase=VALIDATE message=warning:events detail=E087 event_id Duplicate event delivery in export",
+      "2026-09-22T12:03:06Z seq=0013 phase=CUSTOMER_REGISTRY message=verified=30 discarded=0 spam_or_unknown=[]",
+      "2026-09-22T12:03:06Z seq=0014 phase=MEDIA message=format=png routing=human_review detail=file=fault-tiny.png signals=('file_very_small_may_be_unusable', 'resolution_below_recommended_min', 'brightness_ok_proxy')",
+      "2026-09-22T12:03:06Z seq=0015 phase=MEDIA message=format=plain_text routing=human_review detail=file=notes.txt signals=('file_very_small_may_be_unusable',)",
+      "2026-09-22T12:03:06Z seq=0016 phase=MEDIA message=format=heic routing=human_review detail=file=photo.heic signals=('file_very_small_may_be_unusable',)",
+      "2026-09-22T12:03:06Z seq=0017 phase=MEDIA message=format=unknown routing=human_review detail=file=scan.unknown signals=('file_very_small_may_be_unusable',)",
+      "2026-09-22T12:03:06Z seq=0018 phase=RULES message=R001 disposition=exclude detail=C001 fault_photo Case C001 is completed",
+      "2026-09-22T12:03:06Z seq=0019 phase=RULES message=R002 disposition=exclude detail=C002 fault_photo Case C002 is completed",
+      "2026-09-22T12:03:06Z seq=0020 phase=RULES message=R003 disposition=exclude detail=C003 fault_photo Case C003 is completed",
+      "2026-09-22T12:03:06Z seq=0021 phase=RULES message=R004 disposition=exclude detail=C004 fault_photo Case C004 is completed",
+      "2026-09-22T12:03:06Z seq=0022 phase=RULES message=R005 disposition=exclude detail=C005 fault_photo Case C005 is cancelled",
+      "2026-09-22T12:03:06Z seq=0023 phase=RULES message=R006 disposition=exclude detail=C006 fault_photo Case C006 is completed",
+      "2026-09-22T12:03:06Z seq=0024 phase=RULES message=R007 disposition=exclude detail=C007 fault_photo Case C007 is completed",
+      "2026-09-22T12:03:06Z seq=0025 phase=RULES message=R008 disposition=exclude detail=C008 fault_photo Case C008 is scheduled",
+      "2026-09-22T12:03:06Z seq=0026 phase=RULES message=R009 disposition=propose detail=C009 fault_photo Eligible reminder for fault_photo (117.0h since last request)",
+      "2026-09-22T12:03:06Z seq=0027 phase=RULES message=R010 disposition=exclude detail=C010 fault_photo Case C010 is completed",
+      "2026-09-22T12:03:06Z seq=0028 phase=RULES message=R011 disposition=exclude detail=C011 fault_photo Case C011 is scheduled",
+      "2026-09-22T12:03:06Z seq=0029 phase=RULES message=R012 disposition=exclude detail=C012 fault_photo followup_allowed is 0",
+      "2026-09-22T12:03:06Z seq=0030 phase=RULES message=R013 disposition=exclude detail=C013 fault_photo Case C013 is cancelled",
+      "2026-09-22T12:03:06Z seq=0031 phase=RULES message=R014 disposition=exclude detail=C014 fault_photo Case C014 is completed",
+      "2026-09-22T12:03:06Z seq=0032 phase=RULES message=R015 disposition=exclude detail=C015 fault_photo Case C015 is scheduled",
+      "2026-09-22T12:03:06Z seq=0033 phase=RULES message=R016 disposition=exclude detail=C016 fault_photo Only 46.0h since last request; need 48h",
+      "2026-09-22T12:03:06Z seq=0034 phase=RULES message=R017 disposition=exclude detail=C017 fault_photo Item already received",
+      "2026-09-22T12:03:06Z seq=0035 phase=RULES message=R018 disposition=uncertain detail=C018 fault_photo pending status conflicts with received_at; needs coordinator review",
+      "2026-09-22T12:03:06Z seq=0036 phase=RULES message=R019 disposition=exclude detail=C019 fault_photo Case C019 is cancelled",
+      "2026-09-22T12:03:06Z seq=0037 phase=RULES message=R020 disposition=exclude detail=C020 fault_photo Case C020 is scheduled",
+      "2026-09-22T12:03:06Z seq=0038 phase=RULES message=R021 disposition=exclude detail=C021 fault_photo Item already received",
+      "2026-09-22T12:03:06Z seq=0039 phase=RULES message=R022 disposition=uncertain detail=C022 fault_photo Missing last_requested_at",
+      "2026-09-22T12:03:06Z seq=0040 phase=RULES message=R023 disposition=exclude detail=C023 fault_photo Item already received",
+      "2026-09-22T12:03:06Z seq=0041 phase=RULES message=R024 disposition=propose detail=C024 fault_photo Eligible reminder for fault_photo (69.0h since last request)",
+      "2026-09-22T12:03:06Z seq=0042 phase=RULES message=R025 disposition=propose detail=C009 site_access Eligible reminder for site_access (117.0h since last request)",
+      "2026-09-22T12:03:06Z seq=0043 phase=RULES message=R026 disposition=propose detail=C024 serial_number Eligible reminder for serial_number (69.0h since last request)",
+      "2026-09-22T12:03:06Z seq=0044 phase=RULES message=R027 disposition=propose detail=C017 quote_approval Eligible reminder for quote_approval (118.0h since last request)",
+      "2026-09-22T12:03:06Z seq=0045 phase=RULES message=R028 disposition=exclude detail=C021 quote_approval followup_allowed is 0",
+      "2026-09-22T12:03:06Z seq=0046 phase=RULES message=R029 disposition=exclude detail=C023 quote_approval Only 46.0h since last request; need 48h",
+      "2026-09-22T12:03:06Z seq=0047 phase=RULES message=R030 disposition=exclude detail=C016 site_access Item already received",
+      "2026-09-22T12:03:06Z seq=0048 phase=HUDDLE message=duty_lead=T1 backup=T2",
+      "2026-09-22T12:03:06Z seq=0049 phase=DEPARTURE_BOARD message=C008 lane=park detail=score=12.82 Case scheduled \u2014 no chase",
+      "2026-09-22T12:03:06Z seq=0050 phase=DEPARTURE_BOARD message=C009 lane=standard detail=score=12.0 Eligible for coordinated follow-up + parallel tech work",
+      "2026-09-22T12:03:06Z seq=0051 phase=DEPARTURE_BOARD message=C011 lane=park detail=score=11.28 Case scheduled \u2014 no chase",
+      "2026-09-22T12:03:06Z seq=0052 phase=DEPARTURE_BOARD message=C012 lane=park detail=score=10.92 Customer opt-out / do not follow up",
+      "2026-09-22T12:03:06Z seq=0053 phase=DEPARTURE_BOARD message=C017 lane=standard detail=score=10.53 Eligible for coordinated follow-up + parallel tech work",
+      "2026-09-22T12:03:06Z seq=0054 phase=DEPARTURE_BOARD message=C015 lane=park detail=score=9.78 Case scheduled \u2014 no chase",
+      "2026-09-22T12:03:06Z seq=0055 phase=DEPARTURE_BOARD message=C021 lane=park detail=score=9.03 Customer opt-out / do not follow up",
+      "2026-09-22T12:03:06Z seq=0056 phase=DEPARTURE_BOARD message=C016 lane=standard detail=score=8.92 Eligible for coordinated follow-up + parallel tech work",
+      "2026-09-22T12:03:06Z seq=0057 phase=LANES message=Three-speed lane counts detail={'park': 7, 'standard': 6}",
+      "2026-09-22T12:03:06Z seq=0058 phase=AI_ASSIST message=coordinator_customer_draft detail=C009 gate=Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "2026-09-22T12:03:06Z seq=0059 phase=AI_ASSIST message=coordinator_customer_draft detail=C024 gate=Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "2026-09-22T12:03:06Z seq=0060 phase=AI_ASSIST message=coordinator_customer_draft detail=C009 gate=Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "2026-09-22T12:03:06Z seq=0061 phase=AI_ASSIST message=coordinator_customer_draft detail=C024 gate=Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "2026-09-22T12:03:06Z seq=0062 phase=AI_ASSIST message=coordinator_customer_draft detail=C017 gate=Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "2026-09-22T12:03:06Z seq=0063 phase=AI_ASSIST message=technician_parallel_prep detail=C016 gate=Technician validates checklist; no customer message.",
+      "2026-09-22T12:03:06Z seq=0064 phase=AI_ASSIST message=technician_parallel_prep detail=C017 gate=Technician validates checklist; no customer message.",
+      "2026-09-22T12:03:06Z seq=0065 phase=AI_ASSIST message=technician_parallel_prep detail=C021 gate=Technician validates checklist; no customer message.",
+      "2026-09-22T12:03:06Z seq=0066 phase=AI_ASSIST message=photo_quality_path detail=C018 gate=Technician human review mandatory; no auto-quote from image AI.",
+      "2026-09-22T12:03:06Z seq=0067 phase=TECH message=T1 L3 prep_quote_while_waiting_for_photo detail=C016 Parallel prep on refrigerator while coordinator chases missing photo",
+      "2026-09-22T12:03:06Z seq=0068 phase=TECH message=T2 L3 hold_parts_plan detail=C017 Keep parts plan ready if customer approves quote",
+      "2026-09-22T12:03:06Z seq=0069 phase=TECH message=T1 L3 hold_parts_plan detail=C021 Keep parts plan ready if customer approves quote",
+      "2026-09-22T12:03:06Z seq=0070 phase=TECH message=T2 L3 hold_parts_plan detail=C023 Keep parts plan ready if customer approves quote",
+      "2026-09-22T12:03:06Z seq=0071 phase=TECH message=T3 L1 standby_case_brief detail=C009 Read case note; no customer contact\u2014ready when info arrives",
+      "2026-09-22T12:03:06Z seq=0072 phase=TECH message=T4 L1 standby_case_brief detail=C012 Read case note; no customer contact\u2014ready when info arrives",
+      "2026-09-22T12:03:06Z seq=0073 phase=TECH message=T3 L1 standby_case_brief detail=C022 Read case note; no customer contact\u2014ready when info arrives",
+      "2026-09-22T12:03:06Z seq=0074 phase=TECH message=T4 L1 standby_case_brief detail=C024 Read case note; no customer contact\u2014ready when info arrives",
+      "2026-09-22T12:03:06Z seq=0075 phase=COST message=Weekly time and tool cap check detail=net_min_saved=89 monthly_tool_budget_inr=1500.0",
+      "2026-09-22T12:03:06Z seq=0076 phase=COORDINATOR message=Approve draft follow-up (simulated) detail=R009 preview=Subject: Photo still needed for your washing machine repair (case C009)\nTo: c009...",
+      "2026-09-22T12:03:06Z seq=0077 phase=COORDINATOR message=Approve draft follow-up (simulated) detail=R024 preview=Subject: Photo still needed for your washing machine repair (case C024)\nTo: c024...",
+      "2026-09-22T12:03:06Z seq=0078 phase=COORDINATOR message=Approve draft follow-up (simulated) detail=R025 preview=Subject: Photo still needed for your washing machine repair (case C009)\nTo: c009...",
+      "2026-09-22T12:03:06Z seq=0079 phase=COORDINATOR message=Approve draft follow-up (simulated) detail=R026 preview=Subject: Photo still needed for your washing machine repair (case C024)\nTo: c024...",
+      "2026-09-22T12:03:06Z seq=0080 phase=COORDINATOR message=Approve draft follow-up (simulated) detail=R027 preview=Subject: Photo still needed for your air conditioner repair (case C017)\nTo: c017...",
+      "2026-09-22T12:03:06Z seq=0081 phase=CUSTOMER message=DRY-RUN delivery simulated (no real email sent) detail=request_id=R009 case_id=C009 to=case-009@example.invalid channel=email coordinator_approval=simulated_yes item=fault_photo",
+      "2026-09-22T12:03:06Z seq=0082 phase=CUSTOMER message=DRY-RUN delivery simulated (no real email sent) detail=request_id=R024 case_id=C024 to=case-024@example.invalid channel=email coordinator_approval=simulated_yes item=fault_photo",
+      "2026-09-22T12:03:06Z seq=0083 phase=CUSTOMER message=DRY-RUN delivery simulated (no real email sent) detail=request_id=R025 case_id=C009 to=case-009@example.invalid channel=email coordinator_approval=simulated_yes item=site_access",
+      "2026-09-22T12:03:06Z seq=0084 phase=CUSTOMER message=DRY-RUN delivery simulated (no real email sent) detail=request_id=R026 case_id=C024 to=case-024@example.invalid channel=email coordinator_approval=simulated_yes item=serial_number",
+      "2026-09-22T12:03:06Z seq=0085 phase=CUSTOMER message=DRY-RUN delivery simulated (no real email sent) detail=request_id=R027 case_id=C017 to=case-017@example.invalid channel=email coordinator_approval=simulated_yes item=quote_approval",
+      "2026-09-22T12:03:06Z seq=0086 phase=END message=Pipeline trace complete detail=deliveries_simulated=5"
+    ],
     "comparison": {
       "solo_coordinator_load": 19,
       "coordinator_after_split": 8,
@@ -1517,7 +1647,8 @@
         "R022",
         "R029"
       ]
-    }
+    },
+    "pipeline_trace_file": "output/dicm_pipeline_trace.log"
   },
   "approach_ranking_top5": [
     {
@@ -1570,5 +1701,6 @@
       },
       "incorporated_as": "ai_assist.py"
     }
-  ]
+  ],
+  "pipeline_trace_file": "output/dicm_pipeline_trace.log"
 }

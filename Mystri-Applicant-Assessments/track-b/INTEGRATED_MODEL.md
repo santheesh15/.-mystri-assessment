@@ -32,6 +32,11 @@
 └───────────────────────────┬─────────────────────────────────┘
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
+│ 0a. Customer register — case exists + email matches case     │
+│    Fake/spam domains & mismatched contacts → discard         │
+└───────────────────────────┬─────────────────────────────────┘
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
 │ 1. Huddle (15 min) — Coordinator + rotating duty lead       │
 │    • Top rows on departure board (wait + quote value)       │
 │    • All uncertain / Park-lane cases                          │
@@ -84,11 +89,37 @@
 
 ```text
 cd Mystri-Applicant-Assessments/track-b
-python3 experiment.py --write output/integrated_report.json
+python3 experiment.py
 python3 -m unittest discover -s tests -v
 ```
 
-JSON root object includes **`integrated_model`** with `collaboration_flow`, `comparison`, `cost_structure`, and all sub-layers.
+Defaults write **`output/integrated_report.json`** and **`output/dicm_pipeline_trace.log`**. Override paths with `--write` / `--trace`.
+
+JSON root object includes **`integrated_model`** with `collaboration_flow`, `comparison`, `cost_structure`, and all sub-layers. The report also lists **`pipeline_trace_file`**.
+
+---
+
+## Unified pipeline trace (one audit file)
+
+Reviewers can follow **one chronological log** from pipeline start through **simulated customer delivery** (assessment dry-run—no real email).
+
+| Phase | What appears in the trace |
+| --- | --- |
+| `START` | Run begins; business snapshot clock |
+| `LOAD` | Cases, requests, events loaded |
+| `VALIDATE` | Data/policy findings |
+| `CUSTOMER_REGISTRY` | Verified vs discarded contacts |
+| `MEDIA` | Sample intake files and routing |
+| `RULES` | Per-request triage disposition |
+| `HUDDLE` / `DEPARTURE_BOARD` / `LANES` | Duty lead and lane ordering |
+| `AI_ASSIST` | Drafts and human gates |
+| `TECH` | Tiered technician tasks |
+| `COST` | Time-saved and tool cap snapshot |
+| `COORDINATOR` | Simulated approval of each draft |
+| `CUSTOMER` | DRY-RUN delivery lines (contact + channel) |
+| `END` | Delivery count |
+
+Implementation: `pipeline_trace.py` (`PipelineTrace`); orchestration logs in `integrated_model.run_integrated_pipeline`; entry point `experiment.py`.
 
 ---
 

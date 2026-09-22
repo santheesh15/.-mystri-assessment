@@ -8,6 +8,7 @@ Dry-run only; no messages sent.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 
 from queue_engine import baseline_naive_pending, proposed_ids, triage_all
 from team_workboard import build_team_board, baseline_coordinator_only_load
@@ -18,6 +19,7 @@ from approaches import hybrid_incorporation_summary
 from customer_registry import summarize_customer_verification, verify_customers
 from data_policy import summarize_validation, validate_all
 from media_intake import assess_demo_pack
+from pipeline_trace import PipelineTrace, build_customer_deliveries
 
 
 @dataclass(frozen=True)
@@ -28,17 +30,61 @@ class IntegratedStep:
     output_summary: str
 
 
-def run_integrated_pipeline(cases, requests, scenario, events=None) -> dict:
+def run_integrated_pipeline(
+    cases,
+    requests,
+    scenario,
+    events=None,
+    trace: PipelineTrace | None = None,
+) -> dict:
     events = events or []
+    snapshot = scenario['snapshot_at']
+    if trace is None:
+        trace = PipelineTrace(snapshot, scenario.get('dry_run_only', 'dry_run_only'))
+
+    trace.log('LOAD', 'Input registers loaded', f'cases={len(cases)} requests={len(requests)} events={len(events)}')
+
     validation = validate_all(cases, requests, events)
+    trace.log('VALIDATE', summarize_validation(validation))
+    for f in validation['findings'][:15]:
+        trace.log('VALIDATE', f"{f['severity']}:{f['source']}", f"{f['record_id']} {f['field']} {f['message']}")
+    if len(validation['findings']) > 15:
+        trace.log('VALIDATE', f"... {len(validation['findings']) - 15} more findings omitted from trace")
+
     customer = verify_customers(cases, requests)
+    trace.log('CUSTOMER_REGISTRY', summarize_customer_verification(customer))
+    for check in customer['checks']:
+        if check['status'] == 'discarded':
+            trace.log('CUSTOMER_REGISTRY', 'DISCARD spam/unverified', str(check))
+
     requests_verified = customer['requests_for_automation']
     media_checks = assess_demo_pack()
-    snapshot = scenario['snapshot_at']
+    for m in media_checks:
+        trace.log(
+            'MEDIA',
+            f"format={m['detected_format']} routing={m['routing']}",
+            f"file={m['filename']} signals={m.get('quality_signals', ())}",
+        )
+
     triage = triage_all(cases, requests_verified, scenario)
+    for row in triage:
+        trace.log(
+            'RULES',
+            f"{row.request_id} disposition={row.disposition}",
+            f"{row.case_id} {row.item} {row.reason}",
+        )
+
     board = build_team_board(cases, requests_verified, scenario, triage)
     departure = prioritized_board(cases, requests_verified, snapshot)
     duty = duty_lead_for_snapshot(snapshot)
+    trace.log('HUDDLE', f"duty_lead={duty['duty_lead']} backup={duty['backup_lead']}")
+    for row in departure[:8]:
+        trace.log('DEPARTURE_BOARD', f"{row['case_id']} lane={row['lane']}", f"score={row['priority_score']} {row['lane_reason']}")
+
+    lane_counts = {}
+    for row in departure:
+        lane_counts[row['lane']] = lane_counts.get(row['lane'], 0) + 1
+    trace.log('LANES', 'Three-speed lane counts', str(lane_counts))
 
     cases_by_id = {c['case_id']: c for c in cases}
     ai = enrich_coordinator_tasks(board['coordinator_tasks'], cases_by_id)
@@ -47,20 +93,47 @@ def run_integrated_pipeline(cases, requests, scenario, events=None) -> dict:
     uncertain = sum(1 for r in triage if r.disposition == 'uncertain')
     ai.append(photo_screening_decision('C018', has_conflict=True))
 
+    for s in ai:
+        trace.log('AI_ASSIST', s.step, f"{s.case_id} gate={s.human_gate}")
+
+    for t in board['technician_tasks']:
+        trace.log(
+            'TECH',
+            f"{t['owner']} L{t.get('work_level')} {t['task']}",
+            f"{t['case_id']} {t['reason']}",
+        )
+
     metrics = {
         **board,
         'uncertain_count': uncertain,
         'ai_draft_count': len([s for s in ai if s.step == 'coordinator_customer_draft']),
     }
     cost = build_cost_structure(scenario, metrics)
+    trace.log(
+        'COST',
+        'Weekly time and tool cap check',
+        (
+            f"net_min_saved={cost['time_minutes_per_week']['net_saved']} "
+            f"monthly_tool_budget_inr={cost['assumptions']['monthly_tool_budget_inr']}"
+        ),
+    )
 
     baseline_pending = baseline_naive_pending(requests_verified)
     rules_proposals = proposed_ids(triage)
     solo = baseline_coordinator_only_load(cases, requests_verified)
 
-    lane_counts = {}
-    for row in departure:
-        lane_counts[row['lane']] = lane_counts.get(row['lane'], 0) + 1
+    requests_by_id = {r['request_id']: r for r in requests_verified}
+    drafts_by_case = {
+        s.case_id: s.suggestion for s in ai if s.step == 'coordinator_customer_draft'
+    }
+    deliveries = build_customer_deliveries(triage, requests_by_id, drafts_by_case)
+    for d in deliveries:
+        trace.log(
+            'COORDINATOR',
+            'Approve draft follow-up (simulated)',
+            f"{d['request_id']} preview={d.get('draft_preview', '')[:80]}...",
+        )
+    trace.finish_customer_delivery(deliveries)
 
     triage_rows = [
         {
@@ -77,61 +150,15 @@ def run_integrated_pipeline(cases, requests, scenario, events=None) -> dict:
         triage_counts[row.disposition] += 1
 
     steps = [
-        IntegratedStep(
-            0,
-            'Data & policy validation',
-            'system → coordinator on errors',
-            summarize_validation(validation),
-        ),
-        IntegratedStep(
-            0.25,
-            'Customer register verification',
-            'system discards spam; coordinator audit',
-            summarize_customer_verification(customer),
-        ),
-        IntegratedStep(
-            0.5,
-            'Customer file intake (multi-format)',
-            'media_intake + technician',
-            f"{len(media_checks)} sample files; formats "
-            f"{sorted({m['detected_format'] for m in media_checks})}",
-        ),
-        IntegratedStep(
-            1,
-            'Daily huddle',
-            f"coordinator + duty lead {duty['duty_lead']}",
-            f"Review {uncertain} uncertain rows and top {min(5, len(departure))} departure-board cases",
-        ),
-        IntegratedStep(
-            2,
-            'Lane classification',
-            'rules + lane_model',
-            f"Express/Standard/Park counts: {lane_counts}",
-        ),
-        IntegratedStep(
-            3,
-            'Customer contact gate',
-            'coordinator (approve)',
-            f"{len(rules_proposals)} draft follow-ups vs {len(baseline_pending)} naive pending",
-        ),
-        IntegratedStep(
-            4,
-            'Parallel technician work',
-            'tiered T1–T4',
-            f"{len(board['technician_tasks'])} tasks; load {board['load_by_owner']}",
-        ),
-        IntegratedStep(
-            5,
-            'AI assist',
-            'coordinator + technicians',
-            f"{len(ai)} suggestions; all require human gate",
-        ),
-        IntegratedStep(
-            6,
-            'Cost check',
-            'owner',
-            f"Net scenario minutes/week saved {cost['time_minutes_per_week']['net_saved']}; tool cap INR {cost['inr_per_month_scenario']['tool_spend_cap']}",
-        ),
+        IntegratedStep(0, 'Data & policy validation', 'system → coordinator on errors', summarize_validation(validation)),
+        IntegratedStep(0.25, 'Customer register verification', 'system discards spam; coordinator audit', summarize_customer_verification(customer)),
+        IntegratedStep(0.5, 'Customer file intake (multi-format)', 'media_intake + technician', f"{len(media_checks)} sample files"),
+        IntegratedStep(1, 'Daily huddle', f"coordinator + duty lead {duty['duty_lead']}", f"uncertain={uncertain}"),
+        IntegratedStep(2, 'Lane classification', 'rules + lane_model', str(lane_counts)),
+        IntegratedStep(3, 'Customer contact gate', 'coordinator (approve)', f"{len(rules_proposals)} drafts vs {len(baseline_pending)} naive"),
+        IntegratedStep(4, 'Parallel technician work', 'tiered T1–T4', str(board['load_by_owner'])),
+        IntegratedStep(5, 'AI assist', 'coordinator + technicians', f"{len(ai)} suggestions"),
+        IntegratedStep(6, 'Cost check', 'owner', f"net_min={cost['time_minutes_per_week']['net_saved']}"),
     ]
 
     return {
@@ -154,6 +181,8 @@ def run_integrated_pipeline(cases, requests, scenario, events=None) -> dict:
         'team_workboard': board,
         'ai_assist': [s.__dict__ for s in ai],
         'cost_structure': cost,
+        'customer_delivery_simulation': deliveries,
+        'pipeline_trace_lines': trace.lines,
         'comparison': {
             'solo_coordinator_load': solo,
             'coordinator_after_split': board['coordinator_tasks_after_split'],
@@ -162,6 +191,16 @@ def run_integrated_pipeline(cases, requests, scenario, events=None) -> dict:
             'prevented_bad_reminders': sorted(baseline_pending - rules_proposals),
         },
     }
+
+
+def run_and_write_trace(cases, requests, scenario, events, trace_path: Path) -> dict:
+    dry = scenario.get('dry_run_only', True)
+    mode = 'dry_run_only' if dry else 'live_mode_not_used_in_assessment'
+    trace = PipelineTrace(scenario['snapshot_at'], mode)
+    report = run_integrated_pipeline(cases, requests, scenario, events, trace=trace)
+    trace.write(trace_path)
+    report['pipeline_trace_file'] = str(trace_path)
+    return report
 
 
 def format_executive_summary(report: dict) -> str:
@@ -185,4 +224,6 @@ def format_executive_summary(report: dict) -> str:
     lines.append(
         f"Contact quality: {c['rules_based_drafts']} rule-based drafts vs {c['naive_pending_reminders']} naive (prevented {len(c['prevented_bad_reminders'])} bad IDs)"
     )
+    if report.get('pipeline_trace_file'):
+        lines.append(f"Unified trace log: {report['pipeline_trace_file']}")
     return '\n'.join(lines)

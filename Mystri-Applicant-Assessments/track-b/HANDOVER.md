@@ -17,7 +17,7 @@ python3 experiment.py
 python3 -m unittest discover -s tests -v
 ```
 
-Expected: **`experiment.py`** prints the **6-step DICM collaboration summary**; writes **`output/integrated_report.json`**. Tests **18/18 OK**. Primary doc: **`INTEGRATED_MODEL.md`** (single combined approach).
+Expected: **`experiment.py`** prints the **6-step DICM collaboration summary**; writes **`output/integrated_report.json`** and **`output/dicm_pipeline_trace.log`** (full audit from load → validation → rules → tech → simulated customer delivery). Tests **32/32 OK**. Primary doc: **`INTEGRATED_MODEL.md`**.
 
 ## What I delivered
 
@@ -33,6 +33,7 @@ Expected: **`experiment.py`** prints the **6-step DICM collaboration summary**; 
 | No-action input | `tests/test_queue.py` `test_no_action_when_all_requests_received` | 0 proposals |
 | Changed input | `test_changed_input_blocks_recent_request` | R009 blocked when last request moved to 1h before snapshot |
 | Edge case | `test_conflicting_pending_and_received_is_uncertain` | R018 → uncertain |
+| End-to-end audit log | `output/dicm_pipeline_trace.log` + `tests/test_pipeline_trace.py` | START → CUSTOMER dry-run → END |
 
 **Changed-input expectation:** Setting R009’s `last_requested_at` to one hour before snapshot should block a draft; observed `exclude` with “need 48h” reason.
 
