@@ -8,6 +8,8 @@ from queue_engine import baseline_naive_pending, proposed_ids, triage_all
 from team_workboard import baseline_coordinator_only_load, build_team_board
 from ai_assist import enrich_coordinator_tasks, photo_screening_decision, technician_prep_checklist
 from cost_model import build_cost_structure
+from approaches import hybrid_incorporation_summary, rank_approaches_for_daybreak
+from lane_model import duty_lead_for_snapshot, prioritized_board
 
 
 def summarize(results):
@@ -49,6 +51,19 @@ def main():
     }
     cost = build_cost_structure(inputs['scenario'], metrics)
 
+    board_rows = prioritized_board(inputs['cases'], inputs['requests'], inputs['scenario']['snapshot_at'])
+    lane_counts = {}
+    for row in board_rows:
+        lane_counts[row['lane']] = lane_counts.get(row['lane'], 0) + 1
+    duty = duty_lead_for_snapshot(inputs['scenario']['snapshot_at'])
+    synthesis = {
+        'hybrid_layers': hybrid_incorporation_summary(),
+        'approach_ranking': rank_approaches_for_daybreak()[:5],
+        'three_speed_lanes': lane_counts,
+        'departure_board_top5': board_rows[:5],
+        'rotating_duty_lead': duty,
+    }
+
     report = {
         'snapshot_at': inputs['scenario']['snapshot_at'],
         'counts': summarize(results),
@@ -59,6 +74,7 @@ def main():
         'team_workboard': board,
         'cost_structure': cost,
         'ai_assist_samples': [s.__dict__ for s in ai_samples],
+        'out_of_box_synthesis': synthesis,
         'rows': [
             {
                 'request_id': r.request_id,
@@ -116,6 +132,13 @@ def main():
         print('\nAI assist samples (human approval required):')
         for s in ai_samples[:3]:
             print(f"  [{s.step}] {s.case_id} ({s.confidence}): {s.human_gate}")
+
+    print('\nThree-speed lanes:', lane_counts)
+    print('Rotating duty lead:', duty)
+    print('Departure board (top 3 priorities):')
+    for row in board_rows[:3]:
+        print(f"  {row['case_id']} score={row['priority_score']} lane={row['lane']} — {row['lane_reason']}")
+    print('Hybrid model layers:', [layer['layer'] for layer in synthesis['hybrid_layers']])
 
     if args.write:
         args.write.parent.mkdir(parents=True, exist_ok=True)

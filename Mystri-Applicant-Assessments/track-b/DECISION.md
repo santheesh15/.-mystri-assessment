@@ -23,6 +23,7 @@ Duplicates in `events.csv` are ignored for counts. Blank `active_minutes` are tr
 | **Microsoft OneDrive file request** | Customers can upload a photo without an account; helps *collection* | Does not reconcile inbox threads with request status or enforce 48-hour spacing (see SOURCES.md) |
 | **Process-only: weekly stale-request review** | Uses existing inbox + spreadsheet; coordinator already works there | Relies on human discipline; easy to repeat reminders when status lags |
 | **Custom rules queue (my experiment)** | Encodes published constraints; dry-run drafts only | Needs maintained rules and clean exports; not a messaging product |
+| **Hybrid synthesis (recommended)** | Keeps inbox/spreadsheet, adds file-request link, rules, tiered techs, AI drafts, three-speed lanes | Requires daily huddle discipline; not a single-vendor product |
 
 ## Technical claim investigated
 

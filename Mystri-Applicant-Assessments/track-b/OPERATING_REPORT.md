@@ -99,6 +99,27 @@ Open `output/queue_report.json` → sections `team_workboard`, `cost_structure`,
 
 ---
 
-## 7. Platform note
+## 8. Out-of-box synthesis (unique + best existing)
+
+We **do not** pick one vendor or one buzzword. The hybrid combines:
+
+| Source | What we took |
+| --- | --- |
+| **Existing shop habit** | Shared inbox + spreadsheet exports (coordinator already uses these) |
+| **Buy (proven SaaS patterns)** | File-request upload link in reminders; optional approval tool for quotes later |
+| **Build** | Rules engine, tiered technicians, AI draft assist (mock) |
+| **Out-of-box ops** | **Three-speed lanes** (Express / Standard / Park), **departure-board** priority sort, **rotating duty lead** (T1↔T2 weekly), **15-min daily huddle** on uncertain rows |
+
+**Three-speed lanes**
+
+- **Express** — photo received → technician quote path (fast lane)  
+- **Standard** — missing info but safe to chase with rules + parallel tech prep  
+- **Park** — opt-out, closed case, or messy data → human only  
+
+**Why unique:** Most “AI fixes churn” pitches ignore **tiered manpower + lanes + buy/build split**. This model is optimistic (parallel work, AI drafts) but **feasible** (stdlib Python, no lock-in), **maintainable** (policy in code), and **risk-aware** (Park lane + human gates).
+
+Run `python3 experiment.py` → JSON section `out_of_box_synthesis` for ranked approaches and top departure-board rows.
+
+---
 
 Uses `pathlib`, UTF-8 CSV (`utf-8-sig`), and `datetime.fromisoformat` — supported on all mainstream Python 3.10+ installs. No OS-specific shell features required.

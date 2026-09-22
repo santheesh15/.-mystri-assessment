@@ -23,6 +23,8 @@ def draft_reminder_email(case: dict, item: str, contact: str) -> AiSuggestion:
         f"Hello,\n\n"
         f"Please reply to this email with the requested {item.replace('_', ' ')} "
         f"so we can prepare your quote.\n\n"
+        f"Optional: use our secure upload link (OneDrive/Dropbox file-request pattern) "
+        f"instead of an attachment if your inbox blocks images.\n\n"
         f"Thank you,\nDaybreak Repairs"
     )
     return AiSuggestion(
