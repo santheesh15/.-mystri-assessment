@@ -225,32 +225,53 @@ def run_and_write_trace(cases, requests, scenario, events, trace_path: Path) -> 
 
 
 def format_executive_summary(report: dict) -> str:
+    def _ascii_safe(text: str) -> str:
+        return (
+            text.replace('\u2192', '->')
+            .replace('\u2014', '-')
+            .replace('\u2013', '-')
+        )
+
     lines = [
-        report['name'],
-        report['one_line_pitch'],
+        _ascii_safe(report['name']),
+        _ascii_safe(report['one_line_pitch']),
         '',
         'Collaboration steps (in order):',
     ]
     for s in report['collaboration_flow']:
-        lines.append(f"  {s['order']}. {s['name']} [{s['owner']}] — {s['output_summary']}")
+        lines.append(
+            _ascii_safe(
+                f"  {s['order']}. {s['name']} [{s['owner']}] — {s['output_summary']}"
+            )
+        )
     lines.append('')
-    lines.append(f"Validation: {summarize_validation(report['data_policy_validation'])}")
+    lines.append(_ascii_safe(f"Validation: {summarize_validation(report['data_policy_validation'])}"))
     cv = report['customer_verification']
     lines.append(
-        f"Customers: verified={cv['verified_request_count']} discarded={cv['discarded_request_count']}"
+        _ascii_safe(
+            f"Customers: verified={cv['verified_request_count']} discarded={cv['discarded_request_count']}"
+        )
     )
-    lines.append(f"Duty lead this week: {report['duty_lead']['duty_lead']} (backup {report['duty_lead']['backup_lead']})")
-    lines.append(f"Lanes: {report['lane_counts']}")
+    lines.append(
+        _ascii_safe(
+            f"Duty lead this week: {report['duty_lead']['duty_lead']} (backup {report['duty_lead']['backup_lead']})"
+        )
+    )
+    lines.append(_ascii_safe(f"Lanes: {report['lane_counts']}"))
     c = report['comparison']
     lines.append(
-        f"Contact quality: {c['rules_based_drafts']} rule-based drafts vs {c['naive_pending_reminders']} naive (prevented {len(c['prevented_bad_reminders'])} bad IDs)"
+        _ascii_safe(
+            f"Contact quality: {c['rules_based_drafts']} rule-based drafts vs {c['naive_pending_reminders']} naive (prevented {len(c['prevented_bad_reminders'])} bad IDs)"
+        )
     )
     if report.get('pipeline_trace_file'):
-        lines.append(f"Unified trace log: {report['pipeline_trace_file']}")
+        lines.append(_ascii_safe(f"Unified trace log: {report['pipeline_trace_file']}"))
     acks = report.get('customer_structured_receipt_acks') or []
     if acks:
         ok_n = sum(1 for a in acks if a.get('ok'))
         lines.append(
-            f"Structured receipt responses: {len(acks)} sent (ok={ok_n}, not_ok_or_review={len(acks) - ok_n})"
+            _ascii_safe(
+                f"Structured receipt responses: {len(acks)} sent (ok={ok_n}, not_ok_or_review={len(acks) - ok_n})"
+            )
         )
     return '\n'.join(lines)
