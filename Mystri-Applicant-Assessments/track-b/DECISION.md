@@ -2,9 +2,9 @@
 
 ## Problem and user
 
-**User:** the sole coordinator, supported by four technicians.  
-**Workflow:** after intake, many refrigerator/AC/washing-machine cases need a **fault photo**, and sometimes **site access** or a **serial number**, before quoting or scheduling.  
-**Problem chosen:** reduce time spent chasing **missing information** without sending reminders that violate Daybreak’s own rules (opt-outs, closed cases, items already received in another thread, or requests inside the 48-hour gap).
+**Users:** **one coordinator** (customer email, reminders, data cleanup) and **four technicians** (technical clearance—not bulk customer chasing).  
+**Workflow:** after intake, cases need photos, access, or serial numbers before quoting. Industry-style improvement: **parallel lanes** so technicians prep quotes/review photo quality while the coordinator only handles eligible customer contact.  
+**Problem chosen:** speed up missing-information flow **without** wrong reminders (opt-outs, already-sent photos, 48-hour gap) and route **messy/uncertain rows to humans** (coordinator inbox sync or technician visual photo check—not AI vision).
 
 The export supports this focus: 24 cases include six still `waiting_info`, and 24 of 30 requests are `fault_photo` rows. Interview notes match the pain (duplicate reminders, photos arriving off-thread, incomplete logging). The data is weak on true calendar waiting time, technician effort, and whether quote value converts to profit—so I do not treat the owner’s “eight hours a week” as measured fact.
 
@@ -32,7 +32,7 @@ Duplicates in `events.csv` are ignored for counts. Blank `active_minutes` are tr
 
 ## Recommendation
 
-**Build a small internal rules queue (or spreadsheet with the same checks), not an AI assistant; defer paid workflow products until metrics exist.** Strongest evidence *against*: the sample shows data-quality issues (stale pending rows, missing timestamps) that automation would amplify without an uncertainty path—already 2/30 rows here. **What would change my mind:** two weeks of measured coordinator minutes on follow-ups plus error rate on reminders.
+**Pilot a five-person operating model + small rules workboard (not an AI assistant):** coordinator owns **approved** customer drafts; technicians own **parallel prep and photo-quality checks** assigned by case (`T1`–`T4`). This is the optimistic industry pattern—**narrow automation where rules are clear, humans where judgment is required**—to shorten queue time without blasting customers. Defer paid workflow products until metrics exist. **What would change my mind:** measured cycle-time from `waiting_info` to quote with error rate on reminders unchanged or lower.
 
 ## Net value estimate (selected workflow: rules-assisted follow-up)
 

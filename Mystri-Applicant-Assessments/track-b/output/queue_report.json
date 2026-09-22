@@ -18,6 +18,185 @@
     "R029"
   ],
   "rules_only_not_in_baseline": [],
+  "team_workboard": {
+    "team_size": {
+      "coordinators": 1,
+      "technicians": 4
+    },
+    "coordinator_tasks": [
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C009",
+        "task": "draft_customer_followup",
+        "reason": "Eligible reminder for fault_photo (117.0h since last request)",
+        "request_ids": [
+          "R009"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C018",
+        "task": "review_before_any_contact",
+        "reason": "pending status conflicts with received_at; needs coordinator review",
+        "request_ids": [
+          "R018"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C022",
+        "task": "review_before_any_contact",
+        "reason": "Missing last_requested_at",
+        "request_ids": [
+          "R022"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C024",
+        "task": "draft_customer_followup",
+        "reason": "Eligible reminder for fault_photo (69.0h since last request)",
+        "request_ids": [
+          "R024"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C009",
+        "task": "draft_customer_followup",
+        "reason": "Eligible reminder for site_access (117.0h since last request)",
+        "request_ids": [
+          "R025"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C024",
+        "task": "draft_customer_followup",
+        "reason": "Eligible reminder for serial_number (69.0h since last request)",
+        "request_ids": [
+          "R026"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C017",
+        "task": "draft_customer_followup",
+        "reason": "Eligible reminder for quote_approval (118.0h since last request)",
+        "request_ids": [
+          "R027"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C018",
+        "task": "reconcile_inbox_vs_request_row",
+        "reason": "Photo may exist off-thread; coordinator syncs status before tech quote work",
+        "request_ids": [
+          "R018"
+        ]
+      }
+    ],
+    "technician_tasks": [
+      {
+        "role": "technician",
+        "owner": "T1",
+        "case_id": "C009",
+        "task": "standby_case_brief",
+        "reason": "Read case note; no customer contact\u2014ready when info arrives",
+        "request_ids": [
+          "C009"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T4",
+        "case_id": "C012",
+        "task": "standby_case_brief",
+        "reason": "Read case note; no customer contact\u2014ready when info arrives",
+        "request_ids": [
+          "C012"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T4",
+        "case_id": "C016",
+        "task": "prep_quote_while_waiting_for_photo",
+        "reason": "Parallel prep on refrigerator while coordinator chases missing photo",
+        "request_ids": [
+          "R030"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T1",
+        "case_id": "C017",
+        "task": "hold_parts_plan",
+        "reason": "Keep parts plan ready if customer approves quote",
+        "request_ids": [
+          "C017"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T1",
+        "case_id": "C021",
+        "task": "hold_parts_plan",
+        "reason": "Keep parts plan ready if customer approves quote",
+        "request_ids": [
+          "C021"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T2",
+        "case_id": "C022",
+        "task": "standby_case_brief",
+        "reason": "Read case note; no customer contact\u2014ready when info arrives",
+        "request_ids": [
+          "C022"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T3",
+        "case_id": "C023",
+        "task": "hold_parts_plan",
+        "reason": "Keep parts plan ready if customer approves quote",
+        "request_ids": [
+          "C023"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T4",
+        "case_id": "C024",
+        "task": "standby_case_brief",
+        "reason": "Read case note; no customer contact\u2014ready when info arrives",
+        "request_ids": [
+          "C024"
+        ]
+      }
+    ],
+    "load_by_owner": {
+      "coordinator": 8,
+      "T1": 3,
+      "T4": 3,
+      "T2": 1,
+      "T3": 1
+    },
+    "baseline_all_work_on_coordinator": 19,
+    "coordinator_tasks_after_split": 8
+  },
   "rows": [
     {
       "request_id": "R001",
