@@ -34,6 +34,7 @@ Expected: **`experiment.py`** prints the **6-step DICM collaboration summary**; 
 | Changed input | `test_changed_input_blocks_recent_request` | R009 blocked when last request moved to 1h before snapshot |
 | Edge case | `test_conflicting_pending_and_received_is_uncertain` | R018 → uncertain |
 | End-to-end audit log | `output/dicm_pipeline_trace.log` + `tests/test_pipeline_trace.py` | START → CUSTOMER dry-run → END |
+| Structured receipt OK/not-OK | `output/customer_structured_responses.json` + `tests/test_customer_acknowledgment.py` | JSON `receipt_outcome` + trace `CUSTOMER_ACK` |
 
 **Changed-input expectation:** Setting R009’s `last_requested_at` to one hour before snapshot should block a draft; observed `exclude` with “need 48h” reason.
 
