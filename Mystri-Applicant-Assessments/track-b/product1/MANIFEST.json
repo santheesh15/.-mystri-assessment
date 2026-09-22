@@ -1,0 +1,39 @@
+{
+  "product": "DICM Core",
+  "product_id": "product1",
+  "track": "B",
+  "version": "1.0.0",
+  "entrypoint": "experiment.py",
+  "loader": "starter.py",
+  "dry_run_only": true,
+  "dependencies": "Python 3.10+ stdlib only",
+  "required_docs": [
+    "DECISION.md",
+    "SOURCES.md",
+    "HANDOVER.md",
+    "INTEGRATED_MODEL.md",
+    "OPERATING_REPORT.md"
+  ],
+  "python_modules": [
+    "experiment.py",
+    "integrated_model.py",
+    "queue_engine.py",
+    "data_policy.py",
+    "customer_registry.py",
+    "media_intake.py",
+    "lane_model.py",
+    "team_workboard.py",
+    "ai_assist.py",
+    "cost_model.py",
+    "approaches.py",
+    "customer_acknowledgment.py",
+    "pipeline_trace.py",
+    "starter.py"
+  ],
+  "outputs": [
+    "output/integrated_report.json",
+    "output/dicm_pipeline_trace.log",
+    "output/customer_structured_responses.json"
+  ],
+  "verify": "product1/verify_product1.py"
+}

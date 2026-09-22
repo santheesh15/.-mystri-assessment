@@ -4,11 +4,20 @@
 - Email used for this application: *[fill]*
 - Chosen track: **B**
 - Why this track: I prefer scoping a business/technical decision, checking a concrete claim against documentation, and proving it with a small runnable experiment rather than repairing an existing app.
-- Approximate total time, including setup and handover: *[fill honestly, ≤4 hours]*
+- Approximate total time, including setup and handover: *[fill honestly]*
+
+**Submission product:** **Product 1 — DICM Core** (`product1/README.md`, `PRODUCTS.md`). Products 2 and 3 are not included in this handover.
 
 ## Run and verify
 
 Prerequisites: Python 3.10+, no third-party packages.
+
+```text
+cd Mystri-Applicant-Assessments/track-b
+python3 product1/verify_product1.py
+```
+
+Or step by step:
 
 ```text
 cd Mystri-Applicant-Assessments/track-b
@@ -17,12 +26,12 @@ python3 experiment.py
 python3 -m unittest discover -s tests -v
 ```
 
-Expected: **`experiment.py`** prints the **6-step DICM collaboration summary**; writes **`output/integrated_report.json`**, **`output/dicm_pipeline_trace.log`**, and **`output/customer_structured_responses.json`** (structured OK/not-OK receipt responses). Tests **36/36 OK**. Primary doc: **`INTEGRATED_MODEL.md`**.
+Expected: **`experiment.py`** prints the **DICM collaboration summary**; writes **`output/integrated_report.json`**, **`output/dicm_pipeline_trace.log`**, and **`output/customer_structured_responses.json`**. **`verify_product1.py`** prints **`PRODUCT 1 PASS`**. Tests **38/38 OK**. Primary doc: **`INTEGRATED_MODEL.md`**.
 
 ## What I delivered
 
 **Problem:** missing-info follow-ups using **one integrated model (DICM)** — coordinator + tiered technicians + rules + lanes + AI assist + existing tools.  
-**Result:** `integrated_model.py` orchestrates all pieces; see **`INTEGRATED_MODEL.md`**, `DECISION.md`, `OPERATING_REPORT.md`.
+**Result:** **Product 1 (DICM Core)** — `integrated_model.py` orchestrates all in-scope pieces; see **`product1/README.md`**, **`INTEGRATED_MODEL.md`**, `DECISION.md`, `OPERATING_REPORT.md`.
 
 ## Evidence and limits
 

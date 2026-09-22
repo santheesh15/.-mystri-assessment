@@ -1,4 +1,4 @@
-"""Run the integrated Daybreak model (single entry point)."""
+"""Run Product 1 — Daybreak DICM Core (Track B scoped experiment)."""
 import argparse
 import json
 from pathlib import Path
