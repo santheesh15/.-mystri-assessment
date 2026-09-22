@@ -76,11 +76,16 @@ def main() -> None:
     print('Outputs + trace + baseline check: OK')
 
     tests = subprocess.run(
-        [sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', '-v'],
+        [sys.executable, '-m', 'unittest', 'discover', '-s', 'tests'],
         cwd=TRACK_B,
+        capture_output=True,
+        text=True,
     )
     if tests.returncode != 0:
+        print(tests.stdout, tests.stderr, sep='')
         _fail('unit tests failed (see output above)')
+    ran_line = [ln for ln in tests.stdout.splitlines() if ln.startswith('Ran ')]
+    print('Unit tests:', ran_line[-1] if ran_line else 'OK')
 
     print('')
     print('PRODUCT 1 PASS — DICM Core ready for Track B submission.')
