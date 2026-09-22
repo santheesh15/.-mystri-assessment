@@ -1,0 +1,293 @@
+{
+  "snapshot_at": "2026-09-07T09:00:00+05:30",
+  "counts": {
+    "propose": 5,
+    "exclude": 23,
+    "uncertain": 2
+  },
+  "baseline_pending_followups": 13,
+  "rules_proposed_followups": 5,
+  "baseline_would_contact_prevented_by_rules": [
+    "R001",
+    "R005",
+    "R013",
+    "R016",
+    "R018",
+    "R019",
+    "R022",
+    "R029"
+  ],
+  "rules_only_not_in_baseline": [],
+  "rows": [
+    {
+      "request_id": "R001",
+      "case_id": "C001",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C001 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R002",
+      "case_id": "C002",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C002 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R003",
+      "case_id": "C003",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C003 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R004",
+      "case_id": "C004",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C004 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R005",
+      "case_id": "C005",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C005 is cancelled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R006",
+      "case_id": "C006",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C006 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R007",
+      "case_id": "C007",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C007 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R008",
+      "case_id": "C008",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C008 is scheduled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R009",
+      "case_id": "C009",
+      "item": "fault_photo",
+      "disposition": "propose",
+      "reason": "Eligible reminder for fault_photo (117.0h since last request)",
+      "draft_channel": "email",
+      "draft_contact": "case-009@example.invalid"
+    },
+    {
+      "request_id": "R010",
+      "case_id": "C010",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C010 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R011",
+      "case_id": "C011",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C011 is scheduled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R012",
+      "case_id": "C012",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "followup_allowed is 0",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R013",
+      "case_id": "C013",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C013 is cancelled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R014",
+      "case_id": "C014",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C014 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R015",
+      "case_id": "C015",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C015 is scheduled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R016",
+      "case_id": "C016",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Only 46.0h since last request; need 48h",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R017",
+      "case_id": "C017",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Item already received",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R018",
+      "case_id": "C018",
+      "item": "fault_photo",
+      "disposition": "uncertain",
+      "reason": "pending status conflicts with received_at; needs coordinator review",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R019",
+      "case_id": "C019",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C019 is cancelled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R020",
+      "case_id": "C020",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C020 is scheduled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R021",
+      "case_id": "C021",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Item already received",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R022",
+      "case_id": "C022",
+      "item": "fault_photo",
+      "disposition": "uncertain",
+      "reason": "Missing last_requested_at",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R023",
+      "case_id": "C023",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Item already received",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R024",
+      "case_id": "C024",
+      "item": "fault_photo",
+      "disposition": "propose",
+      "reason": "Eligible reminder for fault_photo (69.0h since last request)",
+      "draft_channel": "email",
+      "draft_contact": "case-024@example.invalid"
+    },
+    {
+      "request_id": "R025",
+      "case_id": "C009",
+      "item": "site_access",
+      "disposition": "propose",
+      "reason": "Eligible reminder for site_access (117.0h since last request)",
+      "draft_channel": "email",
+      "draft_contact": "case-009@example.invalid"
+    },
+    {
+      "request_id": "R026",
+      "case_id": "C024",
+      "item": "serial_number",
+      "disposition": "propose",
+      "reason": "Eligible reminder for serial_number (69.0h since last request)",
+      "draft_channel": "email",
+      "draft_contact": "case-024@example.invalid"
+    },
+    {
+      "request_id": "R027",
+      "case_id": "C017",
+      "item": "quote_approval",
+      "disposition": "propose",
+      "reason": "Eligible reminder for quote_approval (118.0h since last request)",
+      "draft_channel": "email",
+      "draft_contact": "case-017@example.invalid"
+    },
+    {
+      "request_id": "R028",
+      "case_id": "C021",
+      "item": "quote_approval",
+      "disposition": "exclude",
+      "reason": "followup_allowed is 0",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R029",
+      "case_id": "C023",
+      "item": "quote_approval",
+      "disposition": "exclude",
+      "reason": "Only 46.0h since last request; need 48h",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R030",
+      "case_id": "C016",
+      "item": "site_access",
+      "disposition": "exclude",
+      "reason": "Item already received",
+      "draft_channel": null,
+      "draft_contact": null
+    }
+  ]
+}
