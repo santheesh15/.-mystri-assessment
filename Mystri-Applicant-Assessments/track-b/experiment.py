@@ -89,6 +89,9 @@ def main():
         len(board['technician_tasks']),
     )
     print('Tasks per person:', board['load_by_owner'])
+    print('Tasks by work level:', board.get('load_by_work_level'))
+    if board.get('technician_hierarchy'):
+        print('Technician hierarchy:', [f"{t['id']} rank {t['rank']} ({t['title']})" for t in board['technician_hierarchy']])
     print('Cost/time (scenario): net saved min/week =', cost['time_minutes_per_week']['net_saved'])
     print('Tool cap INR/month =', cost['inr_per_month_scenario']['tool_spend_cap'])
     if missed:
@@ -104,7 +107,10 @@ def main():
     if tech:
         print('\nSample technician parallel tasks (no customer contact):')
         for t in tech:
-            print(f"  {t['owner']} {t['case_id']} {t['task']}: {t['reason']}")
+            print(
+                f"  {t['owner']} ({t.get('owner_title', '')}) L{t.get('work_level', '?')} "
+                f"{t['case_id']} {t['task']}: {t['reason']}"
+            )
 
     if ai_samples:
         print('\nAI assist samples (human approval required):')

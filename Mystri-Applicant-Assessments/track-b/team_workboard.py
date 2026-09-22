@@ -1,10 +1,26 @@
-"""Five-person workboard: 1 coordinator + 4 technicians (dry-run tasks only)."""
+"""Five-person workboard: 1 coordinator + 4 tiered technicians (dry-run tasks only)."""
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Iterable
 
-from queue_engine import CLOSED_CASE_STATUSES, RowResult, _parse_ts
+from queue_engine import CLOSED_CASE_STATUSES, RowResult
+
+
+# Higher rank = senior; harder tasks require higher minimum rank.
+TECH_ROSTER = (
+    {'id': 'T1', 'rank': 4, 'title': 'Lead technician', 'capacity': 3},
+    {'id': 'T2', 'rank': 3, 'title': 'Senior technician', 'capacity': 3},
+    {'id': 'T3', 'rank': 2, 'title': 'Technician', 'capacity': 4},
+    {'id': 'T4', 'rank': 1, 'title': 'Apprentice technician', 'capacity': 4},
+)
+
+TASK_WORK_LEVEL = {
+    'human_photo_quality_check': 4,
+    'prep_quote_while_waiting_for_photo': 3,
+    'hold_parts_plan': 3,
+    'standby_case_brief': 1,
+}
 
 
 @dataclass(frozen=True)
@@ -15,13 +31,8 @@ class TeamTask:
     task: str
     reason: str
     request_ids: tuple[str, ...] = ()
-
-
-def assign_technician(case_id: str, technician_count: int) -> str:
-    digits = ''.join(ch for ch in case_id if ch.isdigit())
-    n = int(digits or 0)
-    slot = (n - 1) % max(technician_count, 1)
-    return f'T{slot + 1}'
+    work_level: int = 1
+    owner_title: str = ''
 
 
 def _requests_for_case(requests: Iterable[dict], case_id: str) -> list[dict]:
@@ -48,6 +59,36 @@ def _photo_uncertain(case_requests: list[dict]) -> bool:
     return False
 
 
+def assign_by_hierarchy(unassigned: list[TeamTask]) -> list[TeamTask]:
+    """Assign each task to the least-loaded technician who meets the work level."""
+    load = {t['id']: 0 for t in TECH_ROSTER}
+    roster_by_id = {t['id']: t for t in TECH_ROSTER}
+    assigned: list[TeamTask] = []
+
+    for task in sorted(unassigned, key=lambda t: (-t.work_level, t.case_id)):
+        level = task.work_level
+        eligible = [t for t in TECH_ROSTER if t['rank'] >= level and load[t['id']] < t['capacity']]
+        if not eligible:
+            eligible = [t for t in TECH_ROSTER if load[t['id']] < t['capacity']]
+        if not eligible:
+            eligible = list(TECH_ROSTER)
+        pick = min(eligible, key=lambda t: (load[t['id']], -t['rank']))
+        load[pick['id']] += 1
+        assigned.append(
+            TeamTask(
+                task.role,
+                pick['id'],
+                task.case_id,
+                task.task,
+                task.reason,
+                task.request_ids,
+                task.work_level,
+                pick['title'],
+            )
+        )
+    return assigned
+
+
 def build_team_board(
     cases: Iterable[dict],
     requests: Iterable[dict],
@@ -59,7 +100,7 @@ def build_team_board(
     request_list = list(requests)
 
     coordinator_tasks: list[TeamTask] = []
-    technician_tasks: list[TeamTask] = []
+    tech_unassigned: list[TeamTask] = []
 
     for row in triage:
         if row.disposition == 'propose':
@@ -94,7 +135,6 @@ def build_team_board(
             continue
 
         case_reqs = _requests_for_case(request_list, cid)
-        owner = assign_technician(cid, tech_count)
 
         if status == 'waiting_info' and _photo_uncertain(case_reqs):
             coordinator_tasks.append(
@@ -110,14 +150,16 @@ def build_team_board(
             continue
 
         if status == 'waiting_info' and _photo_received_clean(case_reqs):
-            technician_tasks.append(
+            task_name = 'human_photo_quality_check'
+            tech_unassigned.append(
                 TeamTask(
                     'technician',
-                    owner,
+                    '',
                     cid,
-                    'human_photo_quality_check',
+                    task_name,
                     'Technician confirms photo/model is quotable (not automated)',
                     tuple(r['request_id'] for r in case_reqs if r['item'] == 'fault_photo'),
+                    TASK_WORK_LEVEL[task_name],
                 )
             )
             continue
@@ -128,41 +170,48 @@ def build_team_board(
                 for r in case_reqs
             )
             if has_access:
-                technician_tasks.append(
+                task_name = 'prep_quote_while_waiting_for_photo'
+                tech_unassigned.append(
                     TeamTask(
                         'technician',
-                        owner,
+                        '',
                         cid,
-                        'prep_quote_while_waiting_for_photo',
+                        task_name,
                         f"Parallel prep on {case['service_type']} while coordinator chases missing photo",
                         tuple(r['request_id'] for r in case_reqs if r['item'] == 'site_access'),
+                        TASK_WORK_LEVEL[task_name],
                     )
                 )
             else:
-                technician_tasks.append(
+                task_name = 'standby_case_brief'
+                tech_unassigned.append(
                     TeamTask(
                         'technician',
-                        owner,
+                        '',
                         cid,
-                        'standby_case_brief',
+                        task_name,
                         'Read case note; no customer contact—ready when info arrives',
                         tuple(r['request_id'] for r in case_reqs[:1]),
+                        TASK_WORK_LEVEL[task_name],
                     )
                 )
 
         if status == 'quote_sent':
-            technician_tasks.append(
+            task_name = 'hold_parts_plan'
+            tech_unassigned.append(
                 TeamTask(
                     'technician',
-                    owner,
+                    '',
                     cid,
-                    'hold_parts_plan',
+                    task_name,
                     'Keep parts plan ready if customer approves quote',
-                    (cid,),
+                    tuple(r['request_id'] for r in case_reqs if r['item'] == 'quote_approval') or (cid,),
+                    TASK_WORK_LEVEL[task_name],
                 )
             )
 
-    # De-duplicate coordinator reconcile tasks already covered by uncertain triage
+    technician_tasks = assign_by_hierarchy(tech_unassigned)
+
     seen = set()
     deduped_coord: list[TeamTask] = []
     for t in coordinator_tasks:
@@ -173,8 +222,10 @@ def build_team_board(
         deduped_coord.append(t)
 
     load_by_owner: dict[str, int] = {'coordinator': len(deduped_coord)}
+    load_by_level: dict[int, int] = {}
     for t in technician_tasks:
         load_by_owner[t.owner] = load_by_owner.get(t.owner, 0) + 1
+        load_by_level[t.work_level] = load_by_level.get(t.work_level, 0) + 1
 
     baseline_single_person = len(
         [r for r in request_list if r.get('status') == 'pending' and r.get('followup_allowed') == '1']
@@ -182,9 +233,12 @@ def build_team_board(
 
     return {
         'team_size': {'coordinators': int(scenario.get('coordinators', 1)), 'technicians': tech_count},
+        'technician_hierarchy': list(TECH_ROSTER),
+        'task_work_levels': dict(TASK_WORK_LEVEL),
         'coordinator_tasks': [t.__dict__ for t in deduped_coord],
         'technician_tasks': [t.__dict__ for t in technician_tasks],
         'load_by_owner': load_by_owner,
+        'load_by_work_level': load_by_level,
         'baseline_all_work_on_coordinator': baseline_single_person,
         'coordinator_tasks_after_split': len(deduped_coord),
     }

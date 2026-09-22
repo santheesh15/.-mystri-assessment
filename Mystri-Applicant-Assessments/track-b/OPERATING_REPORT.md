@@ -11,11 +11,29 @@ This report shows **where humans work**, **where AI assists**, **cost/time struc
 | Lane | Role | Responsibility | AI role | Human gate |
 | --- | --- | --- | --- | --- |
 | A | **Coordinator** | Rule-checked customer follow-ups; inbox/data cleanup | Draft email text; suggest reply labels | **Approve every send**; confirm status changes |
-| B | **Technicians T1–T4** | Parallel prep, parts planning, **photo quality** | Generate prep checklist from case type | **Technician sign-off**; no customer email |
+| B | **Technicians T1–T4 (tiered)** | Work split by **skill level** (1=apprentice → 4=lead); load balanced inside each tier | Prep checklists by case type | **Technician sign-off**; harder tasks go to senior ranks |
 | C | **Rules engine** | 48h gap, opt-out, closed cases, conflicts → uncertain | None (deterministic) | Update rules in git when policy changes |
 | D | **Uncertain queue** | Messy rows (e.g. pending + received date) | Flag only; no auto-fix | Coordinator reconciles inbox vs CSV |
 
 **Unique combination:** AI speeds **writing and sorting**; people keep **authority on contact and quality**. Technicians work **while** coordinator chases missing photos—parallel throughput.
+
+### Technician hierarchy (work levels)
+
+| Rank | ID | Typical role | Takes work level | Max tasks (capacity) |
+| ---: | --- | --- | --- | ---: |
+| 4 | **T1** | Lead technician | Level 4 (photo quality sign-off) | 3 |
+| 3 | **T2** | Senior technician | Level 3+ (prep while waiting, parts plan) | 3 |
+| 2 | **T3** | Technician | Level 2+ | 4 |
+| 1 | **T4** | Apprentice | Level 1 (standby briefs) | 4 |
+
+| Task | Work level | Meaning |
+| --- | ---: | --- |
+| `human_photo_quality_check` | 4 | Hardest judgment — lead/senior only |
+| `prep_quote_while_waiting_for_photo` | 3 | Skilled prep in parallel |
+| `hold_parts_plan` | 3 | Quote-stage planning |
+| `standby_case_brief` | 1 | Readiness / low-risk monitoring |
+
+Assignment algorithm: sort tasks hardest-first, assign to the **least busy** technician whose **rank ≥ task level** and who is under **capacity** (see `team_workboard.assign_by_hierarchy`).
 
 ---
 
