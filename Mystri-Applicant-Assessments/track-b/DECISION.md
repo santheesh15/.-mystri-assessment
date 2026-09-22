@@ -27,12 +27,12 @@ Duplicates in `events.csv` are ignored for counts. Blank `active_minutes` are tr
 ## Technical claim investigated
 
 **Claim:** A hosted “file request” product can replace the coordinator’s follow-up discipline for missing photos.  
-**Check:** Microsoft’s OneDrive file-request documentation describes collecting files via a link and optional password/expiry—it does **not** describe case-level cooldowns, opt-out flags, or cross-thread matching to a request row.  
-**Implication:** File-request tools address **upload friction**, not **eligibility to nudge**. That gap must be filled by process logic (human or deterministic code), not assumed away by “AI.”
+**Check:** Microsoft’s OneDrive file-request documentation describes collecting files via a link—it does **not** enforce cooldowns, opt-outs, or inbox reconciliation.  
+**Second claim (AI):** A general “AI assistant” can safely replace coordinator judgment. **Check:** In this prototype, AI only **suggests** drafts/labels; rules + humans send or reject. That matches a feasible production pattern (human-in-the-loop), not full autonomy.
 
 ## Recommendation
 
-**Pilot a five-person operating model + small rules workboard (not an AI assistant):** coordinator owns **approved** customer drafts; technicians own **parallel prep and photo-quality checks** assigned by case (`T1`–`T4`). This is the optimistic industry pattern—**narrow automation where rules are clear, humans where judgment is required**—to shorten queue time without blasting customers. Defer paid workflow products until metrics exist. **What would change my mind:** measured cycle-time from `waiting_info` to quote with error rate on reminders unchanged or lower.
+**Pilot a hybrid operating model:** **1 coordinator + 4 technicians + narrow AI assist** (draft emails, inbox labels, technician checklists). AI **never** auto-sends or auto-approves photo quality; humans stay in the loop. Deterministic **rules** enforce opt-outs, 48-hour spacing, and uncertain rows. This combines industry optimism (parallel manpower + AI speed) with maintainability (Python stdlib, policy-as-code). Full reviewer map: **`OPERATING_REPORT.md`** and `output/queue_report.json` → `cost_structure`. **What would change my mind:** pilot metrics on reminder errors and cycle-time to quote.
 
 ## Net value estimate (selected workflow: rules-assisted follow-up)
 

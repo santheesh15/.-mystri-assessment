@@ -17,12 +17,12 @@ python3 experiment.py --write output/queue_report.json
 python3 -m unittest discover -s tests -v
 ```
 
-Expected: starter prints 24/128/30 rows; experiment reports **5** proposed dry-run drafts, **23** excluded, **2** uncertain; tests **6/6 OK**. Report JSON at `output/queue_report.json`.
+Expected: starter prints 24/128/30 rows; experiment prints team workload, cost net minutes, AI assist gates; tests **10/10 OK**. Reviewer report: **`OPERATING_REPORT.md`**. JSON: `output/queue_report.json` (`cost_structure`, `ai_assist_samples`).
 
 ## What I delivered
 
-**Problem:** coordinator follow-ups for missing photos/info without violating Daybreak constraints.  
-**Result:** `queue_engine.py` + `experiment.py` implement a **rules queue** and compare it to a **naive “all pending” baseline** on the supplied CSVs. See `DECISION.md` for recommendation and net-value sketch; `SOURCES.md` for citations.
+**Problem:** missing-info follow-ups with **five-person team + AI assist** (drafts/triage/checklists), not auto-send.  
+**Result:** `queue_engine.py`, `team_workboard.py`, `ai_assist.py`, `cost_model.py`, `experiment.py`, **`OPERATING_REPORT.md`**. See `DECISION.md` and `SOURCES.md`.
 
 ## Evidence and limits
 

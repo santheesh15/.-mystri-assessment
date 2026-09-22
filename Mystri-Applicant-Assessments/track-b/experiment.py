@@ -6,6 +6,8 @@ from pathlib import Path
 from starter import load_inputs
 from queue_engine import baseline_naive_pending, proposed_ids, triage_all
 from team_workboard import baseline_coordinator_only_load, build_team_board
+from ai_assist import enrich_coordinator_tasks, photo_screening_decision, technician_prep_checklist
+from cost_model import build_cost_structure
 
 
 def summarize(results):
@@ -30,6 +32,23 @@ def main():
     prevented = sorted(baseline - rules)
     missed = sorted(rules - baseline)
 
+    cases_by_id = {c['case_id']: c for c in inputs['cases']}
+    ai_samples = enrich_coordinator_tasks(board['coordinator_tasks'], cases_by_id)
+    for t in board['technician_tasks'][:3]:
+        case = cases_by_id[t['case_id']]
+        ai_samples.append(technician_prep_checklist(case))
+    uncertain_count = sum(1 for r in results if r.disposition == 'uncertain')
+    ai_samples.append(
+        photo_screening_decision('C018', has_conflict=True)
+    )
+
+    metrics = {
+        **board,
+        'uncertain_count': uncertain_count,
+        'ai_draft_count': len([s for s in ai_samples if s.step == 'coordinator_customer_draft']),
+    }
+    cost = build_cost_structure(inputs['scenario'], metrics)
+
     report = {
         'snapshot_at': inputs['scenario']['snapshot_at'],
         'counts': summarize(results),
@@ -38,6 +57,8 @@ def main():
         'baseline_would_contact_prevented_by_rules': prevented,
         'rules_only_not_in_baseline': missed,
         'team_workboard': board,
+        'cost_structure': cost,
+        'ai_assist_samples': [s.__dict__ for s in ai_samples],
         'rows': [
             {
                 'request_id': r.request_id,
@@ -68,6 +89,8 @@ def main():
         len(board['technician_tasks']),
     )
     print('Tasks per person:', board['load_by_owner'])
+    print('Cost/time (scenario): net saved min/week =', cost['time_minutes_per_week']['net_saved'])
+    print('Tool cap INR/month =', cost['inr_per_month_scenario']['tool_spend_cap'])
     if missed:
         print('Rules-only proposals (not in baseline):', missed)
 
@@ -82,6 +105,11 @@ def main():
         print('\nSample technician parallel tasks (no customer contact):')
         for t in tech:
             print(f"  {t['owner']} {t['case_id']} {t['task']}: {t['reason']}")
+
+    if ai_samples:
+        print('\nAI assist samples (human approval required):')
+        for s in ai_samples[:3]:
+            print(f"  [{s.step}] {s.case_id} ({s.confidence}): {s.human_gate}")
 
     if args.write:
         args.write.parent.mkdir(parents=True, exist_ok=True)
