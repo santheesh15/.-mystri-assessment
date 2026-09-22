@@ -1,0 +1,17 @@
+{
+  "name": "Mystri Applicant Assessments",
+  "install": "bash .cursor/cloud-agent-install.sh",
+  "terminals": [
+    {
+      "name": "ClearLedger",
+      "command": "cd Mystri-Applicant-Assessments/track-a && python3 app.py --port 8787",
+      "description": "Track A ClearLedger web app at http://127.0.0.1:8787"
+    }
+  ],
+  "ports": [
+    {
+      "name": "ClearLedger",
+      "port": 8787
+    }
+  ]
+}
