@@ -11,6 +11,18 @@
         "output_summary": "errors=0 warnings=4 policy=4 pipeline_ok=True"
       },
       {
+        "order": 0.25,
+        "name": "Customer register verification",
+        "owner": "system discards spam; coordinator audit",
+        "output_summary": "verified=30 discarded=0 spam_or_unknown=[]"
+      },
+      {
+        "order": 0.5,
+        "name": "Customer file intake (multi-format)",
+        "owner": "media_intake + technician",
+        "output_summary": "4 sample files; formats ['heic', 'plain_text', 'png', 'unknown']"
+      },
+      {
         "order": 1,
         "name": "Daily huddle",
         "owner": "coordinator + duty lead T1",
@@ -122,6 +134,631 @@
         }
       ]
     },
+    "customer_verification": {
+      "verified_request_count": 30,
+      "discarded_request_count": 0,
+      "discarded_request_ids": [],
+      "checks": [
+        {
+          "request_id": "R001",
+          "case_id": "C001",
+          "contact_address": "case-001@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R002",
+          "case_id": "C002",
+          "contact_address": "case-002@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R003",
+          "case_id": "C003",
+          "contact_address": "case-003@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R004",
+          "case_id": "C004",
+          "contact_address": "case-004@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R005",
+          "case_id": "C005",
+          "contact_address": "case-005@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R006",
+          "case_id": "C006",
+          "contact_address": "case-006@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R007",
+          "case_id": "C007",
+          "contact_address": "case-007@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R008",
+          "case_id": "C008",
+          "contact_address": "case-008@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R009",
+          "case_id": "C009",
+          "contact_address": "case-009@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R010",
+          "case_id": "C010",
+          "contact_address": "case-010@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R011",
+          "case_id": "C011",
+          "contact_address": "case-011@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R012",
+          "case_id": "C012",
+          "contact_address": "case-012@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R013",
+          "case_id": "C013",
+          "contact_address": "case-013@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R014",
+          "case_id": "C014",
+          "contact_address": "case-014@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R015",
+          "case_id": "C015",
+          "contact_address": "case-015@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R016",
+          "case_id": "C016",
+          "contact_address": "case-016@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R017",
+          "case_id": "C017",
+          "contact_address": "case-017@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R018",
+          "case_id": "C018",
+          "contact_address": "case-018@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R019",
+          "case_id": "C019",
+          "contact_address": "case-019@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R020",
+          "case_id": "C020",
+          "contact_address": "case-020@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R021",
+          "case_id": "C021",
+          "contact_address": "case-021@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R022",
+          "case_id": "C022",
+          "contact_address": "case-022@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R023",
+          "case_id": "C023",
+          "contact_address": "case-023@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R024",
+          "case_id": "C024",
+          "contact_address": "case-024@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R025",
+          "case_id": "C009",
+          "contact_address": "case-009@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R026",
+          "case_id": "C024",
+          "contact_address": "case-024@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R027",
+          "case_id": "C017",
+          "contact_address": "case-017@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R028",
+          "case_id": "C021",
+          "contact_address": "case-021@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R029",
+          "case_id": "C023",
+          "contact_address": "case-023@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R030",
+          "case_id": "C016",
+          "contact_address": "case-016@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        }
+      ],
+      "requests_for_automation": [
+        {
+          "request_id": "R001",
+          "case_id": "C001",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-08-24T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-001@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-24T16:00+05:30"
+        },
+        {
+          "request_id": "R002",
+          "case_id": "C002",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-24T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-002@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-24T18:00+05:30"
+        },
+        {
+          "request_id": "R003",
+          "case_id": "C003",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-25T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-003@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-25T16:00+05:30"
+        },
+        {
+          "request_id": "R004",
+          "case_id": "C004",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-25T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-004@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-25T18:00+05:30"
+        },
+        {
+          "request_id": "R005",
+          "case_id": "C005",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-08-26T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-005@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R006",
+          "case_id": "C006",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-26T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-006@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-26T18:00+05:30"
+        },
+        {
+          "request_id": "R007",
+          "case_id": "C007",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-27T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-007@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-27T16:00+05:30"
+        },
+        {
+          "request_id": "R008",
+          "case_id": "C008",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-27T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-008@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-27T18:00+05:30"
+        },
+        {
+          "request_id": "R009",
+          "case_id": "C009",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-09-02T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-009@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R010",
+          "case_id": "C010",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-28T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-010@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-28T18:00+05:30"
+        },
+        {
+          "request_id": "R011",
+          "case_id": "C011",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-29T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-011@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-29T16:00+05:30"
+        },
+        {
+          "request_id": "R012",
+          "case_id": "C012",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-09-03T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-012@example.invalid",
+          "followup_allowed": "0",
+          "received_at": ""
+        },
+        {
+          "request_id": "R013",
+          "case_id": "C013",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-08-30T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-013@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R014",
+          "case_id": "C014",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-30T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-014@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-30T18:00+05:30"
+        },
+        {
+          "request_id": "R015",
+          "case_id": "C015",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-31T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-015@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-31T16:00+05:30"
+        },
+        {
+          "request_id": "R016",
+          "case_id": "C016",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-09-05T11:00+05:30",
+          "channel": "email",
+          "contact_address": "case-016@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R017",
+          "case_id": "C017",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-09-01T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-017@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-09-01T16:00+05:30"
+        },
+        {
+          "request_id": "R018",
+          "case_id": "C018",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-09-02T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-018@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-09-03T14:00+05:30"
+        },
+        {
+          "request_id": "R019",
+          "case_id": "C019",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-09-02T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-019@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R020",
+          "case_id": "C020",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-09-02T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-020@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-09-02T18:00+05:30"
+        },
+        {
+          "request_id": "R021",
+          "case_id": "C021",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-09-03T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-021@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-09-03T16:00+05:30"
+        },
+        {
+          "request_id": "R022",
+          "case_id": "C022",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "",
+          "channel": "email",
+          "contact_address": "case-022@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R023",
+          "case_id": "C023",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-09-04T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-023@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-09-04T16:00+05:30"
+        },
+        {
+          "request_id": "R024",
+          "case_id": "C024",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-09-04T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-024@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R025",
+          "case_id": "C009",
+          "item": "site_access",
+          "status": "pending",
+          "last_requested_at": "2026-09-02T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-009@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R026",
+          "case_id": "C024",
+          "item": "serial_number",
+          "status": "pending",
+          "last_requested_at": "2026-09-04T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-024@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R027",
+          "case_id": "C017",
+          "item": "quote_approval",
+          "status": "pending",
+          "last_requested_at": "2026-09-02T11:00+05:30",
+          "channel": "email",
+          "contact_address": "case-017@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R028",
+          "case_id": "C021",
+          "item": "quote_approval",
+          "status": "pending",
+          "last_requested_at": "2026-09-04T11:00+05:30",
+          "channel": "email",
+          "contact_address": "case-021@example.invalid",
+          "followup_allowed": "0",
+          "received_at": ""
+        },
+        {
+          "request_id": "R029",
+          "case_id": "C023",
+          "item": "quote_approval",
+          "status": "pending",
+          "last_requested_at": "2026-09-05T11:00+05:30",
+          "channel": "email",
+          "contact_address": "case-023@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R030",
+          "case_id": "C016",
+          "item": "site_access",
+          "status": "received",
+          "last_requested_at": "2026-09-01T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-016@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-09-02T14:00+05:30"
+        }
+      ]
+    },
+    "customer_media_intake_samples": [
+      {
+        "filename": "fault-tiny.png",
+        "detected_format": "png",
+        "confidence": "high",
+        "size_bytes": 70,
+        "width": 1,
+        "height": 1,
+        "quality_signals": [
+          "file_very_small_may_be_unusable",
+          "resolution_below_recommended_min",
+          "brightness_ok_proxy"
+        ],
+        "routing": "human_review",
+        "handling": "Technician review required due to quality signals",
+        "algorithms_applied": [
+          "magic_byte_sniff",
+          "extension_hint",
+          "png_ihdr_parse",
+          "min_resolution_gate",
+          "brightness_byte_proxy"
+        ]
+      },
+      {
+        "filename": "notes.txt",
+        "detected_format": "plain_text",
+        "confidence": "medium",
+        "size_bytes": 37,
+        "width": null,
+        "height": null,
+        "quality_signals": [
+          "file_very_small_may_be_unusable"
+        ],
+        "routing": "human_review",
+        "handling": "Coordinator validates document content before updating request row",
+        "algorithms_applied": [
+          "magic_byte_sniff",
+          "extension_hint",
+          "text_header_probe"
+        ]
+      },
+      {
+        "filename": "photo.heic",
+        "detected_format": "heic",
+        "confidence": "high",
+        "size_bytes": 53,
+        "width": null,
+        "height": null,
+        "quality_signals": [
+          "file_very_small_may_be_unusable"
+        ],
+        "routing": "human_review",
+        "handling": "Convert or relabel file manually; do not auto-attach to quote",
+        "algorithms_applied": [
+          "magic_byte_sniff",
+          "extension_hint"
+        ]
+      },
+      {
+        "filename": "scan.unknown",
+        "detected_format": "unknown",
+        "confidence": "low",
+        "size_bytes": 400,
+        "width": null,
+        "height": null,
+        "quality_signals": [
+          "file_very_small_may_be_unusable"
+        ],
+        "routing": "human_review",
+        "handling": "Convert or relabel file manually; do not auto-attach to quote",
+        "algorithms_applied": [
+          "magic_byte_sniff",
+          "extension_hint"
+        ]
+      }
+    ],
     "hybrid_layers": [
       {
         "layer": "Keep (existing shop habit)",

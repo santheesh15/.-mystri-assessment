@@ -15,6 +15,7 @@ from ai_assist import enrich_coordinator_tasks, photo_screening_decision, techni
 from cost_model import build_cost_structure
 from lane_model import duty_lead_for_snapshot, prioritized_board
 from approaches import hybrid_incorporation_summary
+from customer_registry import summarize_customer_verification, verify_customers
 from data_policy import summarize_validation, validate_all
 from media_intake import assess_demo_pack
 
@@ -30,11 +31,13 @@ class IntegratedStep:
 def run_integrated_pipeline(cases, requests, scenario, events=None) -> dict:
     events = events or []
     validation = validate_all(cases, requests, events)
+    customer = verify_customers(cases, requests)
+    requests_verified = customer['requests_for_automation']
     media_checks = assess_demo_pack()
     snapshot = scenario['snapshot_at']
-    triage = triage_all(cases, requests, scenario)
-    board = build_team_board(cases, requests, scenario, triage)
-    departure = prioritized_board(cases, requests, snapshot)
+    triage = triage_all(cases, requests_verified, scenario)
+    board = build_team_board(cases, requests_verified, scenario, triage)
+    departure = prioritized_board(cases, requests_verified, snapshot)
     duty = duty_lead_for_snapshot(snapshot)
 
     cases_by_id = {c['case_id']: c for c in cases}
@@ -51,9 +54,9 @@ def run_integrated_pipeline(cases, requests, scenario, events=None) -> dict:
     }
     cost = build_cost_structure(scenario, metrics)
 
-    baseline_pending = baseline_naive_pending(requests)
+    baseline_pending = baseline_naive_pending(requests_verified)
     rules_proposals = proposed_ids(triage)
-    solo = baseline_coordinator_only_load(cases, requests)
+    solo = baseline_coordinator_only_load(cases, requests_verified)
 
     lane_counts = {}
     for row in departure:
@@ -79,6 +82,12 @@ def run_integrated_pipeline(cases, requests, scenario, events=None) -> dict:
             'Data & policy validation',
             'system → coordinator on errors',
             summarize_validation(validation),
+        ),
+        IntegratedStep(
+            0.25,
+            'Customer register verification',
+            'system discards spam; coordinator audit',
+            summarize_customer_verification(customer),
         ),
         IntegratedStep(
             0.5,
@@ -134,6 +143,7 @@ def run_integrated_pipeline(cases, requests, scenario, events=None) -> dict:
         ),
         'collaboration_flow': [s.__dict__ for s in steps],
         'data_policy_validation': validation,
+        'customer_verification': customer,
         'customer_media_intake_samples': media_checks,
         'hybrid_layers': hybrid_incorporation_summary(),
         'duty_lead': duty,
@@ -165,6 +175,10 @@ def format_executive_summary(report: dict) -> str:
         lines.append(f"  {s['order']}. {s['name']} [{s['owner']}] — {s['output_summary']}")
     lines.append('')
     lines.append(f"Validation: {summarize_validation(report['data_policy_validation'])}")
+    cv = report['customer_verification']
+    lines.append(
+        f"Customers: verified={cv['verified_request_count']} discarded={cv['discarded_request_count']}"
+    )
     lines.append(f"Duty lead this week: {report['duty_lead']['duty_lead']} (backup {report['duty_lead']['backup_lead']})")
     lines.append(f"Lanes: {report['lane_counts']}")
     c = report['comparison']
