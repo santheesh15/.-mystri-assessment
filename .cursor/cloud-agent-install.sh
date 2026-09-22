@@ -2,8 +2,8 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-TRACK_A="${ROOT}/Mystri-Applicant-Assessments/track-a"
+TRACK_B="${ROOT}/Mystri-Applicant-Assessments/track-b"
 
-cd "${TRACK_A}"
-python3 -m unittest discover -s tests -q
-python3 app.py reset-demo
+cd "${TRACK_B}"
+python3 starter.py >/dev/null
+echo "Track B data loader OK ($(python3 --version))"
