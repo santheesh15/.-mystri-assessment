@@ -19,6 +19,11 @@ from approaches import hybrid_incorporation_summary
 from customer_registry import summarize_customer_verification, verify_customers
 from data_policy import summarize_validation, validate_all
 from media_intake import assess_demo_pack
+from customer_acknowledgment import (
+    build_all_submission_acknowledgments,
+    build_demo_intake_not_ok_examples,
+    summarize_acknowledgments,
+)
 from pipeline_trace import PipelineTrace, build_customer_deliveries
 
 
@@ -73,6 +78,17 @@ def run_integrated_pipeline(
             f"{row.request_id} disposition={row.disposition}",
             f"{row.case_id} {row.item} {row.reason}",
         )
+
+    submission_acks = build_all_submission_acknowledgments(cases, requests_verified, triage)
+    intake_ack_examples = build_demo_intake_not_ok_examples(media_checks)
+    trace.log('CUSTOMER_ACK', summarize_acknowledgments(submission_acks))
+    trace.log_structured_acknowledgments(submission_acks)
+    if intake_ack_examples:
+        trace.log(
+            'CUSTOMER_ACK',
+            f'intake_template_examples={len(intake_ack_examples)} (demo media pack)',
+        )
+        trace.log_structured_acknowledgments(intake_ack_examples)
 
     board = build_team_board(cases, requests_verified, scenario, triage)
     departure = prioritized_board(cases, requests_verified, snapshot)
@@ -133,7 +149,10 @@ def run_integrated_pipeline(
             'Approve draft follow-up (simulated)',
             f"{d['request_id']} preview={d.get('draft_preview', '')[:80]}...",
         )
-    trace.finish_customer_delivery(deliveries)
+    trace.finish_customer_delivery(
+        deliveries,
+        structured_ack_count=len(submission_acks) + len(intake_ack_examples),
+    )
 
     triage_rows = [
         {
@@ -182,6 +201,8 @@ def run_integrated_pipeline(
         'ai_assist': [s.__dict__ for s in ai],
         'cost_structure': cost,
         'customer_delivery_simulation': deliveries,
+        'customer_structured_receipt_acks': [a.payload for a in submission_acks],
+        'customer_structured_intake_examples': [a.payload for a in intake_ack_examples],
         'pipeline_trace_lines': trace.lines,
         'comparison': {
             'solo_coordinator_load': solo,
@@ -226,4 +247,10 @@ def format_executive_summary(report: dict) -> str:
     )
     if report.get('pipeline_trace_file'):
         lines.append(f"Unified trace log: {report['pipeline_trace_file']}")
+    acks = report.get('customer_structured_receipt_acks') or []
+    if acks:
+        ok_n = sum(1 for a in acks if a.get('ok'))
+        lines.append(
+            f"Structured receipt responses: {len(acks)} sent (ok={ok_n}, not_ok_or_review={len(acks) - ok_n})"
+        )
     return '\n'.join(lines)

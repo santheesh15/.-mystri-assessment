@@ -26,7 +26,34 @@ class PipelineTrace:
         for item in items:
             self.log(phase, prefix, item)
 
-    def finish_customer_delivery(self, deliveries: list[dict]) -> None:
+    def log_structured_acknowledgments(self, acknowledgments: list) -> None:
+        """Log dry-run structured receipt responses (OK / not OK / under review)."""
+        if not acknowledgments:
+            self.log('CUSTOMER_ACK', 'No submission receipts to confirm in this run')
+            return
+        for ack in acknowledgments:
+            payload = ack.payload
+            self.log(
+                'CUSTOMER_ACK',
+                'DRY-RUN structured receipt to customer (no real send)',
+                (
+                    f"request_id={payload['request_id']} case_id={payload['case_id']} "
+                    f"ok={payload['ok']} outcome={payload['receipt_outcome']} "
+                    f"to={payload['meta']['contact']} channel={payload['meta']['channel']}"
+                ),
+            )
+            self.log(
+                'CUSTOMER_ACK',
+                'Structured JSON body',
+                ack.to_json().replace('\n', ' '),
+            )
+
+    def finish_customer_delivery(
+        self,
+        deliveries: list[dict],
+        *,
+        structured_ack_count: int = 0,
+    ) -> None:
         if not deliveries:
             self.log('CUSTOMER', 'No eligible follow-ups to deliver in this run')
         for d in deliveries:
@@ -39,7 +66,11 @@ class PipelineTrace:
                     f"coordinator_approval=simulated_yes item={d.get('item', '')}"
                 ),
             )
-        self.log('END', 'Pipeline trace complete', f'deliveries_simulated={len(deliveries)}')
+        self.log(
+            'END',
+            'Pipeline trace complete',
+            f'structured_receipt_acks={structured_ack_count} followup_deliveries_simulated={len(deliveries)}',
+        )
 
     def write(self, path: Path) -> Path:
         path.parent.mkdir(parents=True, exist_ok=True)

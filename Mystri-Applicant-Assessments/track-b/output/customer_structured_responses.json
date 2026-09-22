@@ -1,0 +1,747 @@
+{
+  "schema_version": "daybreak.customer_ack_bundle.v1",
+  "submission_receipts": [
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R001",
+      "case_id": "C001",
+      "item": "fault_photo",
+      "ok": false,
+      "receipt_outcome": "under_review",
+      "message": {
+        "title": "We are confirming your fault photo (case C001)",
+        "summary": "We see a submission timestamp on your case, but our records need a quick coordinator check before we mark it fully accepted.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "pending",
+        "received_at": "2026-08-24T16:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Case C001 is completed"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "A coordinator will email you within one business day with a final yes/no.",
+        "You do not need to resend unless we ask."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-001@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R002",
+      "case_id": "C002",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C002)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-08-24T18:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Case C002 is completed"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R002."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-002@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R003",
+      "case_id": "C003",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C003)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-08-25T16:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Case C003 is completed"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R003."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-003@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R004",
+      "case_id": "C004",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C004)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-08-25T18:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Case C004 is completed"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R004."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-004@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R006",
+      "case_id": "C006",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C006)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-08-26T18:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Case C006 is completed"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R006."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-006@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R007",
+      "case_id": "C007",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C007)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-08-27T16:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Case C007 is completed"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R007."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-007@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R008",
+      "case_id": "C008",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C008)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-08-27T18:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Case C008 is scheduled"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R008."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-008@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R010",
+      "case_id": "C010",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C010)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-08-28T18:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Case C010 is completed"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R010."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-010@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R011",
+      "case_id": "C011",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C011)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-08-29T16:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Case C011 is scheduled"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R011."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-011@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R014",
+      "case_id": "C014",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C014)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-08-30T18:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Case C014 is completed"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R014."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-014@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R015",
+      "case_id": "C015",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C015)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-08-31T16:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Case C015 is scheduled"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R015."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-015@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R017",
+      "case_id": "C017",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C017)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-09-01T16:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Item already received"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R017."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-017@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R018",
+      "case_id": "C018",
+      "item": "fault_photo",
+      "ok": false,
+      "receipt_outcome": "under_review",
+      "message": {
+        "title": "We are confirming your fault photo (case C018)",
+        "summary": "We see a submission timestamp on your case, but our records need a quick coordinator check before we mark it fully accepted.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "pending",
+        "received_at": "2026-09-03T14:00+05:30",
+        "triage_disposition": "uncertain",
+        "triage_reason": "pending status conflicts with received_at; needs coordinator review"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "A coordinator will email you within one business day with a final yes/no.",
+        "You do not need to resend unless we ask."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-018@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R020",
+      "case_id": "C020",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C020)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-09-02T18:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Case C020 is scheduled"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R020."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-020@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R021",
+      "case_id": "C021",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C021)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-09-03T16:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Item already received"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R021."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-021@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R023",
+      "case_id": "C023",
+      "item": "fault_photo",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your fault photo \u2014 OK (case C023)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-09-04T16:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Item already received"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R023."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-023@example.invalid"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R030",
+      "case_id": "C016",
+      "item": "site_access",
+      "ok": true,
+      "receipt_outcome": "received_ok",
+      "message": {
+        "title": "We received your site access \u2014 OK (case C016)",
+        "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "received",
+        "received_at": "2026-09-02T14:00+05:30",
+        "triage_disposition": "exclude",
+        "triage_reason": "Item already received"
+      },
+      "quality": {
+        "accepted": true,
+        "signals": [],
+        "routing": "not_checked",
+        "notes": []
+      },
+      "next_steps": [
+        "No action needed unless we contact you for more detail.",
+        "Request reference: R030."
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "case-016@example.invalid"
+      }
+    }
+  ],
+  "intake_quality_examples": [
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R-DEMO-01",
+      "case_id": "C-DEMO-01",
+      "item": "fault_photo",
+      "ok": false,
+      "receipt_outcome": "received_not_ok",
+      "message": {
+        "title": "Please resend your photo (case C-DEMO-01)",
+        "summary": "We could not auto-accept `fault-tiny.png`: Technician review required due to quality signals",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "pending",
+        "received_at": null,
+        "triage_disposition": "n/a",
+        "triage_reason": "intake_quality_gate"
+      },
+      "quality": {
+        "accepted": false,
+        "signals": [
+          "file_very_small_may_be_unusable",
+          "resolution_below_recommended_min",
+          "brightness_ok_proxy"
+        ],
+        "routing": "human_review",
+        "format": "png",
+        "notes": [
+          "Technician review required due to quality signals"
+        ]
+      },
+      "next_steps": [
+        "Resend as JPEG or PNG with the full appliance visible.",
+        "Technician review required due to quality signals"
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "demo-1@example.invalid",
+        "sample_filename": "fault-tiny.png"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R-DEMO-02",
+      "case_id": "C-DEMO-02",
+      "item": "fault_photo",
+      "ok": false,
+      "receipt_outcome": "received_not_ok",
+      "message": {
+        "title": "Please resend your photo (case C-DEMO-02)",
+        "summary": "We could not auto-accept `notes.txt`: Coordinator validates document content before updating request row",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "pending",
+        "received_at": null,
+        "triage_disposition": "n/a",
+        "triage_reason": "intake_quality_gate"
+      },
+      "quality": {
+        "accepted": false,
+        "signals": [
+          "file_very_small_may_be_unusable"
+        ],
+        "routing": "human_review",
+        "format": "plain_text",
+        "notes": [
+          "Coordinator validates document content before updating request row"
+        ]
+      },
+      "next_steps": [
+        "Resend as JPEG or PNG with the full appliance visible.",
+        "Coordinator validates document content before updating request row"
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "demo-2@example.invalid",
+        "sample_filename": "notes.txt"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R-DEMO-03",
+      "case_id": "C-DEMO-03",
+      "item": "fault_photo",
+      "ok": false,
+      "receipt_outcome": "received_not_ok",
+      "message": {
+        "title": "Please resend your photo (case C-DEMO-03)",
+        "summary": "We could not auto-accept `photo.heic`: Convert or relabel file manually; do not auto-attach to quote",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "pending",
+        "received_at": null,
+        "triage_disposition": "n/a",
+        "triage_reason": "intake_quality_gate"
+      },
+      "quality": {
+        "accepted": false,
+        "signals": [
+          "file_very_small_may_be_unusable"
+        ],
+        "routing": "human_review",
+        "format": "heic",
+        "notes": [
+          "Convert or relabel file manually; do not auto-attach to quote"
+        ]
+      },
+      "next_steps": [
+        "Resend as JPEG or PNG with the full appliance visible.",
+        "Convert or relabel file manually; do not auto-attach to quote"
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "demo-3@example.invalid",
+        "sample_filename": "photo.heic"
+      }
+    },
+    {
+      "schema_version": "daybreak.customer_ack.v1",
+      "request_id": "R-DEMO-04",
+      "case_id": "C-DEMO-04",
+      "item": "fault_photo",
+      "ok": false,
+      "receipt_outcome": "received_not_ok",
+      "message": {
+        "title": "Please resend your photo (case C-DEMO-04)",
+        "summary": "We could not auto-accept `scan.unknown`: Convert or relabel file manually; do not auto-attach to quote",
+        "locale": "en-IN"
+      },
+      "receipt": {
+        "status_on_file": "pending",
+        "received_at": null,
+        "triage_disposition": "n/a",
+        "triage_reason": "intake_quality_gate"
+      },
+      "quality": {
+        "accepted": false,
+        "signals": [
+          "file_very_small_may_be_unusable"
+        ],
+        "routing": "human_review",
+        "format": "unknown",
+        "notes": [
+          "Convert or relabel file manually; do not auto-attach to quote"
+        ]
+      },
+      "next_steps": [
+        "Resend as JPEG or PNG with the full appliance visible.",
+        "Convert or relabel file manually; do not auto-attach to quote"
+      ],
+      "meta": {
+        "dry_run": true,
+        "channel": "email",
+        "contact": "demo-4@example.invalid",
+        "sample_filename": "scan.unknown"
+      }
+    }
+  ]
+}

@@ -93,7 +93,7 @@ python3 experiment.py
 python3 -m unittest discover -s tests -v
 ```
 
-Defaults write **`output/integrated_report.json`** and **`output/dicm_pipeline_trace.log`**. Override paths with `--write` / `--trace`.
+Defaults write **`output/integrated_report.json`**, **`output/dicm_pipeline_trace.log`**, and **`output/customer_structured_responses.json`** (structured OK / not-OK receipt payloads). Override paths with `--write` / `--trace` / `--acks`.
 
 JSON root object includes **`integrated_model`** with `collaboration_flow`, `comparison`, `cost_structure`, and all sub-layers. The report also lists **`pipeline_trace_file`**.
 
@@ -115,6 +115,7 @@ Reviewers can follow **one chronological log** from pipeline start through **sim
 | `AI_ASSIST` | Drafts and human gates |
 | `TECH` | Tiered technician tasks |
 | `COST` | Time-saved and tool cap snapshot |
+| `CUSTOMER_ACK` | Structured receipt: `ok` + `receipt_outcome` + JSON body |
 | `COORDINATOR` | Simulated approval of each draft |
 | `CUSTOMER` | DRY-RUN delivery lines (contact + channel) |
 | `END` | Delivery count |

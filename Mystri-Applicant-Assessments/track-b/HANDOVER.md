@@ -17,7 +17,7 @@ python3 experiment.py
 python3 -m unittest discover -s tests -v
 ```
 
-Expected: **`experiment.py`** prints the **6-step DICM collaboration summary**; writes **`output/integrated_report.json`** and **`output/dicm_pipeline_trace.log`** (full audit from load → validation → rules → tech → simulated customer delivery). Tests **32/32 OK**. Primary doc: **`INTEGRATED_MODEL.md`**.
+Expected: **`experiment.py`** prints the **6-step DICM collaboration summary**; writes **`output/integrated_report.json`**, **`output/dicm_pipeline_trace.log`**, and **`output/customer_structured_responses.json`** (structured OK/not-OK receipt responses). Tests **36/36 OK**. Primary doc: **`INTEGRATED_MODEL.md`**.
 
 ## What I delivered
 

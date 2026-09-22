@@ -22,6 +22,12 @@ def main():
         default=Path('output/dicm_pipeline_trace.log'),
         help='Unified audit trace from start to simulated customer delivery',
     )
+    parser.add_argument(
+        '--acks',
+        type=Path,
+        default=Path('output/customer_structured_responses.json'),
+        help='Structured OK/not-OK receipt responses for customers',
+    )
     args = parser.parse_args()
 
     inputs = load_inputs()
@@ -33,10 +39,16 @@ def main():
         args.trace,
     )
 
+    ack_bundle = {
+        'schema_version': 'daybreak.customer_ack_bundle.v1',
+        'submission_receipts': integrated.get('customer_structured_receipt_acks', []),
+        'intake_quality_examples': integrated.get('customer_structured_intake_examples', []),
+    }
     report = {
         'integrated_model': integrated,
         'approach_ranking_top5': rank_approaches_for_daybreak()[:5],
         'pipeline_trace_file': integrated.get('pipeline_trace_file'),
+        'customer_structured_responses': ack_bundle,
     }
 
     print(format_executive_summary(integrated))
@@ -46,8 +58,11 @@ def main():
 
     args.write.parent.mkdir(parents=True, exist_ok=True)
     args.write.write_text(json.dumps(report, indent=2), encoding='utf-8')
+    args.acks.parent.mkdir(parents=True, exist_ok=True)
+    args.acks.write_text(json.dumps(ack_bundle, indent=2), encoding='utf-8')
     print('\nWrote', args.write)
     print('Wrote trace', args.trace)
+    print('Wrote structured customer responses', args.acks)
 
 
 if __name__ == '__main__':
