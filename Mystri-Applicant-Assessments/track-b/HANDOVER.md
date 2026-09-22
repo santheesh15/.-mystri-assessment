@@ -13,16 +13,16 @@ Prerequisites: Python 3.10+, no third-party packages.
 ```text
 cd Mystri-Applicant-Assessments/track-b
 python3 starter.py
-python3 experiment.py --write output/queue_report.json
+python3 experiment.py
 python3 -m unittest discover -s tests -v
 ```
 
-Expected: starter prints 24/128/30 rows; experiment prints team workload, cost net minutes, AI assist gates; tests **10/10 OK**. Reviewer report: **`OPERATING_REPORT.md`**. JSON: `output/queue_report.json` (`cost_structure`, `ai_assist_samples`).
+Expected: **`experiment.py`** prints the **6-step DICM collaboration summary**; writes **`output/integrated_report.json`**. Tests **18/18 OK**. Primary doc: **`INTEGRATED_MODEL.md`** (single combined approach).
 
 ## What I delivered
 
-**Problem:** missing-info follow-ups with **five-person team + AI assist** (drafts/triage/checklists), not auto-send.  
-**Result:** `queue_engine.py`, `team_workboard.py`, `ai_assist.py`, `cost_model.py`, `experiment.py`, **`OPERATING_REPORT.md`**. See `DECISION.md` and `SOURCES.md`.
+**Problem:** missing-info follow-ups using **one integrated model (DICM)** — coordinator + tiered technicians + rules + lanes + AI assist + existing tools.  
+**Result:** `integrated_model.py` orchestrates all pieces; see **`INTEGRATED_MODEL.md`**, `DECISION.md`, `OPERATING_REPORT.md`.
 
 ## Evidence and limits
 

@@ -1,5 +1,7 @@
 # Operating report — people + AI (reviewer summary)
 
+> **Primary entry point:** the single combined approach is **`INTEGRATED_MODEL.md`** (DICM). This file adds detail; run `python3 experiment.py` for the unified JSON report.
+
 **Daybreak Repairs · Track B prototype · dry-run only · snapshot 2026-09-07**
 
 This report shows **where humans work**, **where AI assists**, **cost/time structure**, **risks**, and **how to run on any OS** (Python 3.10+ stdlib).

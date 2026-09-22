@@ -33,7 +33,7 @@ Duplicates in `events.csv` are ignored for counts. Blank `active_minutes` are tr
 
 ## Recommendation
 
-**Pilot a hybrid operating model:** **1 coordinator + 4 technicians + narrow AI assist** (draft emails, inbox labels, technician checklists). AI **never** auto-sends or auto-approves photo quality; humans stay in the loop. Deterministic **rules** enforce opt-outs, 48-hour spacing, and uncertain rows. This combines industry optimism (parallel manpower + AI speed) with maintainability (Python stdlib, policy-as-code). Full reviewer map: **`OPERATING_REPORT.md`** and `output/queue_report.json` → `cost_structure`. **What would change my mind:** pilot metrics on reminder errors and cycle-time to quote.
+**Adopt one combined operating model — DICM (Daybreak Integrated Collaborating Model),** documented in **`INTEGRATED_MODEL.md`**. It merges existing inbox/spreadsheet habits, lightweight buy patterns (file-request link), rules + three-speed lanes + departure board, rotating duty lead, tiered four technicians, and capped human-in-loop AI into **a single daily pipeline**—not separate tools fighting each other. Run `python3 experiment.py` for the unified report. **What would change my mind:** pilot metrics on reminder errors and time from `waiting_info` to quote.
 
 ## Net value estimate (selected workflow: rules-assisted follow-up)
 
