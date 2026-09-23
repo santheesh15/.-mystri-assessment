@@ -21,6 +21,8 @@ notepad HANDOVER.md
 1. First command must print **`PRODUCT 1 PASS`** (this also writes the **`output\`** folder).
 2. **`notepad`** lines open the proof files — verify does **not** open them automatically.
 
+![Windows example: verify PASS and Notepad commands](../docs/assets/verify-product1-pass-windows.png)
+
 **macOS / Linux:**
 
 ```bash
