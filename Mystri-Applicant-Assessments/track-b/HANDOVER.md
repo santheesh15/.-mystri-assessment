@@ -13,6 +13,7 @@ Edit the three lines below, then save this file.
 - Name:
 - Email used for this application:
 - Approximate total time, including setup and handover:
+- Chosen track: **B**
 
 **Optional — only change if you mean it:**
 
@@ -34,6 +35,8 @@ python product1\verify_product1.py
 *(Replace the path above if your folder is elsewhere.)*
 
 Expected terminal line: **`PRODUCT 1 PASS`**.
+
+![Example: PRODUCT 1 PASS then opening output and docs in Notepad](docs/assets/verify-product1-pass-windows.png)
 
 **Step 2 — open saved outputs (required so you can read the run; verify does not open these automatically):**
 
