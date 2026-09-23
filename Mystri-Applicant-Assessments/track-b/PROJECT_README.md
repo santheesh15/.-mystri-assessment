@@ -12,6 +12,8 @@ Dry-run missing-info follow-ups: rules, team lanes, human-gated AI assist, struc
 
 Mystri assignment brief remains in [`README.md`](README.md) (original pack instructions).
 
+**Repo layout:** `Mystri-Applicant-Assessments/` contains **`track-b/`** only (Track A and generic assessment starter files removed for this submission).
+
 ---
 
 ## Quick start
