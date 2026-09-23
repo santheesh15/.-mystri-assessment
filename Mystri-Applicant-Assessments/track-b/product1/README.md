@@ -2,19 +2,34 @@
 
 This folder marks the **official scoped product** for Mystri Track B. All code lives in the parent `track-b/` directory; Product 1 is the **default behavior** of `experiment.py` (no extra flags required).
 
-## Reviewer quick path (5 minutes)
+## Reviewer steps (copy in order)
 
-1. Read **`../DECISION.md`** (recommendation + baseline math).  
-2. Read **`../PROJECT_README.md`** and **`../docs/SETUP.md`** (prerequisites + commands).  
-3. Run:
+**Do not edit `../data/`** before running.
 
-```text
-cd Mystri-Applicant-Assessments/track-b
-python3 product1/verify_product1.py
+**Windows (PowerShell) — from `track-b` folder:**
+
+```powershell
+cd "C:\path\to\...\Mystri-Applicant-Assessments\track-b"
+python product1\verify_product1.py
+notepad output\dicm_pipeline_trace.log
+notepad output\customer_structured_responses.json
+notepad output\integrated_report.json
+notepad DECISION.md
+notepad HANDOVER.md
 ```
 
-4. Open **`../output/dicm_pipeline_trace.log`** (tail: `CUSTOMER_ACK`, `CUSTOMER`, `END`).  
-5. Skim **`../output/customer_structured_responses.json`** for `receipt_outcome` / `ok`.
+1. First command must print **`PRODUCT 1 PASS`** (this also writes the **`output\`** folder).
+2. **`notepad`** lines open the proof files — verify does **not** open them automatically.
+
+**macOS / Linux:**
+
+```bash
+cd Mystri-Applicant-Assessments/track-b
+python3 product1/verify_product1.py
+# then open output/dicm_pipeline_trace.log, output/*.json, DECISION.md, HANDOVER.md
+```
+
+Full detail: **`../HANDOVER.md`**, **`../docs/SETUP.md`**, **`../PROJECT_README.md`**.
 
 ## What Product 1 proves
 
