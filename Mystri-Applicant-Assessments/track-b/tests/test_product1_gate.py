@@ -9,7 +9,8 @@ class Product1GateTests(unittest.TestCase):
     def test_manifest_and_product1_readme_exist(self):
         self.assertTrue((TRACK_B / 'product1' / 'MANIFEST.json').is_file())
         self.assertTrue((TRACK_B / 'product1' / 'README.md').is_file())
-        self.assertTrue((TRACK_B / 'PRODUCTS.md').is_file())
+        self.assertTrue((TRACK_B / 'PROJECT_README.md').is_file())
+        self.assertTrue((TRACK_B / 'docs' / 'SETUP.md').is_file())
 
     def test_manifest_lists_core_modules(self):
         manifest = json.loads((TRACK_B / 'product1' / 'MANIFEST.json').read_text(encoding='utf-8'))

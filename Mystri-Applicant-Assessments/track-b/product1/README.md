@@ -5,7 +5,7 @@ This folder marks the **official scoped product** for Mystri Track B. All code l
 ## Reviewer quick path (5 minutes)
 
 1. Read **`../DECISION.md`** (recommendation + baseline math).  
-2. Read **`../INTEGRATED_MODEL.md`** (who does what + pipeline).  
+2. Read **`../PROJECT_README.md`** and **`../docs/SETUP.md`** (prerequisites + commands).  
 3. Run:
 
 ```text

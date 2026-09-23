@@ -8,11 +8,17 @@
   "dry_run_only": true,
   "dependencies": "Python 3.10+ stdlib only",
   "required_docs": [
+    "PROJECT_README.md",
     "DECISION.md",
     "SOURCES.md",
     "HANDOVER.md",
     "INTEGRATED_MODEL.md",
-    "OPERATING_REPORT.md"
+    "OPERATING_REPORT.md",
+    "docs/SETUP.md",
+    "docs/ARCHITECTURE.md",
+    "docs/TECH_STACK.md",
+    "docs/CONFIGURATION.md",
+    "docs/REFERENCE.md"
   ],
   "python_modules": [
     "experiment.py",

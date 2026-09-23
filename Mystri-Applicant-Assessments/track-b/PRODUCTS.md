@@ -6,7 +6,7 @@
 | Product 2 — DICM Pilot | Not started | Optional pilot hooks (intake folder, approval queue, HTML report) |
 | Product 3 — DICM Vision | Not started | Full production roadmap (docs/stubs only) |
 
-**Official submission:** **Product 1 only.** See **`product1/README.md`** for the reviewer path.
+**Official submission:** **Product 1 only.** See **`PROJECT_README.md`** and **`product1/README.md`** for the reviewer path.
 
 ---
 
@@ -18,6 +18,7 @@
 
 | Deliverable | File(s) |
 | --- | --- |
+| Project guide (setup, architecture, reference) | **`PROJECT_README.md`**, **`docs/`** |
 | Decision note | `DECISION.md` |
 | Runnable experiment | `experiment.py` + modules below |
 | Sources | `SOURCES.md` |
