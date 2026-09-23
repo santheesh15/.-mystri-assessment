@@ -8,18 +8,39 @@
 
 **Submission product:** **Product 1 — DICM Core** (`product1/README.md`, `PRODUCTS.md`). Products 2 and 3 are not included in this handover.
 
-## Run and verify
+## Run and verify (reviewer — copy all steps)
 
-Prerequisites: Python 3.10+, no third-party packages.
+Prerequisites: Python 3.10+, no third-party packages. **Do not edit `data/`** before grading.
 
-```text
-cd Mystri-Applicant-Assessments\track-b
+**Step 1 — verify (creates `output/` files):**
+
+```powershell
+cd "C:\path\to\...\Mystri-Applicant-Assessments\track-b"
 python product1\verify_product1.py
 ```
 
-Outputs: **`output\integrated_report.json`**, **`output\dicm_pipeline_trace.log`**, **`output\customer_structured_responses.json`**. Rules and limits: **`docs\RULES_AND_LIMITATIONS.md`**. Full commands: **`docs\SETUP.md`**.
+Expected terminal line: **`PRODUCT 1 PASS`**.
 
-Or step by step:
+**Step 2 — open saved outputs (required so you can read the run; verify does not open these automatically):**
+
+```powershell
+notepad output\dicm_pipeline_trace.log
+notepad output\customer_structured_responses.json
+notepad output\integrated_report.json
+```
+
+**Step 3 — read submission narrative (required):**
+
+```powershell
+notepad DECISION.md
+notepad HANDOVER.md
+```
+
+macOS/Linux reviewers: after verify, open the same paths under `output/` and the two Markdown files in any text editor (`docs/SETUP.md` has `open` examples).
+
+Rules and limits: **`docs\RULES_AND_LIMITATIONS.md`**. Full command reference: **`docs\SETUP.md`**.
+
+Or step by step (optional, without the Product 1 gate):
 
 ```text
 cd Mystri-Applicant-Assessments/track-b

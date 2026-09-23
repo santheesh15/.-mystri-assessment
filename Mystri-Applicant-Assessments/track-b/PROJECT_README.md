@@ -23,6 +23,16 @@ python product1/verify_product1.py
 
 **Windows:** use `python` and backslashes in paths (see **`docs/SETUP.md`**).
 
+**Reviewer (Windows — after verify, open outputs in Notepad):**
+
+```powershell
+notepad output\dicm_pipeline_trace.log
+notepad output\customer_structured_responses.json
+notepad output\integrated_report.json
+notepad DECISION.md
+notepad HANDOVER.md
+```
+
 ---
 
 ## Commands to get outputs

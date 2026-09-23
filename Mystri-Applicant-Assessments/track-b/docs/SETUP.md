@@ -150,6 +150,25 @@ python3 experiment.py \
 
 ---
 
+### Reviewer checklist (Windows — run in order)
+
+After **`cd`** into **`track-b`**, copy this block:
+
+```powershell
+python product1\verify_product1.py
+notepad output\dicm_pipeline_trace.log
+notepad output\customer_structured_responses.json
+notepad output\integrated_report.json
+notepad DECISION.md
+notepad HANDOVER.md
+```
+
+1. First command must print **`PRODUCT 1 PASS`**.
+2. **`notepad`** lines open the saved proof files (not opened by verify itself).
+3. Do **not** change files in **`data/`** before step 1.
+
+Optional: `explorer output` to open the folder in File Explorer.
+
 ### Open outputs after run (Windows)
 
 ```powershell
