@@ -21,13 +21,39 @@ cd Mystri-Applicant-Assessments/track-b
 python product1/verify_product1.py
 ```
 
-Outputs land in **`output/`** (single folder):
+**Windows:** use `python` and backslashes in paths (see **`docs/SETUP.md`**).
+
+---
+
+## Commands to get outputs
+
+| Goal | Command (from `track-b`) |
+| --- | --- |
+| **All outputs + tests** | `python product1/verify_product1.py` |
+| **Outputs only** | `python experiment.py` |
+| **Load check only** | `python starter.py` (no `output/` write) |
+
+Default folder: **`output/`**
 
 | File | Purpose |
 | --- | --- |
 | `integrated_report.json` | Full DICM run report |
 | `dicm_pipeline_trace.log` | Unified audit trace (START → END) |
 | `customer_structured_responses.json` | OK / not-OK receipt payloads |
+
+Full command list (Windows + Mac, open files, custom paths): **`docs/SETUP.md`**.
+
+---
+
+## Rules and limitations
+
+**Project rules, business rules, and what is not proven:** **`docs/RULES_AND_LIMITATIONS.md`**
+
+Summary:
+
+- **Dry-run only** — no real customer send  
+- **Rules before AI** — 48h, opt-out, uncertain rows, 13 vs 5 baseline on pack data  
+- **Limits** — no 8h/week proof, no production LLM, no web app  
 
 ---
 
@@ -39,6 +65,7 @@ Outputs land in **`output/`** (single folder):
 | [`docs/TECH_STACK.md`](docs/TECH_STACK.md) | Technical | Languages, dependencies, constraints |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Technical | Pipeline, modules, data flow |
 | [`docs/CONFIGURATION.md`](docs/CONFIGURATION.md) | Operator | CLI flags, paths, scenario/data |
+| [`docs/RULES_AND_LIMITATIONS.md`](docs/RULES_AND_LIMITATIONS.md) | Reviewer / developer | Project rules, business rules, limits |
 | [`docs/REFERENCE.md`](docs/REFERENCE.md) | Developer | Modules, constants, helpers, tests |
 | [`DECISION.md`](DECISION.md) | Reviewer | Business decision (submit) |
 | [`HANDOVER.md`](HANDOVER.md) | Reviewer | Run commands, evidence (submit) |

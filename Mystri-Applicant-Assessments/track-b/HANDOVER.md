@@ -13,9 +13,11 @@
 Prerequisites: Python 3.10+, no third-party packages.
 
 ```text
-cd Mystri-Applicant-Assessments/track-b
-python3 product1/verify_product1.py
+cd Mystri-Applicant-Assessments\track-b
+python product1\verify_product1.py
 ```
+
+Outputs: **`output\integrated_report.json`**, **`output\dicm_pipeline_trace.log`**, **`output\customer_structured_responses.json`**. Rules and limits: **`docs\RULES_AND_LIMITATIONS.md`**. Full commands: **`docs\SETUP.md`**.
 
 Or step by step:
 
@@ -26,7 +28,7 @@ python3 experiment.py
 python3 -m unittest discover -s tests -v
 ```
 
-Expected: **`experiment.py`** prints the **DICM collaboration summary**; writes **`output/integrated_report.json`**, **`output/dicm_pipeline_trace.log`**, and **`output/customer_structured_responses.json`**. **`verify_product1.py`** prints **`PRODUCT 1 PASS`**. Tests **38/38 OK**. Primary doc: **`INTEGRATED_MODEL.md`**.
+Expected: **`experiment.py`** prints the DICM collaboration summary; writes **`output/`** files. **`verify_product1.py`** prints **`PRODUCT 1 PASS`**. Full project guide: **`PROJECT_README.md`** and **`docs/`**. Tests **38/38 OK**. Primary narrative: **`INTEGRATED_MODEL.md`**, **`DECISION.md`**.
 
 ## What I delivered
 

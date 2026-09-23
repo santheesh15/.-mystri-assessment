@@ -11,6 +11,7 @@ class Product1GateTests(unittest.TestCase):
         self.assertTrue((TRACK_B / 'product1' / 'README.md').is_file())
         self.assertTrue((TRACK_B / 'PROJECT_README.md').is_file())
         self.assertTrue((TRACK_B / 'docs' / 'SETUP.md').is_file())
+        self.assertTrue((TRACK_B / 'docs' / 'RULES_AND_LIMITATIONS.md').is_file())
 
     def test_manifest_lists_core_modules(self):
         manifest = json.loads((TRACK_B / 'product1' / 'MANIFEST.json').read_text(encoding='utf-8'))

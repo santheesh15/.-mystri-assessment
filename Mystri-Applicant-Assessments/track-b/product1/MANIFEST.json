@@ -18,7 +18,8 @@
     "docs/ARCHITECTURE.md",
     "docs/TECH_STACK.md",
     "docs/CONFIGURATION.md",
-    "docs/REFERENCE.md"
+    "docs/REFERENCE.md",
+    "docs/RULES_AND_LIMITATIONS.md"
   ],
   "python_modules": [
     "experiment.py",

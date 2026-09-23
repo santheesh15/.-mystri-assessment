@@ -68,7 +68,123 @@ python3 product1/verify_product1.py
 
 ---
 
-## Custom output folder (optional)
+## Commands to generate outputs
+
+All default outputs are written to **`track-b/output/`** in **one folder**.
+
+### One command — verify + generate everything (recommended)
+
+Creates/refreshes all outputs and runs tests.
+
+**Windows:**
+
+```powershell
+cd "C:\path\to\...\Mystri-Applicant-Assessments\track-b"
+python product1\verify_product1.py
+```
+
+**macOS / Linux:**
+
+```bash
+cd Mystri-Applicant-Assessments/track-b
+python3 product1/verify_product1.py
+```
+
+**Produces:**
+
+| File | Description |
+| --- | --- |
+| `output\integrated_report.json` | Full DICM JSON report |
+| `output\dicm_pipeline_trace.log` | Unified audit trace |
+| `output\customer_structured_responses.json` | Structured OK / not-OK receipts |
+
+---
+
+### Step-by-step — same outputs without full test gate
+
+**Windows:**
+
+```powershell
+cd "C:\path\to\...\Mystri-Applicant-Assessments\track-b"
+python starter.py
+python experiment.py
+```
+
+**macOS / Linux:**
+
+```bash
+cd Mystri-Applicant-Assessments/track-b
+python3 starter.py
+python3 experiment.py
+```
+
+Terminal prints summary lines ending with:
+
+```text
+Wrote output/integrated_report.json
+Wrote trace output/dicm_pipeline_trace.log
+Wrote structured customer responses output/customer_structured_responses.json
+```
+
+---
+
+### Explicit output paths (default flags)
+
+**Windows:**
+
+```powershell
+python experiment.py `
+  --write output\integrated_report.json `
+  --trace output\dicm_pipeline_trace.log `
+  --acks output\customer_structured_responses.json
+```
+
+**macOS / Linux:**
+
+```bash
+python3 experiment.py \
+  --write output/integrated_report.json \
+  --trace output/dicm_pipeline_trace.log \
+  --acks output/customer_structured_responses.json
+```
+
+---
+
+### Open outputs after run (Windows)
+
+```powershell
+explorer output
+notepad output\dicm_pipeline_trace.log
+notepad output\customer_structured_responses.json
+notepad output\integrated_report.json
+```
+
+**macOS:**
+
+```bash
+open output/
+open -a TextEdit output/dicm_pipeline_trace.log
+```
+
+---
+
+### Run unit tests only (does not replace output files)
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+---
+
+### Custom output folder (optional — e.g. Desktop)
+
+See section below; **`verify_product1.py`** still requires default **`output/`** for **PRODUCT 1 PASS**.
+
+---
 
 Default: **`track-b/output/`**. To write elsewhere (e.g. Desktop):
 
