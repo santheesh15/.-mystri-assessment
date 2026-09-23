@@ -1,23 +1,18 @@
 # Handover
 
-## Fill before you submit (required)
-
-Edit the three lines below, then save this file.
-
 | Field | Your answer |
 | --- | --- |
-| **Name** | *(full name)* |
-| **Email** (same as Mystri application) | *(email)* |
-| **Total time** (setup + research + coding + tests + handover; be honest, ≤4 h stated in brief) | *(e.g. 3 h 45 min)* |
+| **Name** | Santheesh S |
+| **Email** (same as Mystri application) | sivasandy509@gmail.com |
+| **Total time** (setup + research + coding + tests + handover) | 4 hours and 35 minutes |
+| **Chosen track** | **B** |
 
-- Name:
-- Email used for this application:
-- Approximate total time, including setup and handover:
+- Name: Santheesh S
+- Email used for this application: sivasandy509@gmail.com
+- Approximate total time, including setup and handover: 4 hours and 35 minutes
 - Chosen track: **B**
 
-**Optional — only change if you mean it:**
-
-- **Why this track:** I prefer scoping a business/technical decision, checking a concrete claim against documentation, and proving it with a small runnable experiment rather than repairing an existing app.
+**Why this track:** I prefer scoping a business/technical decision, checking a concrete claim against documentation, and proving it with a small runnable experiment rather than repairing an existing app.
 
 **Submission product:** **Product 1 — DICM Core** (`product1/README.md`, `PRODUCTS.md`). Products 2 and 3 are not included in this handover.
 
