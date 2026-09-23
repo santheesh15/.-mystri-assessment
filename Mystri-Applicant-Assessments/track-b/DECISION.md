@@ -1,5 +1,7 @@
 # Decision note — missing-information follow-ups at Daybreak Repairs
 
+**Mystri Track B effort (author):** **4 hours 35 minutes (275 min)** — activity split in **`HANDOVER.md`**.
+
 ## Problem and user
 
 **Users:** **one coordinator** (customer email, reminders, data cleanup) and **four technicians** (technical clearance—not bulk customer chasing).  

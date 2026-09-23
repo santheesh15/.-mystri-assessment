@@ -6,7 +6,7 @@ You are the person deciding what, if anything, to build. You have two weeks of m
 
 This track assesses **technical research and prototyping**: learning an unfamiliar problem, checking technical claims and building a useful experiment. Mystri's initial work involves software and automation, with potential exploration across other technology sectors. Daybreak is the shared case study; specialist knowledge of any future sector is not required here.
 
-Submit within **seven calendar days of the invitation**, with **four hours of total work**. For how to run and verify this repo, see **`HANDOVER.md`** and **`PROJECT_README.md`**.
+Submit within **seven calendar days of the invitation**. **This submission:** **4 hours 35 minutes (275 min)** total effort — see **`HANDOVER.md`**. (Mystri’s brief targets up to four hours of work.) For how to run and verify, see **`HANDOVER.md`** and **`PROJECT_README.md`**.
 
 ## The decision
 

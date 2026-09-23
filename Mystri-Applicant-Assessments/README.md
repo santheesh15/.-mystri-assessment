@@ -13,3 +13,5 @@ python product1\verify_product1.py
 ```
 
 Reviewer steps (including opening output files): **`track-b/HANDOVER.md`**.
+
+**Applicant total time:** 4 hours 35 minutes (275 min) — documented in **`track-b/HANDOVER.md`**.
