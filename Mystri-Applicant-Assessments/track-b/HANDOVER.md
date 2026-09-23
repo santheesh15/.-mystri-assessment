@@ -4,13 +4,26 @@
 | --- | --- |
 | **Name** | Santheesh S |
 | **Email** (same as Mystri application) | sivasandy509@gmail.com |
-| **Total time** (setup + research + coding + tests + handover) | 4 hours and 35 minutes |
+| **Total time** (setup + research + coding + tests + handover) | 4 hours and 35 minutes (275 min) |
 | **Chosen track** | **B** |
 
 - Name: Santheesh S
 - Email used for this application: sivasandy509@gmail.com
-- Approximate total time, including setup and handover: 4 hours and 35 minutes
+- Approximate total time, including setup and handover: 4 hours and 35 minutes (275 min)
 - Chosen track: **B**
+
+## Time budget (actual — matches total above)
+
+| Activity | Minutes |
+| --- | ---: |
+| Read the scenario and inspect the data | 40 |
+| Targeted external research | 55 |
+| Analyze, compare and choose an approach | 40 |
+| Build and check the experiment | 95 |
+| Decision note, docs, verification, and handover | 45 |
+| **Total, including setup and choosing Track B** | **275** |
+
+Mystri’s brief targets **4 hours (240 min)**; this submission records **4 h 35 min** honestly (extra time mainly on build, docs, and verification).
 
 **Why this track:** I prefer scoping a business/technical decision, checking a concrete claim against documentation, and proving it with a small runnable experiment rather than repairing an existing app.
 

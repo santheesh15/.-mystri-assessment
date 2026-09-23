@@ -79,18 +79,20 @@ Use `py` on Windows or `python3` on macOS/Linux if needed. This only verifies th
 
 All records, businesses and contact addresses are synthetic. **The prototype must be a dry run: generate drafts or proposed actions only. Do not send anything.** Follow the decision constraints in `DATA_DICTIONARY.md` if you propose customer contact.
 
-## Suggested time budget
+## Time budget (this submission)
+
+Mystri’s brief suggests **4 hours (240 min)**. This repo’s handover records **4 h 35 min (275 min)** — reallocation below.
 
 | Activity | Minutes |
 | --- | ---: |
-| Read the scenario and inspect the data | 35 |
-| Targeted external research | 50 |
-| Analyze, compare and choose an approach | 35 |
-| Build and check the experiment | 85 |
-| Decision note and clean-run handover | 35 |
-| **Total, including setup and choosing a track** | **240** |
+| Read the scenario and inspect the data | 40 |
+| Targeted external research | 55 |
+| Analyze, compare and choose an approach | 40 |
+| Build and check the experiment | 95 |
+| Decision note, docs, verification, and handover | 45 |
+| **Total, including setup and choosing a track** | **275** |
 
-Reallocate as needed. Choose a narrow experiment and stop after four hours.
+Reallocate as needed. Choose a narrow experiment; stop when further work would not improve the decision or verification.
 
 ## How this track is scored
 
