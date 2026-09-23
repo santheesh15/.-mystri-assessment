@@ -1,10 +1,22 @@
 # Handover
 
-- Name: *[Your full name — fill before sending]*
-- Email used for this application: *[fill]*
-- Chosen track: **B**
-- Why this track: I prefer scoping a business/technical decision, checking a concrete claim against documentation, and proving it with a small runnable experiment rather than repairing an existing app.
-- Approximate total time, including setup and handover: *[fill honestly]*
+## Fill before you submit (required)
+
+Edit the three lines below, then save this file.
+
+| Field | Your answer |
+| --- | --- |
+| **Name** | *(full name)* |
+| **Email** (same as Mystri application) | *(email)* |
+| **Total time** (setup + research + coding + tests + handover; be honest, ≤4 h stated in brief) | *(e.g. 3 h 45 min)* |
+
+- Name:
+- Email used for this application:
+- Approximate total time, including setup and handover:
+
+**Optional — only change if you mean it:**
+
+- **Why this track:** I prefer scoping a business/technical decision, checking a concrete claim against documentation, and proving it with a small runnable experiment rather than repairing an existing app.
 
 **Submission product:** **Product 1 — DICM Core** (`product1/README.md`, `PRODUCTS.md`). Products 2 and 3 are not included in this handover.
 
@@ -15,9 +27,11 @@ Prerequisites: Python 3.10+, no third-party packages. **Do not edit `data/`** be
 **Step 1 — verify (creates `output/` files):**
 
 ```powershell
-cd "C:\path\to\...\Mystri-Applicant-Assessments\track-b"
+cd "C:\Users\SantheeshS\Documents\.-mystri-assessment-cursor-track-b-submission-edb7\Mystri-Applicant-Assessments\track-b"
 python product1\verify_product1.py
 ```
+
+*(Replace the path above if your folder is elsewhere.)*
 
 Expected terminal line: **`PRODUCT 1 PASS`**.
 

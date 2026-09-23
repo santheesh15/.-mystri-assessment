@@ -48,7 +48,7 @@ Demonstrate output on the provided data and on one input you deliberately change
 ### 3. Evidence and handover
 
 - `SOURCES.md`: **three to five useful external sources** with direct URLs, access dates, the claim each supports and any relevant limitation. At least one must be original technical documentation or research supporting your technical investigation. Prefer original product documentation for capabilities and prices. Mark any unverified assumption explicitly. External sources do not replace the supplied data analysis.
-- `HANDOVER.md`: use the shared template; give exact run and check commands, output locations, time spent, tool decisions and remaining uncertainty. Keep it short; do not duplicate the decision note.
+Follow **`HANDOVER.md`** (filled from the original Mystri handover fields). Give exact run and check commands, output locations, time spent, tool decisions and remaining uncertainty.
 
 No customer interviews, slide deck, video, cloud deployment, paid API or production integration are required. Do not invent interviews, market validation, source contents or test results.
 
