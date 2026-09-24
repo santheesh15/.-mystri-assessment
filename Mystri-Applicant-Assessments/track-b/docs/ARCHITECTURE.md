@@ -4,7 +4,7 @@
 
 ```text
 ┌─────────────────────────────────────────────────────────┐
-│  Mystri synthetic data (read-only for submit)           │
+│  Mystri synthetic data                                  │
 │  data/cases.csv  requests.csv  events.csv  scenario.json│
 └───────────────────────────┬─────────────────────────────┘
                             │
