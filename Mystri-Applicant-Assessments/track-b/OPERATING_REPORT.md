@@ -1,4 +1,4 @@
-# Operating report — people + AI (reviewer summary)
+# Operating report — people + AI 
 
 > **Primary entry point:** the single combined approach is **`INTEGRATED_MODEL.md`** (DICM). This file adds detail; run `python3 experiment.py` for the unified JSON report.
 
