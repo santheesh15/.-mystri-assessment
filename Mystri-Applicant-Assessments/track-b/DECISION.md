@@ -1,6 +1,6 @@
 # Decision note — missing-information follow-ups at Daybreak Repairs
 
-**Mystri Track B effort (author):** **4 hours 35 minutes (275 min)** — activity split in **`HANDOVER.md`**.
+**Time taken(Mystri Track B) :** **4 hours 35 minutes (275 min)** — activity split in **`HANDOVER.md`**.
 
 ## Problem and user
 
