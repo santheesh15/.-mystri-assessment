@@ -22,8 +22,6 @@ I treated the export as a **small synthetic snapshot** with incomplete time logg
 
 ### 1. Decision note — **`DECISION.md`**
 
-I wrote the decision note (~500–700 words plus tables) covering:
-
 - **Users and workflow:** coordinator + tiered technicians; missing-info follow-ups without wrong reminders.  
 - **Calculations:** deduplicated **`event_id`**; **400** logged minutes in window; **15** pending requests; **13** naive vs **5** rules-based drafts; **8** IDs the rules block (examples **R012**, **R029**).  
 - **Alternatives compared:** process-only review, OneDrive/Dropbox file request, custom rules queue, hybrid DICM.  
