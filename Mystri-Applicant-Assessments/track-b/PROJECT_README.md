@@ -26,7 +26,7 @@ python product1/verify_product1.py
 
 **Windows:** use `python` and backslashes in paths (see **`docs/SETUP.md`**).
 
-**Reviewer (Windows — after verify, open outputs in Notepad):**
+
 
 ```powershell
 notepad output\dicm_pipeline_trace.log
