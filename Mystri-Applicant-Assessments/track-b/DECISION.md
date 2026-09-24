@@ -35,7 +35,7 @@ Duplicates in `events.csv` are ignored for counts. Blank `active_minutes` are tr
 
 ## Recommendation
 
-**Adopt one combined operating model — DICM (Daybreak Integrated Collaborating Model),** documented in **`INTEGRATED_MODEL.md`**. It merges existing inbox/spreadsheet habits, lightweight buy patterns (file-request link), rules + three-speed lanes + departure board, rotating duty lead, tiered four technicians, and capped human-in-loop AI into **a single daily pipeline**—not separate tools fighting each other. Run `python3 experiment.py` for the unified report. **What would change my mind:** pilot metrics on reminder errors and time from `waiting_info` to quote.
+**Adopt one combined operating model — DICM (Daybreak Integrated Collaborating Model),** documented in **`INTEGRATED_MODEL.md`**. It merges existing inbox/spreadsheet habits, lightweight buy patterns (file-request link), rules + three-speed lanes + departure board, rotating duty lead, tiered four technicians, and capped human-in-loop AI into **a single daily pipeline**—not separate tools fighting each other. Run `python3 experiment.py` for the unified report. Adopt one combined operating model — DICM … Run python3 experiment.py for the unified report.
 
 ## Net value estimate (selected workflow: rules-assisted follow-up)
 
