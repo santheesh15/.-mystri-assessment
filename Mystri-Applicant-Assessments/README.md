@@ -1,8 +1,8 @@
 # Mystri Track B submission
 
-**Repo root:** [`../README.md`](../README.md) — switch GitHub branch **`main`** → **`cursor/track-b-submission-edb7`** before clone/ZIP.
+**Full reviewer guide (start → verify → read docs):** [`../README.md`](../README.md) at the **repository root** on branch **`cursor/track-b-submission-edb7`**.
 
-This repository folder contains **Track B only**.
+This folder contains **Track B only** (summary below; detailed steps are in the root README).
 
 | Path | Purpose |
 | --- | --- |
