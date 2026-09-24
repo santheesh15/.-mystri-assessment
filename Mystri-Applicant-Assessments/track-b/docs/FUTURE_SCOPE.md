@@ -14,11 +14,11 @@ Daybreak needs **fewer wrong reminders** and **clear human lanes** before adding
 
 ## Product lines (summary)
 
-| Phase | Name | Goal | Grade / submit |
-| --- | --- | --- | --- |
-| **1** | DICM Core | Decision + rules experiment + dry-run evidence | **Yes — submit this** |
-| **2** | DICM Pilot | Coordinator-facing tools on real folders; optional HTML report; flex verify | No — after pilot approval |
-| **3** | DICM Vision | Live messaging, CRM/Graph, production LLM, optional web app + DB | No — production program |
+| Phase | Name | Goal |
+| --- | --- | --- |
+| **1** | DICM Core | Decision + rules experiment + dry-run evidence |
+| **2** | DICM Pilot | Coordinator-facing tools on real folders; optional HTML report; flex verify |
+| **3** | DICM Vision | Live messaging, CRM/Graph, production LLM, optional web app + DB |
 
 Detail checklist: **`../PRODUCTS.md`**.
 
