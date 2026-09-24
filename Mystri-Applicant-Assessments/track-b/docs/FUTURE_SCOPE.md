@@ -82,7 +82,7 @@ Full current stack: **`TECH_STACK.md`**. Architecture hooks: **`ARCHITECTURE.md`
 
 ## How I plan to build it (order of work)
 
-1. **Keep Product 1 frozen** — graders run strict verify on unchanged **`data/`**.
+1. **Keep Product 1 frozen** — **`data/`**.
 2. **Product 2a — visibility** — HTML report from existing JSON; document in README; no new business rules.
 3. **Product 2b — pilot ops** — approval queue file format; coordinator records approve/reject; measure pilot KPIs.
 4. **Product 2c — flex verify + intake folder** — support changed datasets and local photo drops without breaking strict verify.
@@ -100,5 +100,3 @@ Full current stack: **`TECH_STACK.md`**. Architecture hooks: **`ARCHITECTURE.md`
 | **`OPERATING_REPORT.md`** | Risks, maintainability, synthesis |
 | **`INTEGRATED_MODEL.md`** | Daily pipeline narrative |
 | **`RULES_AND_LIMITATIONS.md`** | What Product 1 does not claim |
-
-**Grading:** Mystri evaluates **Product 1 only**. This file is **future intent**, not submission proof.
