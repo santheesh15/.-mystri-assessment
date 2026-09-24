@@ -41,4 +41,4 @@ Full detail, macOS/Linux, and screenshot: **`track-b/HANDOVER.md`**, **`track-b/
 
 **Do not edit `track-b/data/`** before grading.
 
-**Future scope (Product 2/3 — not graded):** HTML dashboard, generic verify on changed data, live LLM/messaging/CRM — tech and build order in **`track-b/docs/FUTURE_SCOPE.md`**.
+**Future scope:** HTML dashboard, generic verify on changed data, live LLM/messaging/CRM — tech and build order in **`track-b/docs/FUTURE_SCOPE.md`**.
