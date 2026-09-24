@@ -39,6 +39,4 @@ Full detail, macOS/Linux, and screenshot: **`track-b/HANDOVER.md`**, **`track-b/
 
 **Applicant total time:** 4 hours 35 minutes (275 min) — documented in **`track-b/HANDOVER.md`**.
 
-**Do not edit `track-b/data/`** before grading.
-
 **Future scope:** HTML dashboard, generic verify on changed data, live LLM/messaging/CRM — tech and build order in **`track-b/docs/FUTURE_SCOPE.md`**.
