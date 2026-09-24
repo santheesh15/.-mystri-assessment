@@ -53,13 +53,9 @@ Some rows are intentionally inconsistent—for example `pending` while `received
 
 ## Required constraints for any contact/action prototype
 
-These apply if your prototype proposes a reminder or request; a non-contact analysis experiment may explain why they are not applicable.
-
 1. **Dry run only.** No external messages or real service calls. Drafts, queues and mocks are enough.
 2. Never propose contact for `completed`, `cancelled` or `scheduled` cases, for requests with `followup_allowed=0`, or for items already received.
 3. Wait **at least 48 elapsed hours** after the last recorded request/reminder before proposing another. Exactly 48 hours is eligible, subject to the other rules.
 4. Missing contact/timing information or conflicting pending/received fields must go to a review/uncertain result, not an automatic contact action. Closed or opted-out records remain excluded even when another field is uncertain.
 5. Use stable case/request identities. Repeated runs must not accumulate duplicate proposed actions in saved output. Several requests to the same case may be combined if the result explains which requests it covers.
 6. Each proposed action must explain its reason and reference the source case/request IDs. Excluded/uncertain rows should be inspectable, even if presented in a separate output.
-
-This is a small local experiment, not a production messaging or compliance exercise. You do not need authentication, retry infrastructure, background scheduling or an LLM to meet the brief.
