@@ -3,7 +3,7 @@
 | Field | Your answer |
 | --- | --- |
 | **Name** | Santheesh S |
-| **Email** (same as Mystri application) | sivasandy509@gmail.com |
+| **Email** | sivasandy509@gmail.com |
 | **Total time** (setup + research + coding + tests + handover) | 4 hours and 35 minutes (275 min) |
 | **Chosen track** | **B** |
 
