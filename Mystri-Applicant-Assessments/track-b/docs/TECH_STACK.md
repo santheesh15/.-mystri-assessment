@@ -39,8 +39,8 @@
 | OS | Command | Notes |
 | --- | --- | --- |
 | Windows | `python` | cp1252 console: use UTF-8 fix in `console_io.py` / branch update |
-| macOS | `python3` | |
-| Linux | `python3` | |
+| macOS | `python3` | UTF-8 default; run from `track-b` — `python3 product1/verify_product1.py` |
+| Linux | `python3` | Same as macOS; no extra console setup |
 
 ---
 
