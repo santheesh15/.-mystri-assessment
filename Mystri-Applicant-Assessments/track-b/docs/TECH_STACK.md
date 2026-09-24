@@ -67,5 +67,3 @@ See **`FUTURE_SCOPE.md`** for full roadmap. Summary:
 | **Microsoft Graph**, SMTP | Product 3 | File requests + email send (human-gated) |
 | **LLM API** (e.g. Azure OpenAI) | Product 3 | Draft/triage assist behind **`ai_assist`** gates |
 | **FastAPI/Django + frontend** | Product 3 | Coordinator/technician dashboards |
-
-Product 1 remains **stdlib-only** for grading and reproducibility.
