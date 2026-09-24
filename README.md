@@ -1,6 +1,6 @@
 # Mystri assessment — Track B submission
 
-**Reviewers:** This repository’s **graded submission is not on `main`.**
+**Reviewers:** This repository’s **submission is not on `main`.**
 
 | | |
 | --- | --- |
