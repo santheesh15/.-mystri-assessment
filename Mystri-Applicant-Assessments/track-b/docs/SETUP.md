@@ -10,8 +10,6 @@
 | **OS** | Windows 10+, macOS, Linux |
 | **Disk** | ~5 MB project + generated `output/` |
 
-Optional: Git (clone from GitHub) or ZIP download from branch `cursor/track-b-submission-edb7`.
-
 ---
 
 ## Get the code
