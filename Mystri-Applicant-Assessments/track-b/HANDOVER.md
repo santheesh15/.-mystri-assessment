@@ -29,6 +29,15 @@ Mystri’s brief targets **4 hours (240 min)**; this submission records **4 h 35
 
 **Submission product:** **Product 1 — DICM Core** (`product1/README.md`, `PRODUCTS.md`).
 
+## Submit to Mystri (email checklist)
+
+Include in your submission email:
+
+- **Repo:** `https://github.com/santheesh15/.-mystri-assessment`
+- **Branch:** **`cursor/track-b-submission-edb7`** — reviewers must switch from **`main`** to this branch on GitHub (branch dropdown) or run `git checkout cursor/track-b-submission-edb7` after clone.
+- **Verify:** from `Mystri-Applicant-Assessments/track-b`, run `python product1\verify_product1.py` (expect **`PRODUCT 1 PASS`**).
+- **Read:** `HANDOVER.md`, `DECISION.md`, `SOURCES.md`.
+
 ## Run and verify (reviewers)
 
 **Repository:** `https://github.com/santheesh15/.-mystri-assessment`  

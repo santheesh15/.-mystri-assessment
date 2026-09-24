@@ -84,7 +84,7 @@ Disposition values: **`propose`**, **`exclude`**, **`uncertain`**.
 | Limitation | Notes |
 | --- | --- |
 | **Python 3.10+** | Required; not tested on end-of-life Python 2. |
-| **Windows console** | Older copies may need UTF-8 fix (`console_io.py`) or branch update. |
+| **Windows console** | Older copies may need UTF-8 fix (`console_io.py`). Use branch **`cursor/track-b-submission-edb7`** (switch from **`main`** on GitHub or `git checkout`). |
 | **Mobile** | Not supported as a runtime target. |
 
 ---
