@@ -1,10 +1,8 @@
 # Mystri assessment — Track B submission
 
-<<<<<<< HEAD
-**Reviewers:** This repository’s **submission is not on `main`.**
-=======
 **Applicant:** Santheesh S · **Track B** · **Product 1 (DICM Core)** · **Time:** 4 h 35 min (275 min)
->>>>>>> abd2451 (docs: expand root README as full reviewer start-to-end guide)
+
+**Reviewers:** This repository’s **submission is not on `main`.**
 
 This file is the **reviewer entry point** on branch **`cursor/track-b-submission-edb7`**. Follow the steps below **in order** to clone or download, run verification, and read the graded deliverables.
 
