@@ -20,7 +20,7 @@ Mystri assignment brief remains in [`README.md`](README.md) (original pack instr
 
 ## Quick start (reviewers)
 
-**Branch:** **`cursor/track-b-submission-edb7`**. **`cd`** using your path:
+**Branch:** **`cursor/track-b-submission-edb7`** (not **`main`** — switch branch on GitHub or `git checkout` after clone). **`cd`** using your path:
 
 ```powershell
 cd "<REPO_ROOT>\Mystri-Applicant-Assessments\track-b"

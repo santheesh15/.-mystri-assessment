@@ -21,7 +21,20 @@ This repository folder contains **Track B only**.
 | **Repository** | `https://github.com/santheesh15/.-mystri-assessment` |
 | **Branch** | **`cursor/track-b-submission-edb7`** |
 
-Sign in to GitHub (inviter must grant access). Open the repo → branch dropdown → select **`cursor/track-b-submission-edb7`**.
+Sign in to GitHub (inviter must grant access).
+
+### Switch branch on GitHub (default is `main`)
+
+The repo opens on **`main`** by default. **You must switch** before download or review:
+
+1. Open `https://github.com/santheesh15/.-mystri-assessment`
+2. Click the **branch** dropdown (left of the file list; it may say **`main`**).
+3. Type or select: **`cursor/track-b-submission-edb7`**
+4. Confirm the URL contains:  
+   `.../tree/cursor/track-b-submission-edb7/...`  
+   and you see **`Mystri-Applicant-Assessments`** (not an empty/old tree).
+
+Then clone, ZIP, or browse files on **this** branch only.
 
 ### 2) Get files on your computer
 
@@ -30,6 +43,14 @@ Sign in to GitHub (inviter must grant access). Open the repo → branch dropdown
 ```powershell
 git clone https://github.com/santheesh15/.-mystri-assessment.git
 cd .-mystri-assessment
+git checkout cursor/track-b-submission-edb7
+```
+
+**If you already cloned on `main`**, switch locally:
+
+```powershell
+cd .-mystri-assessment
+git fetch origin
 git checkout cursor/track-b-submission-edb7
 ```
 

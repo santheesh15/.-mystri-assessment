@@ -32,9 +32,15 @@ Mystri’s brief targets **4 hours (240 min)**; this submission records **4 h 35
 ## Run and verify (reviewers)
 
 **Repository:** `https://github.com/santheesh15/.-mystri-assessment`  
-**Branch (exactly):** **`cursor/track-b-submission-edb7`**
+**Branch (exactly):** **`cursor/track-b-submission-edb7`** — **not `main`**. On GitHub, use the branch dropdown to switch from **`main`** to **`cursor/track-b-submission-edb7`** before downloading ZIP or reviewing files.
 
 Prerequisites: Python 3.10+, no third-party packages. **Do not edit `data/`** before grading.
+
+### Switch branch on GitHub
+
+1. Repo page → branch menu (shows **`main`** first).
+2. Select **`cursor/track-b-submission-edb7`**.
+3. URL must include `/tree/cursor/track-b-submission-edb7/`.
 
 ### Get the code
 
@@ -46,7 +52,14 @@ cd .-mystri-assessment
 git checkout cursor/track-b-submission-edb7
 ```
 
-**Or:** GitHub → branch **`cursor/track-b-submission-edb7`** → **Download ZIP** → extract.
+**Already on `main` locally?**
+
+```powershell
+git fetch origin
+git checkout cursor/track-b-submission-edb7
+```
+
+**Or:** GitHub → switch branch **`main`** → **`cursor/track-b-submission-edb7`** → **Download ZIP** → extract.
 
 ### `cd` to `track-b` (reviewer — use your machine path)
 

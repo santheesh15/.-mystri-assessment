@@ -15,7 +15,14 @@
 ## Get the code
 
 **Repository:** `https://github.com/santheesh15/.-mystri-assessment`  
-**Branch (use exactly):** **`cursor/track-b-submission-edb7`**
+**Branch (use exactly):** **`cursor/track-b-submission-edb7`** — submission is **not** on **`main`**.
+
+### Switch branch on GitHub (`main` → submission)
+
+1. Open the repository on GitHub (default branch **`main`**).
+2. Click the branch name dropdown.
+3. Choose **`cursor/track-b-submission-edb7`**.
+4. Confirm path: `.../tree/cursor/track-b-submission-edb7/Mystri-Applicant-Assessments/...`
 
 ### Option A — Git (private repo; sign in to GitHub)
 
@@ -26,11 +33,19 @@ git checkout cursor/track-b-submission-edb7
 cd Mystri-Applicant-Assessments\track-b
 ```
 
+**If clone defaulted to `main`:**
+
+```powershell
+git fetch origin
+git checkout cursor/track-b-submission-edb7
+cd Mystri-Applicant-Assessments\track-b
+```
+
 (or on macOS/Linux: paths with `/` and `python3`)
 
 ### Option B — ZIP
 
-1. GitHub → branch **`cursor/track-b-submission-edb7`**
+1. On GitHub, switch branch **`main`** → **`cursor/track-b-submission-edb7`** (see above).
 2. **Code → Download ZIP**
 3. Extract; **`cd`** to `...\Mystri-Applicant-Assessments\track-b` (folder with **`experiment.py`**)
 

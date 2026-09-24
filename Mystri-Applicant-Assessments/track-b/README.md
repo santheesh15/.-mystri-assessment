@@ -75,7 +75,7 @@ I did not add fake interviews, invented test results, or cloud deployment.
 
 ## How to run what I built
 
-**Reviewers — GitHub branch:** **`cursor/track-b-submission-edb7`** · repo `santheesh15/.-mystri-assessment`
+**Reviewers — GitHub:** switch **`main`** → **`cursor/track-b-submission-edb7`** in the branch dropdown before clone/ZIP. Then:
 
 ```powershell
 cd "<REPO_ROOT>\Mystri-Applicant-Assessments\track-b"

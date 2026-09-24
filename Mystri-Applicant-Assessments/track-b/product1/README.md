@@ -4,7 +4,7 @@ This folder marks the **official scoped product** for Mystri Track B. All code l
 
 ## Reviewer steps (copy in order)
 
-**Repository:** `https://github.com/santheesh15/.-mystri-assessment` · **Branch:** **`cursor/track-b-submission-edb7`**
+**Repository:** `https://github.com/santheesh15/.-mystri-assessment` · **Branch:** **`cursor/track-b-submission-edb7`** (switch from **`main`** on GitHub or `git checkout` locally)
 
 **Do not edit `../data/`** before running.
 
