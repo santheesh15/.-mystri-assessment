@@ -21,50 +21,50 @@
 ## One pipeline (run every working day)
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│ 0. Data & policy validation — syntax, standards, opt-outs   │
-│    Errors → coordinator fix export; policies → rules/Park   │
-└───────────────────────────┬─────────────────────────────────┘
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│ 0a. Customer register — case exists + email matches case     │
-│    Fake/spam domains & mismatched contacts → discard         │
-└───────────────────────────┬─────────────────────────────────┘
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│ 0b. Customer files — JPEG/PNG/WebP/PDF/text/HEIC routing   │
-│    Image: IHDR/SOF checks; HEIC/unknown → human convert      │
-└───────────────────────────┬─────────────────────────────────┘
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│ 1. Huddle (15 min) — Coordinator + rotating duty lead       │
-│    • Top rows on departure board (wait + quote value)       │
-│    • All uncertain / Park-lane cases                          │
-└───────────────────────────┬─────────────────────────────────┘
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│ 2. Three-speed lanes — Express / Standard / Park            │
-│    Express → technicians (human photo check, quote prep)      │
-│    Standard → rules + coordinator drafts + parallel tech work │
-│    Park → humans only (opt-out, bad data, closed)           │
-└───────────────────────────┬─────────────────────────────────┘
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│ 3. Rules gate — who may be contacted at all                 │
-└───────────────────────────┬─────────────────────────────────┘
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│ 4. AI assist — drafts + labels + checklists                 │
-│    Coordinator approves every customer message              │
-└───────────────────────────┬─────────────────────────────────┘
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│ 5. Tiered technician board — assign by level + load         │
-└───────────────────────────┬─────────────────────────────────┘
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│ 6. Cost & risk check — stay within INR 1,500 tool cap       │
-└─────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│0. Data & policy validation — syntax, standards, opt-outs     │
+│   Errors → coordinator fix export; policies → rules/Park     │
+└──────────────────────────────┬───────────────────────────────┘
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│0a. Customer register — case exists + email matches case      │
+│   Fake/spam domains & mismatched contacts → discard          │
+└──────────────────────────────┬───────────────────────────────┘
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│0b. Customer files — JPEG/PNG/WebP/PDF/text/HEIC routing      │
+│   Image: IHDR/SOF checks; HEIC/unknown → human convert       │
+└──────────────────────────────┬───────────────────────────────┘
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│1. Huddle (15 min) — Coordinator + rotating duty lead         │
+│   • Top rows on departure board (wait + quote value)         │
+│   • All uncertain / Park-lane cases                          │
+└──────────────────────────────┬───────────────────────────────┘
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│2. Three-speed lanes — Express / Standard / Park              │
+│   Express → technicians (human photo check, quote prep)      │
+│   Standard → rules + coordinator drafts + parallel tech work │
+│   Park → humans only (opt-out, bad data, closed)             │
+└──────────────────────────────┬───────────────────────────────┘
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│3. Rules gate — who may be contacted at all                   │
+└──────────────────────────────┬───────────────────────────────┘
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│4. AI assist — drafts + labels + checklists                   │
+│   Coordinator approves every customer message                │
+└──────────────────────────────┬───────────────────────────────┘
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│5. Tiered technician board — assign by level + load           │
+└──────────────────────────────┬───────────────────────────────┘
+                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│6. Cost & risk check — stay within INR 1,500 tool cap         │
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ---
