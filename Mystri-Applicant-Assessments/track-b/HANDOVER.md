@@ -8,11 +8,11 @@
 | **Chosen track** | **B** |
 
 - Name: Santheesh S
-- Email used for this application: sivasandy509@gmail.com
+- Email: sivasandy509@gmail.com
 - Approximate total time, including setup and handover: 4 hours and 35 minutes (275 min)
 - Chosen track: **B**
 
-## Time budget (actual — matches total above)
+## Time budget
 
 | Activity | Minutes |
 | --- | ---: |
@@ -23,15 +23,15 @@
 | Decision note, docs, verification, and handover | 45 |
 | **Total, including setup and choosing Track B** | **275** |
 
-Mystri’s brief targets **4 hours (240 min)**; this submission records **4 h 35 min** honestly (extra time mainly on build, docs, and verification).
+Mystri’s brief targets **4 hours (240 min)**; this submission records **4 h 35 min** hours.
 
 **Why this track:** I prefer scoping a business/technical decision, checking a concrete claim against documentation, and proving it with a small runnable experiment rather than repairing an existing app.
 
-**Submission product:** **Product 1 — DICM Core** (`product1/README.md`, `PRODUCTS.md`). Products 2 and 3 are not included in this handover.
+**Submission product:** **Product 1 — DICM Core** (`product1/README.md`, `PRODUCTS.md`).
 
 ## Run and verify (reviewer — copy all steps)
 
-Prerequisites: Python 3.10+, no third-party packages. **Do not edit `data/`** before grading.
+Prerequisites: Python 3.10+, no third-party packages. **Do not edit `data/`**.
 
 **Step 1 — verify (creates `output/` files):**
 
@@ -46,7 +46,7 @@ Expected terminal line: **`PRODUCT 1 PASS`**.
 
 ![Example: PRODUCT 1 PASS then opening output and docs in Notepad](docs/assets/verify-product1-pass-windows.png)
 
-**Step 2 — open saved outputs (required so you can read the run; verify does not open these automatically):**
+**Step 2 — open saved outputs:**
 
 ```powershell
 notepad output\dicm_pipeline_trace.log
@@ -61,7 +61,7 @@ notepad DECISION.md
 notepad HANDOVER.md
 ```
 
-macOS/Linux reviewers: after verify, open the same paths under `output/` and the two Markdown files in any text editor (`docs/SETUP.md` has `open` examples).
+For macOS/Linux Users: after verify, open the same paths under `output/` and the two Markdown files in any text editor (`docs/SETUP.md` has `open` examples).
 
 Rules and limits: **`docs\RULES_AND_LIMITATIONS.md`**. Full command reference: **`docs\SETUP.md`**.
 
