@@ -18,7 +18,7 @@ This page lists **example vendor documentation** that often comes up when people
 
 ## How this submission used them
 
-**`SOURCES.md`** is the author’s source table (URLs, access dates, what each source supports, and what it does *not* prove). **`DECISION.md`** explains why a **hybrid** model (inbox + spreadsheet + rules + optional file-request *text* in drafts) fits Daybreak better than “one SaaS replaces follow-up discipline.”
+**`SOURCES.md`** is the source table (URLs, access dates, what each source supports, and what it does *not* prove). **`DECISION.md`** explains why a **hybrid** model (inbox + spreadsheet + rules + optional file-request *text* in drafts) fits Daybreak better than “one SaaS replaces follow-up discipline.”
 
 **`USER_NOTES.md`** and **`DATA_DICTIONARY.md`** are fictional pack context—not market research.
 
