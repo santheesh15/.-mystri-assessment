@@ -1,4 +1,4 @@
 {
   "name": "Mystri Applicant Assessments (Track B)",
-  "install": "bash dev-setup/cloud-agent-install.sh"
+  "install": "bash .cursor/cloud-agent-install.sh"
 }

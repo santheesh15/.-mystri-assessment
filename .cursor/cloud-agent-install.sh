@@ -6,5 +6,4 @@ TRACK_B="${ROOT}/Mystri-Applicant-Assessments/track-b"
 
 cd "${TRACK_B}"
 python3 starter.py >/dev/null
-python3 -V
-echo "Track B data loader OK"
+echo "Track B data loader OK ($(python3 --version))"
