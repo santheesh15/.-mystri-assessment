@@ -2,7 +2,7 @@
 
 **Applicant:** Santheesh S · **Track:** B · **Effort:** 4 hours 35 minutes (275 min) — **`HANDOVER.md`**
 
-I completed Mystri **Track B — Find the worthwhile automation** for fictional **Daybreak Repairs** (four technicians, one coordinator). The owner’s line—“we lose eight hours a week chasing customers; can AI fix this?”—is a **claim I tested**, not a fact I assumed. I focused on **collecting missing information** before quoting (photos, serial numbers, access), implemented a **dry-run DICM pipeline** on the supplied CSVs, and documented limits honestly.
+I completed Mystri **Track B — Find the worthwhile automation** for fictional **Daybreak Repairs** (four technicians, one coordinator). The owner’s line—“we lose eight hours a week chasing customers; can AI fix this?”—is a **claim I tested**, not a fact I assumed. I focused on **collecting missing information** before quoting (photos, serial numbers, access), implemented a **dry-run DICM pipeline** on the supplied CSVs, and documented limits as per my observation.
 
 For run steps and proof files, see **`HANDOVER.md`** and **`PROJECT_README.md`**. The official assignment PDF remains in **`../briefs/`**; this README describes **what I built and where to read it**.
 
