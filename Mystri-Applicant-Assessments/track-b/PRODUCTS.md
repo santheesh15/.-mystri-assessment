@@ -3,8 +3,8 @@
 | Product | Status | Purpose |
 | --- | --- | --- |
 | **Product 1 — DICM Core** | **Complete (submit this)** | Mystri Track B scoped deliverable: decision + experiment + dry-run evidence |
-| Product 2 — DICM Pilot | Not started | Optional pilot hooks (intake folder, approval queue, HTML report) |
-| Product 3 — DICM Vision | Not started | Full production roadmap (docs/stubs only) |
+| Product 2 — DICM Pilot | Not started | Pilot hooks: HTML report, approval queue, intake folder, generic verify — see **`docs/FUTURE_SCOPE.md`** |
+| Product 3 — DICM Vision | Not started | Production: Graph/LLM/messaging/web/DB — see **`docs/FUTURE_SCOPE.md`** |
 
 **Official submission:** **Product 1 only.** See **`PROJECT_README.md`** and **`product1/README.md`** for the reviewer path.
 
@@ -61,3 +61,5 @@ python3 product1/verify_product1.py
 ### Explicitly out of Product 1 (Product 2 / 3 later)
 
 Live messaging, Microsoft Graph / OneDrive, production LLM, web app, database backend, WhatsApp API, autonomous send, mutating `data/*.csv`, pilot ROI claims.
+
+**Planned roadmap (not built):** **`docs/FUTURE_SCOPE.md`**.

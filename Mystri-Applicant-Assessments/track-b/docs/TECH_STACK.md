@@ -53,3 +53,19 @@ No `requirements.txt` — by design (Mystri pack). Minimum **Python 3.10** for t
 ## Build / deploy
 
 No build step. No Docker required. No CI config in Product 1 (run tests locally or via verify script).
+
+---
+
+## Planned stack (Product 2 / 3 — not in use yet)
+
+See **`FUTURE_SCOPE.md`** for full roadmap. Summary:
+
+| Addition | When | Purpose |
+| --- | --- | --- |
+| **Pillow**, optional Flask | Product 2 pilot | HTML report, intake photos, small approval UI |
+| **PostgreSQL / SQLite** | Product 3 | Approvals and send audit |
+| **Microsoft Graph**, SMTP | Product 3 | File requests + email send (human-gated) |
+| **LLM API** (e.g. Azure OpenAI) | Product 3 | Draft/triage assist behind **`ai_assist`** gates |
+| **FastAPI/Django + frontend** | Product 3 | Coordinator/technician dashboards |
+
+Product 1 remains **stdlib-only** for grading and reproducibility.

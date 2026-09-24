@@ -97,7 +97,7 @@ Expected: **`experiment.py`** prints the DICM collaboration summary; writes **`o
 
 **Not proven:** real-world time savings, customer satisfaction, or LLM necessity—only that deterministic rules fit this snapshot better than a naive list.
 
-**Next step:** pilot with coordinator labeling false positives on the uncertain queue.
+**Next step:** pilot with coordinator labeling false positives on the uncertain queue. **Future enhancements (Product 2/3):** **`docs/FUTURE_SCOPE.md`** (HTML report, generic verify, live LLM/messaging plan, tech stack).
 
 ## Tools and judgment
 

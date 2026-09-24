@@ -83,6 +83,7 @@ Summary:
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Technical | Pipeline, modules, data flow |
 | [`docs/CONFIGURATION.md`](docs/CONFIGURATION.md) | Operator | CLI flags, paths, scenario/data |
 | [`docs/RULES_AND_LIMITATIONS.md`](docs/RULES_AND_LIMITATIONS.md) | Reviewer / developer | Project rules, business rules, limits |
+| [`docs/FUTURE_SCOPE.md`](docs/FUTURE_SCOPE.md) | Reviewer / you | Product 2/3 roadmap, planned tech, build order |
 | [`docs/REFERENCE.md`](docs/REFERENCE.md) | Developer | Modules, constants, helpers, tests |
 | [`DECISION.md`](DECISION.md) | Reviewer | Business decision (submit) |
 | [`HANDOVER.md`](HANDOVER.md) | Reviewer | Run commands, evidence (submit) |
