@@ -26,7 +26,7 @@ Pack links were checked around **10 September 2026**. If a URL moves, treat the 
 
 ---
 
-## If you are reviewing
+## Where to Start
 
 - Start with **`DECISION.md`** and **`HANDOVER.md`**, then run verify from **`track-b/`** (see repo **`README.md`**).
 - Use this page only when you want to see **which external docs** the author compared against the technical claim.
