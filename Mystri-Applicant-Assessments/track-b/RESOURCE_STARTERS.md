@@ -14,8 +14,6 @@ This page lists **example vendor documentation** that often comes up when people
 
 **File upload** and **quote approval** are different jobs. A file-request product helps customers send a photo; it does not by itself enforce a 48-hour gap, honour opt-outs, or match inbox threads to spreadsheet rows. That gap is what the Track B experiment and **`DECISION.md`** discuss.
 
-Pack links were checked around **10 September 2026**. If a URL moves, treat the limitation honestly—see how this submission recorded sources in **`SOURCES.md`**.
-
 ---
 
 ## How this submission used them
