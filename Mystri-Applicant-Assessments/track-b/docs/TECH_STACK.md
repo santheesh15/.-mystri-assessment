@@ -46,7 +46,7 @@
 
 ## Version pinning
 
-No `requirements.txt` — by design (Mystri pack). Minimum **Python 3.10** for type syntax used in codebase.
+No `requirements.txt` — by design. Minimum **Python 3.10** for type syntax used in codebase.
 
 ---
 
