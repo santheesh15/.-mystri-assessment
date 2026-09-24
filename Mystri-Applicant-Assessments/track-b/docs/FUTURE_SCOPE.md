@@ -1,4 +1,4 @@
-# Future scope — Product 2 / 3 (not part of Track B grading)
+# Future scope — Product 2 / 3 
 
 **Product 1 (DICM Core) is complete and submitted.** Everything below is a **planned roadmap** — not built, not verified by `product1/verify_product1.py`.
 
