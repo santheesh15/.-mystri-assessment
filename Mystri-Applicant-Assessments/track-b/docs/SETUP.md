@@ -33,7 +33,7 @@ cd .-mystri-assessment/Mystri-Applicant-Assessments/track-b
 
 1. Install Python 3.10+ and ensure it is on `PATH`.
 2. `cd` into **`track-b`** (folder containing `experiment.py`).
-3. Do **not** modify Mystri **`data/*.csv`** for baseline grading (tests assume pack snapshot).
+3. Do **not** modify Mystri **`data/*.csv`**.
 4. Run verification (creates `output/` automatically).
 
 ---
