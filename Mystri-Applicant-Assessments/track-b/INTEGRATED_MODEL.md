@@ -101,8 +101,6 @@ JSON root object includes **`integrated_model`** with `collaboration_flow`, `com
 
 ## Unified pipeline trace (one audit file)
 
-Reviewers can follow **one chronological log** from pipeline start through **simulated customer delivery** (assessment dry-run—no real email).
-
 | Phase | What appears in the trace |
 | --- | --- |
 | `START` | Run begins; business snapshot clock |
