@@ -49,8 +49,7 @@ One row per information/approval request. `request_id` is unique; a case can hav
 | `followup_allowed` | `1` permits follow-up in this scenario, `0` forbids it; not evidence of legal consent |
 | `received_at` | When the requested item was received, or blank |
 
-Some rows are intentionally inconsistent—for example `pending` while `received_at` is set. **Pending** alone does not prove something is still missing. This submission’s rules engine sends conflicts to **uncertain** for coordinator review; see **`DECISION.md`** and **`tests/test_queue.py`** (e.g. R018).
-
+Some rows are intentionally inconsistent—for example `pending` while `received_at` is set. **Pending** alone does not prove something is still missing.
 ## Required constraints for any contact/action prototype
 
 1. **Dry run only.** No external messages or real service calls. Drafts, queues and mocks are enough.
