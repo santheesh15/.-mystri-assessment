@@ -49,7 +49,7 @@ One row per information/approval request. `request_id` is unique; a case can hav
 | `followup_allowed` | `1` permits follow-up in this scenario, `0` forbids it; not evidence of legal consent |
 | `received_at` | When the requested item was received, or blank |
 
-This snapshot contains stale requests and inconsistent fields. A pending status does not, by itself, prove that an item is missing. Document which evidence you trust and how you handle ambiguity.
+Some rows are intentionally inconsistent—for example `pending` while `received_at` is set. **Pending** alone does not prove something is still missing. This submission’s rules engine sends conflicts to **uncertain** for coordinator review; see **`DECISION.md`** and **`tests/test_queue.py`** (e.g. R018).
 
 ## Required constraints for any contact/action prototype
 
