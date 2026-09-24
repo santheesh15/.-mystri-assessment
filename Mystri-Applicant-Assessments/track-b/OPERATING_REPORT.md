@@ -92,7 +92,7 @@ All rates are **labeled assumptions** in `cost_model.py`, not Mystri-verified Da
 
 ---
 
-## 6. Commands for reviewer
+## 6. Commands for End User
 
 ```text
 cd Mystri-Applicant-Assessments/track-b
