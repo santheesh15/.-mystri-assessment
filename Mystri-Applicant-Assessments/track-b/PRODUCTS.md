@@ -6,7 +6,7 @@
 | Product 2 — DICM Pilot | Not started | Pilot hooks: HTML report, approval queue, intake folder, generic verify — see **`docs/FUTURE_SCOPE.md`** |
 | Product 3 — DICM Vision | Not started | Production: Graph/LLM/messaging/web/DB — see **`docs/FUTURE_SCOPE.md`** |
 
-**Official submission:** **Product 1 only.** See **`PROJECT_README.md`** and **`product1/README.md`** for the reviewer path.
+**Official submission:** **Product 1 only.** See **`PROJECT_README.md`** and **`product1/README.md`**.
 
 ---
 
