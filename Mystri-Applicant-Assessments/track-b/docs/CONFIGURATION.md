@@ -40,8 +40,6 @@ python experiment.py --write output/integrated_report.json --trace output/dicm_p
 
 Field meanings: **`DATA_DICTIONARY.md`**.
 
-Changing CSV content **will** change experiment output (supported); submit repo should keep **original** pack for grading.
-
 ---
 
 ## Output directory — `output/`
