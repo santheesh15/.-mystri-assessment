@@ -27,13 +27,13 @@
 └───────────────────────────┬─────────────────────────────────┘
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
-│ 0b. Customer files — JPEG/PNG/WebP/PDF/text/HEIC routing   │
-│    Image: IHDR/SOF checks; HEIC/unknown → human convert      │
+│ 0a. Customer register — case exists + email matches case     │
+│    Fake/spam domains & mismatched contacts → discard         │
 └───────────────────────────┬─────────────────────────────────┘
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
-│ 0a. Customer register — case exists + email matches case     │
-│    Fake/spam domains & mismatched contacts → discard         │
+│ 0b. Customer files — JPEG/PNG/WebP/PDF/text/HEIC routing   │
+│    Image: IHDR/SOF checks; HEIC/unknown → human convert      │
 └───────────────────────────┬─────────────────────────────────┘
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
