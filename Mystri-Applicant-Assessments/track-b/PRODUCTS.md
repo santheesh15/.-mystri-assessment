@@ -2,7 +2,7 @@
 
 | Product | Status | Purpose |
 | --- | --- | --- |
-| **Product 1 — DICM Core** | **Complete (submit this)** | Mystri Track B scoped deliverable: decision + experiment + dry-run evidence |
+| **Product 1 — DICM Core** | **Complete** | Mystri Track B scoped deliverable: decision + experiment + dry-run evidence |
 | Product 2 — DICM Pilot | Not started | Pilot hooks: HTML report, approval queue, intake folder, generic verify — see **`docs/FUTURE_SCOPE.md`** |
 | Product 3 — DICM Vision | Not started | Production: Graph/LLM/messaging/web/DB — see **`docs/FUTURE_SCOPE.md`** |
 
