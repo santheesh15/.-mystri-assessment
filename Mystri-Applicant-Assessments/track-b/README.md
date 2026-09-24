@@ -75,6 +75,15 @@ I did not add fake interviews, invented test results, or cloud deployment.
 
 ## How to run what I built
 
+**Reviewers — GitHub branch:** **`cursor/track-b-submission-edb7`** · repo `santheesh15/.-mystri-assessment`
+
+```powershell
+cd "<REPO_ROOT>\Mystri-Applicant-Assessments\track-b"
+dir experiment.py
+```
+
+**`<REPO_ROOT>`** = where you cloned or unzipped (folder that contains **`Mystri-Applicant-Assessments`**). Full clone steps: **`../README.md`**, **`HANDOVER.md`**, **`docs/SETUP.md`**.
+
 **Load check only:**
 
 ```text
