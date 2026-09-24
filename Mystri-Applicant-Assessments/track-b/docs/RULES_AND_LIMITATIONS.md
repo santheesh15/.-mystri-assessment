@@ -5,7 +5,7 @@
 | # | Rule |
 | --- | --- |
 | R1 | **Dry-run only** — no real email, SMS, WhatsApp, or customer messaging. All customer lines are simulated in logs/JSON. |
-| R2 | **Do not mutate Mystri starter CSVs in `data/` for submission** — graders expect the pack snapshot. Experiments with changed data belong in tests or local copies. |
+| R2 | **Do not mutate Mystri starter CSVs in `data/`** 
 | R3 | **Use `scenario.json` snapshot time** for rule timing — not the computer’s live clock — when comparing to documented results (13 vs 5 drafts, etc.). |
 | R4 | **Stdlib only** — no `pip install` requirements for Product 1 verify path. |
 | R5 | **Human-in-the-loop** — AI (`ai_assist.py`) may suggest; rules + coordinator/technician gates decide; no autonomous send in code. |
