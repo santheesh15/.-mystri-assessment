@@ -8,6 +8,8 @@
 
 **Official submission:** **Product 1 only.** See **`PROJECT_README.md`** and **`product1/README.md`**.
 
+**Applicant total time:** **3 hours 50 minutes (230 min)** — **`HANDOVER.md`**.
+
 ---
 
 ## Product 1 — DICM Core (in scope)

@@ -2,6 +2,8 @@
 
 This folder marks the **official scoped product** for Mystri Track B. All code lives in the parent `track-b/` directory; Product 1 is the **default behavior** of `experiment.py` (no extra flags required).
 
+**Applicant total time:** **3 hours 50 minutes (230 min)** — **`../HANDOVER.md`**.
+
 ## Reviewer steps (copy in order)
 
 **Repository:** `https://github.com/santheesh15/.-mystri-assessment` · **Branch:** **`cursor/track-b-submission-edb7`** (switch from **`main`** on GitHub or `git checkout` locally)

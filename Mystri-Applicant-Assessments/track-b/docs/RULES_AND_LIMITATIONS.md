@@ -97,7 +97,7 @@ Disposition values: **`propose`**, **`exclude`**, **`uncertain`**.
 | Runnable experiment | `experiment.py` + tests |
 | Sources | `SOURCES.md` |
 | Handover | `HANDOVER.md` |
-| Applicant total time | **3 h 50 min (230 min)** — `HANDOVER.md` time budget |
+| Applicant total time | **3 hours 50 minutes (230 min)** — `HANDOVER.md` time budget |
 | Honest limits | This file + handover “Not proven” |
 
 ---

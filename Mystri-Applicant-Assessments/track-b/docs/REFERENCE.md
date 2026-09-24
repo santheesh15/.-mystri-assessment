@@ -135,6 +135,11 @@ python -m unittest discover -s tests -v
 
 ## Documentation index
 
+| Submission | Value |
+| --- | --- |
+| Applicant total time | **3 hours 50 minutes (230 min)** — `HANDOVER.md` |
+| Time budget rows | Must sum to **230** (see `HANDOVER.md` / `README.md`) |
+
 | Doc | Path |
 | --- | --- |
 | Project overview | `PROJECT_README.md` |

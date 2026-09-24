@@ -4,12 +4,12 @@
 | --- | --- |
 | **Name** | Santheesh S |
 | **Email** | sivasandy509@gmail.com |
-| **Total time** (setup + research + coding + tests + handover) | 3 hours and 50 minutes (230 min) |
+| **Total time** (setup + research + coding + tests + handover) | 3 hours 50 minutes (230 min) |
 | **Chosen track** | **B** |
 
 - Name: Santheesh S
 - Email: sivasandy509@gmail.com
-- Approximate total time, including setup and handover: 3 hours and 50 minutes (230 min)
+- Approximate total time, including setup and handover: 3 hours 50 minutes (230 min)
 - Chosen track: **B**
 
 ## Time budget
@@ -23,7 +23,7 @@
 | Decision note, docs, verification, and handover | 38 |
 | **Total, including setup and choosing Track B** | **230** |
 
-Mystri’s brief targets **4 hours (240 min)**; this submission records **3 h 50 min (230 min)**.
+Mystri’s brief targets **4 hours (240 min)**; this submission records **3 hours 50 minutes (230 min)**.
 
 **Why this track:** I prefer scoping a business/technical decision, checking a concrete claim against documentation, and proving it with a small runnable experiment rather than repairing an existing app.
 
@@ -35,6 +35,7 @@ Include in your submission email:
 
 - **Repo:** `https://github.com/santheesh15/.-mystri-assessment`
 - **Branch:** **`cursor/track-b-submission-edb7`** — reviewers must switch from **`main`** to this branch on GitHub (branch dropdown) or run `git checkout cursor/track-b-submission-edb7` after clone.
+- **Total time:** **3 hours 50 minutes (230 min)** — activity split in **`HANDOVER.md`** (same table in **`README.md`**).
 - **Verify:** from `Mystri-Applicant-Assessments/track-b`, run `python product1\verify_product1.py` (expect **`PRODUCT 1 PASS`**).
 - **Read:** `HANDOVER.md`, `DECISION.md`, `SOURCES.md`.
 

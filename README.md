@@ -1,9 +1,5 @@
 # Mystri assessment — Track B submission
 
-**Applicant:** Santheesh S · **Track B** · **Product 1 (DICM Core)** · **Time:** 4 h 35 min (275 min)
-
-**Reviewers:** This repository’s **submission is not on `main`.**
-
 This file is the **reviewer entry point** on branch **`cursor/track-b-submission-edb7`**. Follow the steps below **in order** to clone or download, run verification, and read the graded deliverables.
 
 ---
@@ -15,6 +11,7 @@ This file is the **reviewer entry point** on branch **`cursor/track-b-submission
 | **Repository** | `https://github.com/santheesh15/.-mystri-assessment` |
 | **Submission branch (use exactly)** | **`cursor/track-b-submission-edb7`** |
 | **Graded code path** | **`Mystri-Applicant-Assessments/track-b/`** |
+| **Applicant total time** | **3 hours 50 minutes (230 min)** — **`track-b/HANDOVER.md`** |
 | **Python** | **3.10+** (stdlib only — no `pip install`) |
 | **Internet** | Not required after you have the files |
 

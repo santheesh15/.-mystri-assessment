@@ -112,7 +112,7 @@ After verify, reviewers can open proof files—see **`HANDOVER.md`** (Notepad co
 
 ## How I spent time (230 min)
 
-Mystri’s brief targets **4 hours (240 min)**; I recorded **3 h 50 min (230 min)**.
+Mystri’s brief targets **4 hours (240 min)**; I recorded **3 hours 50 minutes (230 min)**.
 
 | Activity | Minutes |
 | --- | ---: |

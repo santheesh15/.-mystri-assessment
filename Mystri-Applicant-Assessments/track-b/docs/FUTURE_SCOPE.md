@@ -2,7 +2,7 @@
 
 **Product 1 (DICM Core) is complete and submitted.** Everything below is a **planned roadmap** — not built, not verified by `product1/verify_product1.py`.
 
-Applicant: **Santheesh S** · Total effort on Product 1: **3 h 50 min (230 min)** · See **`HANDOVER.md`**.
+Applicant: **Santheesh S** · Total effort on Product 1: **3 hours 50 minutes (230 min)** · See **`HANDOVER.md`**.
 
 ---
 

@@ -12,6 +12,15 @@ Dry-run missing-info follow-ups: rules, team lanes, human-gated AI assist, struc
 | **Verification** | `python product1/verify_product1.py` (Windows: `python`; Unix: `python3`) |
 | **Total effort (this submission)** | **3 hours 50 minutes (230 min)** — breakdown in [`HANDOVER.md`](HANDOVER.md) |
 
+| Activity | Minutes |
+| --- | ---: |
+| Read the scenario and inspect the data | 33 |
+| Targeted external research | 46 |
+| Analyze, compare and choose an approach | 33 |
+| Build and check the experiment | 80 |
+| Decision note, docs, verification, and handover | 38 |
+| **Total, including setup and choosing Track B** | **230** |
+
 Mystri assignment brief remains in [`README.md`](README.md) (original pack instructions).
 
 **Repo layout:** `Mystri-Applicant-Assessments/` contains **`track-b/`** (project) and **`briefs/`** (Track B PDF).

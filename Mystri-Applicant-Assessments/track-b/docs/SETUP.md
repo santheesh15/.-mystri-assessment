@@ -10,6 +10,8 @@
 | **OS** | Windows 10+, macOS, Linux |
 | **Disk** | ~5 MB project + generated `output/` |
 
+**Applicant total time (Track B):** **3 hours 50 minutes (230 min)** — see **`HANDOVER.md`** time budget (mirrored in **`README.md`**, **`PROJECT_README.md`**, **`DECISION.md`**).
+
 ---
 
 ## Get the code
