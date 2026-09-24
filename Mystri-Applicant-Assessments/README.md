@@ -8,7 +8,7 @@ This repository folder contains **Track B only**.
 | **`track-b/output/`** | Generated proof files (created when you run verify or `experiment.py`) |
 | **`briefs/`** | Track B assignment PDF only |
 
-## Reviewer — run in order (Windows PowerShell)
+##  Order of Run(Windows PowerShell)
 
 **Step 1 — verify** (runs tests and **writes / updates** these files under **`track-b\output\`**):
 
