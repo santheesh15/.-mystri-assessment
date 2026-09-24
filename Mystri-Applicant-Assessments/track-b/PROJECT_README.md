@@ -78,17 +78,17 @@ Summary:
 
 | Document | Audience | Contents |
 | --- | --- | --- |
-| [`docs/SETUP.md`](docs/SETUP.md) | Developer / reviewer | Prerequisites, install, commands, portability |
+| [`docs/SETUP.md`](docs/SETUP.md) | Developer / End User | Prerequisites, install, commands, portability |
 | [`docs/TECH_STACK.md`](docs/TECH_STACK.md) | Technical | Languages, dependencies, constraints |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Technical | Pipeline, modules, data flow |
 | [`docs/CONFIGURATION.md`](docs/CONFIGURATION.md) | Operator | CLI flags, paths, scenario/data |
-| [`docs/RULES_AND_LIMITATIONS.md`](docs/RULES_AND_LIMITATIONS.md) | Reviewer / developer | Project rules, business rules, limits |
-| [`docs/FUTURE_SCOPE.md`](docs/FUTURE_SCOPE.md) | Reviewer / you | Product 2/3 roadmap, planned tech, build order |
+| [`docs/RULES_AND_LIMITATIONS.md`](docs/RULES_AND_LIMITATIONS.md) | End User / developer | Project rules, business rules, limits |
+| [`docs/FUTURE_SCOPE.md`](docs/FUTURE_SCOPE.md) | Product Owner | Product 2/3 roadmap, planned tech, build order |
 | [`docs/REFERENCE.md`](docs/REFERENCE.md) | Developer | Modules, constants, helpers, tests |
-| [`DECISION.md`](DECISION.md) | Reviewer | Business decision (submit) |
-| [`HANDOVER.md`](HANDOVER.md) | Reviewer | Run commands, evidence (submit) |
-| [`INTEGRATED_MODEL.md`](INTEGRATED_MODEL.md) | Reviewer | DICM narrative |
-| [`product1/README.md`](product1/README.md) | Reviewer | 5-minute verification path |
+| [`DECISION.md`](DECISION.md) | End User | Business decision (submit) |
+| [`HANDOVER.md`](HANDOVER.md) | End User | Run commands, evidence (submit) |
+| [`INTEGRATED_MODEL.md`](INTEGRATED_MODEL.md) | End User | DICM narrative |
+| [`product1/README.md`](product1/README.md) | End User | 5-minute verification path |
 
 ---
 
