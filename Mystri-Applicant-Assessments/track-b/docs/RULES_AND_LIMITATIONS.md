@@ -5,12 +5,12 @@
 | # | Rule |
 | --- | --- |
 | R1 | **Dry-run only** — no real email, SMS, WhatsApp, or customer messaging. All customer lines are simulated in logs/JSON. |
-| R2 | **Do not mutate Mystri starter CSVs in `data/`** 
+| R2 | **Do not mutate Mystri starter CSVs in `data/`**.
 | R3 | **Use `scenario.json` snapshot time** for rule timing — not the computer’s live clock — when comparing to documented results (13 vs 5 drafts, etc.). |
 | R4 | **Stdlib only** — no `pip install` requirements for Product 1 verify path. |
 | R5 | **Human-in-the-loop** — AI (`ai_assist.py`) may suggest; rules + coordinator/technician gates decide; no autonomous send in code. |
 | R6 | **Official verify** — submission proof is `python product1/verify_product1.py` from `track-b` with outputs under default **`output/`**. |
-| R7 | **Product boundary** — grade **Product 1** only; Product 2/3 are not part of this handover unless explicitly labeled pilot/vision. |
+| R7 | **Product boundary** — **Product 1** only. |
 | R8 | **Synthetic data** — `@example.invalid` contacts; not for production or real PII. |
 
 ---
