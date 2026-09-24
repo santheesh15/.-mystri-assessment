@@ -29,7 +29,7 @@ Mystri’s brief targets **4 hours (240 min)**; this submission records **4 h 35
 
 **Submission product:** **Product 1 — DICM Core** (`product1/README.md`, `PRODUCTS.md`).
 
-## Run and verify (reviewer — copy all steps)
+## Run and verify
 
 Prerequisites: Python 3.10+, no third-party packages. **Do not edit `data/`**.
 
