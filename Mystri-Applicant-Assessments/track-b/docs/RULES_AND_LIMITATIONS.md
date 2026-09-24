@@ -2,8 +2,6 @@
 
 ## Project rules (repository)
 
-These rules apply to **running, grading, and extending** Product 1.
-
 | # | Rule |
 | --- | --- |
 | R1 | **Dry-run only** — no real email, SMS, WhatsApp, or customer messaging. All customer lines are simulated in logs/JSON. |
