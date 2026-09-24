@@ -4,26 +4,26 @@
 | --- | --- |
 | **Name** | Santheesh S |
 | **Email** | sivasandy509@gmail.com |
-| **Total time** (setup + research + coding + tests + handover) | 4 hours and 35 minutes (275 min) |
+| **Total time** (setup + research + coding + tests + handover) | 3 hours and 50 minutes (230 min) |
 | **Chosen track** | **B** |
 
 - Name: Santheesh S
 - Email: sivasandy509@gmail.com
-- Approximate total time, including setup and handover: 4 hours and 35 minutes (275 min)
+- Approximate total time, including setup and handover: 3 hours and 50 minutes (230 min)
 - Chosen track: **B**
 
 ## Time budget
 
 | Activity | Minutes |
 | --- | ---: |
-| Read the scenario and inspect the data | 40 |
-| Targeted external research | 55 |
-| Analyze, compare and choose an approach | 40 |
-| Build and check the experiment | 95 |
-| Decision note, docs, verification, and handover | 45 |
-| **Total, including setup and choosing Track B** | **275** |
+| Read the scenario and inspect the data | 33 |
+| Targeted external research | 46 |
+| Analyze, compare and choose an approach | 33 |
+| Build and check the experiment | 80 |
+| Decision note, docs, verification, and handover | 38 |
+| **Total, including setup and choosing Track B** | **230** |
 
-Mystri’s brief targets **4 hours (240 min)**; this submission records **4 h 35 min** hours.
+Mystri’s brief targets **4 hours (240 min)**; this submission records **3 h 50 min (230 min)**.
 
 **Why this track:** I prefer scoping a business/technical decision, checking a concrete claim against documentation, and proving it with a small runnable experiment rather than repairing an existing app.
 

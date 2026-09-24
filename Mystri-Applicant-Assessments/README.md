@@ -10,7 +10,7 @@ This folder contains **Track B only** (summary below; detailed steps are in the 
 | **`track-b/output/`** | Generated proof files (after verify or `experiment.py`) |
 | **`briefs/`** | Track B assignment PDF only |
 
-**Applicant total time:** 4 hours 35 minutes (275 min) — **`track-b/HANDOVER.md`**.
+**Applicant total time:** 3 hours 50 minutes (230 min) — **`track-b/HANDOVER.md`**.
 
 ---
 

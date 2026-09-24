@@ -1,6 +1,6 @@
 # Track B submission — Daybreak DICM (Product 1)
 
-**Applicant:** Santheesh S · **Track:** B · **Effort:** 4 hours 35 minutes (275 min) — **`HANDOVER.md`**
+**Applicant:** Santheesh S · **Track:** B · **Effort:** 3 hours 50 minutes (230 min) — **`HANDOVER.md`**
 
 I completed Mystri **Track B — Find the worthwhile automation** for fictional **Daybreak Repairs** (four technicians, one coordinator). The owner’s line—“we lose eight hours a week chasing customers; can AI fix this?”—is a **claim I tested**, not a fact I assumed. I focused on **collecting missing information** before quoting (photos, serial numbers, access), implemented a **dry-run DICM pipeline** on the supplied CSVs, and documented limits as per my observation.
 
@@ -110,18 +110,18 @@ After verify, reviewers can open proof files—see **`HANDOVER.md`** (Notepad co
 
 ---
 
-## How I spent time (275 min)
+## How I spent time (230 min)
 
-Mystri’s brief targets **4 hours (240 min)**; I recorded **4 h 35 min**.
+Mystri’s brief targets **4 hours (240 min)**; I recorded **3 h 50 min (230 min)**.
 
 | Activity | Minutes |
 | --- | ---: |
-| Read the scenario and inspect the data | 40 |
-| Targeted external research | 55 |
-| Analyze, compare and choose an approach | 40 |
-| Build and check the experiment | 95 |
-| Decision note, docs, verification, and handover | 45 |
-| **Total, including setup and choosing Track B** | **275** |
+| Read the scenario and inspect the data | 33 |
+| Targeted external research | 46 |
+| Analyze, compare and choose an approach | 33 |
+| Build and check the experiment | 80 |
+| Decision note, docs, verification, and handover | 38 |
+| **Total, including setup and choosing Track B** | **230** |
 
 ---
 
