@@ -6,7 +6,8 @@ Dry-run missing-info follow-ups: rules, team lanes, human-gated AI assist, struc
 | | |
 | --- | --- |
 | **Product** | Product 1 — DICM Core (`product1/`, `PRODUCTS.md`) |
-| **Branch** | `cursor/track-b-submission-edb7` |
+| **Branch** | **`cursor/track-b-submission-edb7`** (GitHub) |
+| **Repository** | `https://github.com/santheesh15/.-mystri-assessment` |
 | **Entry point** | `experiment.py` |
 | **Verification** | `python product1/verify_product1.py` (Windows: `python`; Unix: `python3`) |
 | **Total effort (this submission)** | **4 hours 35 minutes (275 min)** — breakdown in [`HANDOVER.md`](HANDOVER.md) |
@@ -17,14 +18,23 @@ Mystri assignment brief remains in [`README.md`](README.md) (original pack instr
 
 ---
 
-## Quick start
+## Quick start (reviewers)
 
-```bash
-cd Mystri-Applicant-Assessments/track-b
-python product1/verify_product1.py
+**Branch:** **`cursor/track-b-submission-edb7`**. **`cd`** using your path:
+
+```powershell
+cd "<REPO_ROOT>\Mystri-Applicant-Assessments\track-b"
+python product1\verify_product1.py
 ```
 
-**Windows:** use `python` and backslashes in paths (see **`docs/SETUP.md`**).
+```bash
+cd "<REPO_ROOT>/Mystri-Applicant-Assessments/track-b"
+python3 product1/verify_product1.py
+```
+
+**`<REPO_ROOT>`** = folder that contains **`Mystri-Applicant-Assessments`**. Check: **`experiment.py`** exists in the current folder.
+
+**Windows:** use `python` and backslashes (full guide: **`docs/SETUP.md`**).
 
 
 

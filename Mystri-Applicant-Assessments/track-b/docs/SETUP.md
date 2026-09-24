@@ -14,18 +14,34 @@
 
 ## Get the code
 
+**Repository:** `https://github.com/santheesh15/.-mystri-assessment`  
+**Branch (use exactly):** **`cursor/track-b-submission-edb7`**
+
 ### Option A — Git (private repo; sign in to GitHub)
 
-```bash
-git clone -b cursor/track-b-submission-edb7 https://github.com/santheesh15/.-mystri-assessment.git
-cd .-mystri-assessment/Mystri-Applicant-Assessments/track-b
+```powershell
+git clone https://github.com/santheesh15/.-mystri-assessment.git
+cd .-mystri-assessment
+git checkout cursor/track-b-submission-edb7
+cd Mystri-Applicant-Assessments\track-b
 ```
+
+(or on macOS/Linux: paths with `/` and `python3`)
 
 ### Option B — ZIP
 
 1. GitHub → branch **`cursor/track-b-submission-edb7`**
 2. **Code → Download ZIP**
-3. Extract; open `.../Mystri-Applicant-Assessments/track-b`
+3. Extract; **`cd`** to `...\Mystri-Applicant-Assessments\track-b` (folder with **`experiment.py`**)
+
+### Reviewer `cd` template (Windows)
+
+**`<REPO_ROOT>`** = parent of **`Mystri-Applicant-Assessments`** (where you cloned or unzipped).
+
+```powershell
+cd "<REPO_ROOT>\Mystri-Applicant-Assessments\track-b"
+dir experiment.py
+```
 
 ---
 
@@ -150,9 +166,10 @@ python3 experiment.py \
 
 ### Reviewer checklist (Windows — run in order)
 
-After **`cd`** into **`track-b`**, copy this block:
+**Branch:** **`cursor/track-b-submission-edb7`**. From PowerShell, after **`cd`** into **`track-b`**:
 
 ```powershell
+cd "<REPO_ROOT>\Mystri-Applicant-Assessments\track-b"
 python product1\verify_product1.py
 notepad output\dicm_pipeline_trace.log
 notepad output\customer_structured_responses.json
@@ -160,6 +177,8 @@ notepad output\integrated_report.json
 notepad DECISION.md
 notepad HANDOVER.md
 ```
+
+Replace **`<REPO_ROOT>`** with your clone/ZIP folder (must contain **`Mystri-Applicant-Assessments`**). Run **`dir experiment.py`** to confirm.
 
 1. First command must print **`PRODUCT 1 PASS`**.
 2. **`notepad`** lines open the saved proof files (not opened by verify itself).

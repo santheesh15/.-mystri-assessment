@@ -4,12 +4,17 @@ This folder marks the **official scoped product** for Mystri Track B. All code l
 
 ## Reviewer steps (copy in order)
 
+**Repository:** `https://github.com/santheesh15/.-mystri-assessment` · **Branch:** **`cursor/track-b-submission-edb7`**
+
 **Do not edit `../data/`** before running.
 
-**Windows (PowerShell) — from `track-b` folder:**
+**Windows (PowerShell):**
 
 ```powershell
-cd "C:\path\to\...\Mystri-Applicant-Assessments\track-b"
+git clone https://github.com/santheesh15/.-mystri-assessment.git
+cd .-mystri-assessment
+git checkout cursor/track-b-submission-edb7
+cd Mystri-Applicant-Assessments\track-b
 python product1\verify_product1.py
 notepad output\dicm_pipeline_trace.log
 notepad output\customer_structured_responses.json
@@ -18,17 +23,23 @@ notepad DECISION.md
 notepad HANDOVER.md
 ```
 
-1. First command must print **`PRODUCT 1 PASS`** (this also writes the **`output\`** folder).
-2. **`notepad`** lines open the proof files — verify does **not** open them automatically.
+**ZIP instead of git:** extract, then  
+`cd "<REPO_ROOT>\Mystri-Applicant-Assessments\track-b"`  
+(**`<REPO_ROOT>`** = folder that contains **`Mystri-Applicant-Assessments`**).
+
+1. Verify must print **`PRODUCT 1 PASS`** (writes **`output\`**).
+2. **`notepad`** lines are manual — verify does not open them.
 
 ![Windows example: verify PASS and Notepad commands](../docs/assets/verify-product1-pass-windows.png)
 
 **macOS / Linux:**
 
 ```bash
+git clone https://github.com/santheesh15/.-mystri-assessment.git
+cd .-mystri-assessment
+git checkout cursor/track-b-submission-edb7
 cd Mystri-Applicant-Assessments/track-b
 python3 product1/verify_product1.py
-# then open output/dicm_pipeline_trace.log, output/*.json, DECISION.md, HANDOVER.md
 ```
 
 Full detail: **`../HANDOVER.md`**, **`../docs/SETUP.md`**, **`../PROJECT_README.md`**.

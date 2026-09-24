@@ -29,20 +29,46 @@ Mystri’s brief targets **4 hours (240 min)**; this submission records **4 h 35
 
 **Submission product:** **Product 1 — DICM Core** (`product1/README.md`, `PRODUCTS.md`).
 
-## Run and verify
+## Run and verify (reviewers)
 
-Prerequisites: Python 3.10+, no third-party packages. **Do not edit `data/`**.
+**Repository:** `https://github.com/santheesh15/.-mystri-assessment`  
+**Branch (exactly):** **`cursor/track-b-submission-edb7`**
 
-**Step 1 — verify (creates `output/` files):**
+Prerequisites: Python 3.10+, no third-party packages. **Do not edit `data/`** before grading.
+
+### Get the code
+
+**Git:**
 
 ```powershell
-cd "C:\Users\SantheeshS\Documents\.-mystri-assessment-cursor-track-b-submission-edb7\Mystri-Applicant-Assessments\track-b"
+git clone https://github.com/santheesh15/.-mystri-assessment.git
+cd .-mystri-assessment
+git checkout cursor/track-b-submission-edb7
+```
+
+**Or:** GitHub → branch **`cursor/track-b-submission-edb7`** → **Download ZIP** → extract.
+
+### `cd` to `track-b` (reviewer — use your machine path)
+
+**`<REPO_ROOT>`** = folder that contains **`Mystri-Applicant-Assessments`**.
+
+```powershell
+cd "<REPO_ROOT>\Mystri-Applicant-Assessments\track-b"
+dir experiment.py
+```
+
+If `experiment.py` is listed, the path is correct.
+
+### Step 1 — verify (creates `output/` files)
+
+```powershell
 python product1\verify_product1.py
 ```
 
-*(Replace the path above if your folder is elsewhere.)*
-
 Expected terminal line: **`PRODUCT 1 PASS`**.
+
+**Author example path (not for reviewers):**  
+`C:\Users\SantheeshS\Documents\.-mystri-assessment-cursor-track-b-submission-edb7\Mystri-Applicant-Assessments\track-b`
 
 ![Example: PRODUCT 1 PASS then opening output and docs in Notepad](docs/assets/verify-product1-pass-windows.png)
 
