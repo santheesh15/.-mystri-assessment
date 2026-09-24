@@ -1,11 +1,32 @@
-# Optional research starting points
+# Background links (Mystri pack)
 
-These are places to begin checking existing capabilities, not endorsements or proof of fit. You can use different sources. Verify current limitations, access requirements and any price you rely on. There is no paid signup requirement.
+This page lists **example vendor documentation** that often comes up when people discuss “collect missing photos” or “get quote approval.” The links are **starting points for comparison**, not recommendations and not proof that Daybreak should buy anything.
 
-- Microsoft, **Create a file request**: https://support.microsoft.com/en-us/onedrive/create-a-file-request
-- Dropbox, **Create a file request**: https://help.dropbox.com/share/create-file-request
-- Jotform, **Approvals**: https://www.jotform.com/products/approvals/
+---
 
-Links checked when preparing the pack on 10 September 2026. If a page is unavailable, use another primary source and note that limitation. File collection and quote approval are different capabilities; do not assume a tool covers both.
+## What these pages describe
 
-In `SOURCES.md`, use a compact table: source/title and direct URL | access date | claim it supports | limitation or remaining question. Distinguish a product's advertised capability from evidence that Daybreak's users would adopt it.
+| Topic | Link |
+| --- | --- |
+| OneDrive **file request** (upload via link) | [Microsoft support](https://support.microsoft.com/en-us/onedrive/create-a-file-request) |
+| Dropbox **file request** | [Dropbox help](https://help.dropbox.com/share/create-file-request) |
+| Hosted **approval** workflows (forms) | [Jotform Approvals](https://www.jotform.com/products/approvals/) |
+
+**File upload** and **quote approval** are different jobs. A file-request product helps customers send a photo; it does not by itself enforce a 48-hour gap, honour opt-outs, or match inbox threads to spreadsheet rows. That gap is what the Track B experiment and **`DECISION.md`** discuss.
+
+Pack links were checked around **10 September 2026**. If a URL moves, treat the limitation honestly—see how this submission recorded sources in **`SOURCES.md`**.
+
+---
+
+## How this submission used them
+
+**`SOURCES.md`** is the author’s source table (URLs, access dates, what each source supports, and what it does *not* prove). **`DECISION.md`** explains why a **hybrid** model (inbox + spreadsheet + rules + optional file-request *text* in drafts) fits Daybreak better than “one SaaS replaces follow-up discipline.”
+
+**`USER_NOTES.md`** and **`DATA_DICTIONARY.md`** are fictional pack context—not market research.
+
+---
+
+## If you are reviewing
+
+- Start with **`DECISION.md`** and **`HANDOVER.md`**, then run verify from **`track-b/`** (see repo **`README.md`**).
+- Use this page only when you want to see **which external docs** the author compared against the technical claim.
