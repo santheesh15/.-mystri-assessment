@@ -14,7 +14,7 @@ Should Daybreak spend up to **two engineering weeks** on this problem, use an ex
 
 Do not assume the owner's eight-hour estimate is true. The supplied records are a small synthetic sample with incomplete time logging. Waiting time, staff effort and money saved are different things.
 
-## Deliver three things
+## Outcomes
 
 ### 1. A decision note: `DECISION.md`
 
