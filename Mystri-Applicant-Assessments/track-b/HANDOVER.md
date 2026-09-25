@@ -1,12 +1,5 @@
 # Handover
 
-| Field | Your answer |
-| --- | --- |
-| **Name** | Santheesh S |
-| **Email** | sivasandy509@gmail.com |
-| **Total time** (setup + research + coding + tests + handover) | 3 hours 50 minutes (230 min) |
-| **Chosen track** | **B** |
-
 - Name: Santheesh S
 - Email: sivasandy509@gmail.com
 - Approximate total time, including setup and handover: 3 hours 50 minutes (230 min)
