@@ -49,11 +49,8 @@ One row per information/approval request. `request_id` is unique; a case can hav
 | `followup_allowed` | `1` permits follow-up in this scenario, `0` forbids it; not evidence of legal consent |
 | `received_at` | When the requested item was received, or blank |
 
-This snapshot contains stale requests and inconsistent fields. A pending status does not, by itself, prove that an item is missing. Document which evidence you trust and how you handle ambiguity.
-
+Some rows are intentionally inconsistent—for example `pending` while `received_at` is set. **Pending** alone does not prove something is still missing.
 ## Required constraints for any contact/action prototype
-
-These apply if your prototype proposes a reminder or request; a non-contact analysis experiment may explain why they are not applicable.
 
 1. **Dry run only.** No external messages or real service calls. Drafts, queues and mocks are enough.
 2. Never propose contact for `completed`, `cancelled` or `scheduled` cases, for requests with `followup_allowed=0`, or for items already received.
@@ -61,5 +58,3 @@ These apply if your prototype proposes a reminder or request; a non-contact anal
 4. Missing contact/timing information or conflicting pending/received fields must go to a review/uncertain result, not an automatic contact action. Closed or opted-out records remain excluded even when another field is uncertain.
 5. Use stable case/request identities. Repeated runs must not accumulate duplicate proposed actions in saved output. Several requests to the same case may be combined if the result explains which requests it covers.
 6. Each proposed action must explain its reason and reference the source case/request IDs. Excluded/uncertain rows should be inspectable, even if presented in a separate output.
-
-This is a small local experiment, not a production messaging or compliance exercise. You do not need authentication, retry infrastructure, background scheduling or an LLM to meet the brief.

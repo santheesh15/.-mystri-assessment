@@ -1,109 +1,157 @@
-# Track B | Find the worthwhile automation
+# Track B submission — Daybreak DICM (Product 1)
 
-**A four-hour research and prototyping challenge.** Daybreak Repairs is a fictional small appliance maintenance business with four technicians and one coordinator. Its owner says, "We lose eight hours a week chasing customers. Can AI fix this?"
+**Applicant:** Santheesh S · **Track:** B · **Effort:** 3 hours 50 minutes (230 min) — **`HANDOVER.md`**
 
-You are the person deciding what, if anything, to build. You have two weeks of messy operational records and a few interview notes. Choose a narrow problem around **collecting missing information or getting quote approval**, then test a practical response.
+I completed Mystri **Track B — Find the worthwhile automation** for fictional **Daybreak Repairs** (four technicians, one coordinator). The owner’s line—“we lose eight hours a week chasing customers; can AI fix this?”—is a **claim I tested**, not a fact I assumed. I focused on **collecting missing information** before quoting (photos, serial numbers, access), implemented a **dry-run DICM pipeline** on the supplied CSVs, and documented limits as per my observation.
 
-This track assesses **technical research and prototyping**: learning an unfamiliar problem, checking technical claims and building a useful experiment. Mystri's initial work involves software and automation, with potential exploration across other technology sectors. Daybreak is the shared case study; specialist knowledge of any future sector is not required here.
+For run steps and proof files, see **`HANDOVER.md`** and **`PROJECT_README.md`**. The official assignment PDF remains in **`../briefs/`**; this README describes **what I built and where to read it**.
 
-Submit within **seven calendar days of the invitation**, with **four hours of total work**. Follow the independent-work and submission rules in `../START_HERE.md`.
+---
 
-## The decision
+## The problem I chose and the decision I recorded
 
-Should Daybreak spend up to **two engineering weeks** on this problem, use an existing tool, change its process, or leave it alone for now? The owner can consider a recurring tool budget of **INR 1,500 per month**. Both are scenario constraints, not evidence that real customers will pay.
+Daybreak’s scenario allows up to **two engineering weeks** and **INR 1,500/month** tool budget—these are **constraints in the pack**, not proof customers would pay.
 
-Do not assume the owner's eight-hour estimate is true. The supplied records are a small synthetic sample with incomplete time logging. Waiting time, staff effort and money saved are different things.
+I treated the export as a **small synthetic snapshot** with incomplete time logging. I separated **waiting time**, **logged coordinator minutes**, and **quote value** (not profit). I did **not** treat the owner’s **8 hours/week** as measured truth; **`DECISION.md`** shows logged effort is far lower and explains why.
 
-## Deliver three things
+**My recommendation (summary):** adopt **DICM (Daybreak Integrated Collaborating Model)**—one daily pipeline combining inbox/spreadsheet habits, rules, lanes, tiered technicians, human-gated AI **templates**, and optional file-request **wording** in drafts—not a single vendor or autonomous AI. Full reasoning, alternatives, calculations, and net **+12 min/week** scenario band are in **`DECISION.md`**.
 
-### 1. A decision note: `DECISION.md`
+---
 
-Aim for **500-700 words**, excluding small tables, calculations and your source list. Include:
+## What I implemented (deliverables mapped to the brief)
 
-- The user, the specific workflow and the problem you chose. Show what the data supports and where it is weak.
-- Two or three concrete calculations from the provided data. State your treatment of duplicates, missing values and inconsistent states.
-- A comparison with **at least two alternatives**, including an existing tool and a process-only change. Discuss the relevant capability, constraint and cost assumption; a list of company names is not enough.
-- **One technical claim that matters to your recommendation.** What must be true for the method or tool to work? Check it against original technical documentation or research. Identify the key constraint and distinguish demonstrated capability from assumptions. Investigate one claim deeply enough to test; do not add a separate technology survey.
-- Your build, buy, process-change or do-not-build recommendation, including the strongest evidence against it and what would change your mind.
-- One transparent **net value estimate for the workflow you actually selected**. Show assumed time saved minus time needed for review, reconciliation and operating the approach. Include relevant tool costs and label missing measurements and scenario assumptions. A negative or uncertain net result is acceptable and may support stopping or choosing a process change. Do not equate quote value with revenue or profit.
-- The first question or experiment you would use with a real operator next, and a measurable criterion for continuing or stopping.
+### 1. Decision note — **`DECISION.md`**
 
-### 2. A small working experiment
+- **Users and workflow:** coordinator + tiered technicians; missing-info follow-ups without wrong reminders.  
+- **Calculations:** deduplicated **`event_id`**; **400** logged minutes in window; **15** pending requests; **13** naive vs **5** rules-based drafts; **8** IDs the rules block (examples **R012**, **R029**).  
+- **Alternatives compared:** process-only review, OneDrive/Dropbox file request, custom rules queue, hybrid DICM.  
+- **Technical claim checked:** file-request products **collect files** but do **not** enforce 48h spacing, opt-outs, or row reconciliation—verified against vendor docs in **`SOURCES.md`**.  
+- **Recommendation + limits:** hybrid DICM; what would change my mind and **continue/stop** pilot criteria at the end of the note.  
+- **Net value:** transparent scenario table for the **selected** workflow (not the owner’s 8h claim).
 
-Build a script, small local app or other runnable prototype that **reads the supplied CSVs and tests the central idea**. It need not look polished. Examples:
+### 2. Working experiment — **`experiment.py`** and modules
 
-- A reviewable follow-up queue that explains why each case is eligible, excluded or uncertain.
-- A missing-information checklist that reduces coordinator review effort.
-- A quote-approval workflow, using a local mock instead of a paid messaging service.
-- An experiment that compares a simple process change with automation using explicit assumptions.
+I built a **stdlib-only Python 3.10+** prototype that **reads the supplied CSVs** and tests the central idea: a **reviewable follow-up queue** with baseline comparison.
 
-If your recommendation is "buy" or "do not build", a runnable integration mock, baseline or value experiment still satisfies this requirement. A static dashboard, generated essay or hard-coded list alone does not.
+**What it does:**
 
-Connect the experiment to your technical claim. Make **at least one comparison or verification check directly test that claim**. Distinguish what your local mock demonstrates from what you verified only in documentation. Compare the experiment with a **simple baseline** on the same inputs and with the same measure. A basic rule, current manual process or minimal alternative can be the baseline; if you simulate a process, label the assumptions. Your proposed method does not have to win. Explain what the result means for your recommendation.
+- **`queue_engine.py`** — each request is **propose**, **exclude**, or **uncertain** with a stated reason (48h, opt-out, closed case, received, conflicts).  
+- **`integrated_model.py`** — runs validation, customer register, media samples, rules, lanes, technician board, AI assist mocks, cost view, trace, and simulated customer receipts in **one pipeline**.  
+- **Baseline:** naive “remind every pending + followup_allowed=1” vs rules-based **propose** set on the same snapshot.  
+- **Changed-input check:** tests move **R009** to 1h before snapshot → **exclude** with 48h reason (`tests/test_queue.py`).  
+- **No-action check:** all requests received → **0** proposals (`test_no_action_when_all_requests_received`).  
+- **Edge case:** **R018** pending + **`received_at`** → **uncertain**.  
+- **Outputs on pack data:** **`output/integrated_report.json`**, **`output/dicm_pipeline_trace.log`**, **`output/customer_structured_responses.json`**.  
+- **Gate:** **`python product1/verify_product1.py`** → **`PRODUCT 1 PASS`** and **38** unit tests.
 
-Include **at least two meaningful verification checks**, including one edge case. Include a **valid input with no proposed actions** and show that the program reports the result without failing. For a non-contact experiment, use the equivalent no-work condition for your chosen workflow and explain it. This may be one of your two checks and your changed-input example.
+I connected the experiment to the file-request claim: the pipeline **simulates** upload-link text in AI drafts but **proves** follow-up **policy** in code and trace—not live OneDrive.
 
-Demonstrate output on the provided data and on one input you deliberately change. State the expected effect before running it, then record the observed result. Explain what the experiment proves and what it does not prove. Fit this into the existing experiment and note; no extra deliverable or extra time is required.
+**What it does not prove:** real sends, customer satisfaction, production LLM value, or the owner’s 8h/week (`docs/RULES_AND_LIMITATIONS.md`).
 
-### 3. Evidence and handover
+### 3. Sources and handover — **`SOURCES.md`**, **`HANDOVER.md`**
 
-- `SOURCES.md`: **three to five useful external sources** with direct URLs, access dates, the claim each supports and any relevant limitation. At least one must be original technical documentation or research supporting your technical investigation. Prefer original product documentation for capabilities and prices. Mark any unverified assumption explicitly. External sources do not replace the supplied data analysis.
-- `HANDOVER.md`: use the shared template; give exact run and check commands, output locations, time spent, tool decisions and remaining uncertainty. Keep it short; do not duplicate the decision note.
+- **`SOURCES.md`:** external URLs (Microsoft, Dropbox, Jotform) with access dates, supported claims, and **limitations**; plus pack references (`DATA_DICTIONARY.md`, `USER_NOTES.md`).  
+- **`HANDOVER.md`:** my name, email, time, **verify + notepad** reviewer steps, evidence table, tool use (Cursor), and **not proven** list.
 
-No customer interviews, slide deck, video, cloud deployment, paid API or production integration are required. Do not invent interviews, market validation, source contents or test results.
+I did not add fake interviews, invented test results, or cloud deployment.
 
-## Your evidence pack
+---
 
-| File | Contents |
+## Evidence pack in this folder (Mystri data + my additions)
+
+| File | Role in my submission |
 | --- | --- |
-| `data/cases.csv` | One row per case and its status at the snapshot |
-| `data/events.csv` | Exported activity events; may include repeat deliveries and missing effort values |
-| `data/requests.csv` | Requested information or approvals, including stale and inconsistent records |
-| `data/scenario.json` | Fixed clock and scenario constraints |
-| `DATA_DICTIONARY.md` | Field meanings, limitations and prototype constraints |
-| `USER_NOTES.md` | Six fictional interview notes; not external market evidence |
-| `RESOURCE_STARTERS.md` | Optional starting points, not endorsements or a completed comparison |
-| `starter.py` | Optional, correct Python loader; not a solution or bug-hunt exercise |
+| `data/cases.csv`, `events.csv`, `requests.csv` | Unchanged Mystri snapshot input |
+| `data/scenario.json` | Fixed clock (**7 Sep 2026 09:00 IST**); rules use this, not PC time |
+| `DATA_DICTIONARY.md` | Field meanings; I clarified ambiguous rows → **uncertain** in code |
+| `USER_NOTES.md` | Fictional interviews—I used as context, not market proof |
+| `RESOURCE_STARTERS.md` | Background links; my comparison is in **`SOURCES.md`** |
+| `starter.py` | Loader I extended; **`experiment.py`** is the main demo |
+| `output/*` | Generated proof after verify or **`experiment.py`** |
+| `docs/*`, `INTEGRATED_MODEL.md`, `OPERATING_REPORT.md` | Architecture, setup, rules, future roadmap |
+| `product1/` | Manifest + **`verify_product1.py`** |
 
-Use the snapshot time in `scenario.json`, **not your computer's current time**, for reproducible analysis. Keep the source data intact; handle cleaning and interpretation in code or document them clearly.
+---
 
-## Run the optional starter
+## How to run what I built
 
-Requires Python 3.10+ and no third-party packages. From the extracted `track-b` folder:
+**Reviewers — GitHub:** switch **`main`** → **`cursor/track-b-submission-edb7`** in the branch dropdown before clone/ZIP. Then:
+
+```powershell
+cd "<REPO_ROOT>\Mystri-Applicant-Assessments\track-b"
+dir experiment.py
+```
+
+**`<REPO_ROOT>`** = where you cloned or unzipped (folder that contains **`Mystri-Applicant-Assessments`**). Full clone steps: **`../README.md`**, **`HANDOVER.md`**, **`docs/SETUP.md`**.
+
+**Load check only:**
 
 ```text
 python starter.py
 ```
 
-Use `py` on Windows or `python3` on macOS/Linux if needed. This only verifies that the files load. Extend it or replace it with another language; include any dependency and run instructions. Your core demo must work without credentials. You may use a mock for any external API.
+**Full pipeline + outputs:**
 
-All records, businesses and contact addresses are synthetic. **The prototype must be a dry run: generate drafts or proposed actions only. Do not send anything.** Follow the decision constraints in `DATA_DICTIONARY.md` if you propose customer contact.
+```text
+python experiment.py
+```
 
-## Suggested time budget
+**Official submission check (tests + outputs + baseline on pack data):**
+
+```powershell
+python product1\verify_product1.py
+```
+
+(macOS/Linux: `python3`.) Run from this **`track-b`** folder. Requires **Python 3.10+**, **no pip packages**.
+
+All records are synthetic. **My prototype is dry-run only**—drafts and trace lines, **no real email or messaging**. Constraints for contact logic align with **`DATA_DICTIONARY.md`**.
+
+After verify, reviewers can open proof files—see **`HANDOVER.md`** (Notepad commands) and screenshot in **`docs/assets/`**.
+
+---
+
+## How I spent time (230 min)
+
+Mystri’s brief targets **4 hours (240 min)**; I recorded **3 hours 50 minutes (230 min)**.
 
 | Activity | Minutes |
 | --- | ---: |
-| Read the scenario and inspect the data | 35 |
-| Targeted external research | 50 |
-| Analyze, compare and choose an approach | 35 |
-| Build and check the experiment | 85 |
-| Decision note and clean-run handover | 35 |
-| **Total, including setup and choosing a track** | **240** |
+| Read the scenario and inspect the data | 33 |
+| Targeted external research | 46 |
+| Analyze, compare and choose an approach | 33 |
+| Build and check the experiment | 80 |
+| Decision note, docs, verification, and handover | 38 |
+| **Total, including setup and choosing Track B** | **230** |
 
-Reallocate as needed. Choose a narrow experiment and stop after four hours.
+---
 
-## How this track is scored
+## What this submission is designed to show reviewers
 
-| Criterion | Weight | Evidence we value |
+The Track B rubric asks for research, reasoning, a working check, scope, and clear handover. **This repo maps to that as follows:**
+
+| Criterion | Weight | Where I show it |
 | --- | ---: | --- |
-| Research and source quality | 30% | Checked business and technical evidence, realistic alternatives and a questioned premise |
-| Analysis and reasoning | 25% | Correct calculations, explicit assumptions and a defensible decision |
-| Working experiment and verification | 25% | A runnable test of the technical claim, a baseline comparison, changed-input checks and honest limits |
-| Scope and prioritization | 10% | A feasible next step and a clear continue/stop criterion |
-| Handover and tool judgment | 10% | Clear communication and ownership of AI/tool output |
+| Research and source quality | 30% | **`SOURCES.md`**, file-request doc check in **`DECISION.md`** |
+| Analysis and reasoning | 25% | **`DECISION.md`** calculations, questioned 8h/week premise |
+| Working experiment and verification | 25% | **`experiment.py`**, baseline 13 vs 5, tests, **`output/`**, **`PRODUCT 1 PASS`** |
+| Scope and prioritization | 10% | Pilot continue/stop in **`DECISION.md`**; **`docs/FUTURE_SCOPE.md`** for later phases |
+| Handover and tool judgment | 10% | **`HANDOVER.md`**, tool notes, honest limits |
 
-There is no preferred vendor, technology or predetermined build-versus-buy answer. Creativity earns credit when it improves the decision or workflow. A decision against building can score highly when it is supported by evidence and a useful experiment.
+---
 
-## Submit
+## Product scope and future work
 
-Follow `../START_HERE.md`. Include code, checks, a small generated output, `DECISION.md`, `SOURCES.md` and `HANDOVER.md`. Exclude caches, virtual environments, credentials and the unused track.
+- **Submitted for grading:** **Product 1 — DICM Core** only — **`PRODUCTS.md`**, **`product1/README.md`**.  
+- **Not built (planned):** Product 2 pilot (HTML report, flex verify, intake folder) and Product 3 vision (Graph, LLM, messaging, web app)—**`docs/FUTURE_SCOPE.md`**.
+
+---
+
+## Quick navigation
+
+| If you want… | Open… |
+| --- | --- |
+| My decision and math | **`DECISION.md`** |
+| Run and verify | **`HANDOVER.md`**, **`docs/SETUP.md`** |
+| Pipeline story | **`INTEGRATED_MODEL.md`** |
+| Code map | **`docs/ARCHITECTURE.md`**, **`docs/REFERENCE.md`** |
+| Full project index | **`PROJECT_README.md`** |

@@ -1,0 +1,601 @@
+{
+  "snapshot_at": "2026-09-07T09:00:00+05:30",
+  "counts": {
+    "propose": 5,
+    "exclude": 23,
+    "uncertain": 2
+  },
+  "baseline_pending_followups": 13,
+  "rules_proposed_followups": 5,
+  "baseline_would_contact_prevented_by_rules": [
+    "R001",
+    "R005",
+    "R013",
+    "R016",
+    "R018",
+    "R019",
+    "R022",
+    "R029"
+  ],
+  "rules_only_not_in_baseline": [],
+  "team_workboard": {
+    "team_size": {
+      "coordinators": 1,
+      "technicians": 4
+    },
+    "coordinator_tasks": [
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C009",
+        "task": "draft_customer_followup",
+        "reason": "Eligible reminder for fault_photo (117.0h since last request)",
+        "request_ids": [
+          "R009"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C018",
+        "task": "review_before_any_contact",
+        "reason": "pending status conflicts with received_at; needs coordinator review",
+        "request_ids": [
+          "R018"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C022",
+        "task": "review_before_any_contact",
+        "reason": "Missing last_requested_at",
+        "request_ids": [
+          "R022"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C024",
+        "task": "draft_customer_followup",
+        "reason": "Eligible reminder for fault_photo (69.0h since last request)",
+        "request_ids": [
+          "R024"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C009",
+        "task": "draft_customer_followup",
+        "reason": "Eligible reminder for site_access (117.0h since last request)",
+        "request_ids": [
+          "R025"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C024",
+        "task": "draft_customer_followup",
+        "reason": "Eligible reminder for serial_number (69.0h since last request)",
+        "request_ids": [
+          "R026"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C017",
+        "task": "draft_customer_followup",
+        "reason": "Eligible reminder for quote_approval (118.0h since last request)",
+        "request_ids": [
+          "R027"
+        ]
+      },
+      {
+        "role": "coordinator",
+        "owner": "coordinator",
+        "case_id": "C018",
+        "task": "reconcile_inbox_vs_request_row",
+        "reason": "Photo may exist off-thread; coordinator syncs status before tech quote work",
+        "request_ids": [
+          "R018"
+        ]
+      }
+    ],
+    "technician_tasks": [
+      {
+        "role": "technician",
+        "owner": "T1",
+        "case_id": "C009",
+        "task": "standby_case_brief",
+        "reason": "Read case note; no customer contact\u2014ready when info arrives",
+        "request_ids": [
+          "R009"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T4",
+        "case_id": "C012",
+        "task": "standby_case_brief",
+        "reason": "Read case note; no customer contact\u2014ready when info arrives",
+        "request_ids": [
+          "R012"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T4",
+        "case_id": "C016",
+        "task": "prep_quote_while_waiting_for_photo",
+        "reason": "Parallel prep on refrigerator while coordinator chases missing photo",
+        "request_ids": [
+          "R030"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T1",
+        "case_id": "C017",
+        "task": "hold_parts_plan",
+        "reason": "Keep parts plan ready if customer approves quote",
+        "request_ids": [
+          "C017"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T1",
+        "case_id": "C021",
+        "task": "hold_parts_plan",
+        "reason": "Keep parts plan ready if customer approves quote",
+        "request_ids": [
+          "C021"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T2",
+        "case_id": "C022",
+        "task": "standby_case_brief",
+        "reason": "Read case note; no customer contact\u2014ready when info arrives",
+        "request_ids": [
+          "R022"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T3",
+        "case_id": "C023",
+        "task": "hold_parts_plan",
+        "reason": "Keep parts plan ready if customer approves quote",
+        "request_ids": [
+          "C023"
+        ]
+      },
+      {
+        "role": "technician",
+        "owner": "T4",
+        "case_id": "C024",
+        "task": "standby_case_brief",
+        "reason": "Read case note; no customer contact\u2014ready when info arrives",
+        "request_ids": [
+          "R024"
+        ]
+      }
+    ],
+    "load_by_owner": {
+      "coordinator": 8,
+      "T1": 3,
+      "T4": 3,
+      "T2": 1,
+      "T3": 1
+    },
+    "baseline_all_work_on_coordinator": 19,
+    "coordinator_tasks_after_split": 8
+  },
+  "cost_structure": {
+    "assumptions": {
+      "coordinator_hourly_inr": 400.0,
+      "technician_hourly_inr": 350.0,
+      "monthly_tool_budget_inr": 1500.0,
+      "note": "Labor rates are scenario placeholders, not measured Daybreak costs."
+    },
+    "workload_metrics": {
+      "solo_coordinator_items": 19,
+      "split_coordinator_tasks": 8,
+      "technician_parallel_tasks": 8,
+      "uncertain_rows": 2
+    },
+    "time_minutes_per_week": {
+      "gross_saved": 107,
+      "review_overhead": 18,
+      "net_saved": 89,
+      "breakdown": {
+        "rules_prevent_wrong_chase": 44,
+        "technician_parallel_prep": 48,
+        "ai_draft_and_triage_assist": 15
+      }
+    },
+    "inr_per_month_scenario": {
+      "tool_spend_cap": 900.0,
+      "labor_value_equivalent_saved": 642.28,
+      "net_after_tools": -257.72
+    },
+    "line_items": [
+      {
+        "category": "Rules workboard (self-hosted script)",
+        "assumption": "Python stdlib; runs on Windows/macOS/Linux",
+        "inr_per_month": 0,
+        "minutes_per_week": 0
+      },
+      {
+        "category": "Lightweight LLM API (optional pilot)",
+        "assumption": "Capped at \u2264900 INR/month of 1500 budget",
+        "inr_per_month": 900.0,
+        "minutes_per_week": -15
+      },
+      {
+        "category": "File-request link (optional)",
+        "assumption": "OneDrive/Dropbox free tier for uploads only",
+        "inr_per_month": 0,
+        "minutes_per_week": 0
+      },
+      {
+        "category": "Human oversight (non-negotiable)",
+        "assumption": "Coordinator + technician review time",
+        "inr_per_month": 0,
+        "minutes_per_week": 18
+      }
+    ]
+  },
+  "ai_assist_samples": [
+    {
+      "step": "coordinator_customer_draft",
+      "case_id": "C009",
+      "suggestion": "Subject: Photo still needed for your washing machine repair (case C009)\nTo: c009@example.invalid\n\nHello,\n\nPlease reply to this email with the requested fault photo so we can prepare your quote.\n\nThank you,\nDaybreak Repairs",
+      "confidence": "medium",
+      "human_gate": "Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "production_note": "Replace template with approved LLM prompt + audit log."
+    },
+    {
+      "step": "coordinator_customer_draft",
+      "case_id": "C024",
+      "suggestion": "Subject: Photo still needed for your washing machine repair (case C024)\nTo: c024@example.invalid\n\nHello,\n\nPlease reply to this email with the requested fault photo so we can prepare your quote.\n\nThank you,\nDaybreak Repairs",
+      "confidence": "medium",
+      "human_gate": "Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "production_note": "Replace template with approved LLM prompt + audit log."
+    },
+    {
+      "step": "coordinator_customer_draft",
+      "case_id": "C009",
+      "suggestion": "Subject: Photo still needed for your washing machine repair (case C009)\nTo: c009@example.invalid\n\nHello,\n\nPlease reply to this email with the requested site access so we can prepare your quote.\n\nThank you,\nDaybreak Repairs",
+      "confidence": "medium",
+      "human_gate": "Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "production_note": "Replace template with approved LLM prompt + audit log."
+    },
+    {
+      "step": "coordinator_customer_draft",
+      "case_id": "C024",
+      "suggestion": "Subject: Photo still needed for your washing machine repair (case C024)\nTo: c024@example.invalid\n\nHello,\n\nPlease reply to this email with the requested fault photo so we can prepare your quote.\n\nThank you,\nDaybreak Repairs",
+      "confidence": "medium",
+      "human_gate": "Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "production_note": "Replace template with approved LLM prompt + audit log."
+    },
+    {
+      "step": "coordinator_customer_draft",
+      "case_id": "C017",
+      "suggestion": "Subject: Photo still needed for your air conditioner repair (case C017)\nTo: c017@example.invalid\n\nHello,\n\nPlease reply to this email with the requested fault photo so we can prepare your quote.\n\nThank you,\nDaybreak Repairs",
+      "confidence": "medium",
+      "human_gate": "Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "production_note": "Replace template with approved LLM prompt + audit log."
+    },
+    {
+      "step": "technician_parallel_prep",
+      "case_id": "C009",
+      "suggestion": "Confirm typical parts list for washing_machine; Check warranty/serial location on unit; Note if quote needs site visit vs bench repair",
+      "confidence": "high",
+      "human_gate": "Technician validates checklist; no customer message.",
+      "production_note": "Optional LLM summarises case note\u2014technician still signs off."
+    },
+    {
+      "step": "technician_parallel_prep",
+      "case_id": "C012",
+      "suggestion": "Confirm typical parts list for washing_machine; Check warranty/serial location on unit; Note if quote needs site visit vs bench repair",
+      "confidence": "high",
+      "human_gate": "Technician validates checklist; no customer message.",
+      "production_note": "Optional LLM summarises case note\u2014technician still signs off."
+    },
+    {
+      "step": "technician_parallel_prep",
+      "case_id": "C016",
+      "suggestion": "Confirm typical parts list for refrigerator; Check warranty/serial location on unit; Note if quote needs site visit vs bench repair",
+      "confidence": "high",
+      "human_gate": "Technician validates checklist; no customer message.",
+      "production_note": "Optional LLM summarises case note\u2014technician still signs off."
+    },
+    {
+      "step": "photo_quality_path",
+      "case_id": "C018",
+      "suggestion": "Data conflict on photo row \u2014 skip vision; coordinator reconciles inbox first.",
+      "confidence": "high",
+      "human_gate": "Technician human review mandatory; no auto-quote from image AI.",
+      "production_note": "Future vision API may pre-sort, but quote gate stays human."
+    }
+  ],
+  "rows": [
+    {
+      "request_id": "R001",
+      "case_id": "C001",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C001 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R002",
+      "case_id": "C002",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C002 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R003",
+      "case_id": "C003",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C003 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R004",
+      "case_id": "C004",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C004 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R005",
+      "case_id": "C005",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C005 is cancelled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R006",
+      "case_id": "C006",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C006 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R007",
+      "case_id": "C007",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C007 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R008",
+      "case_id": "C008",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C008 is scheduled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R009",
+      "case_id": "C009",
+      "item": "fault_photo",
+      "disposition": "propose",
+      "reason": "Eligible reminder for fault_photo (117.0h since last request)",
+      "draft_channel": "email",
+      "draft_contact": "case-009@example.invalid"
+    },
+    {
+      "request_id": "R010",
+      "case_id": "C010",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C010 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R011",
+      "case_id": "C011",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C011 is scheduled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R012",
+      "case_id": "C012",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "followup_allowed is 0",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R013",
+      "case_id": "C013",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C013 is cancelled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R014",
+      "case_id": "C014",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C014 is completed",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R015",
+      "case_id": "C015",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C015 is scheduled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R016",
+      "case_id": "C016",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Only 46.0h since last request; need 48h",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R017",
+      "case_id": "C017",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Item already received",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R018",
+      "case_id": "C018",
+      "item": "fault_photo",
+      "disposition": "uncertain",
+      "reason": "pending status conflicts with received_at; needs coordinator review",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R019",
+      "case_id": "C019",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C019 is cancelled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R020",
+      "case_id": "C020",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Case C020 is scheduled",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R021",
+      "case_id": "C021",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Item already received",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R022",
+      "case_id": "C022",
+      "item": "fault_photo",
+      "disposition": "uncertain",
+      "reason": "Missing last_requested_at",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R023",
+      "case_id": "C023",
+      "item": "fault_photo",
+      "disposition": "exclude",
+      "reason": "Item already received",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R024",
+      "case_id": "C024",
+      "item": "fault_photo",
+      "disposition": "propose",
+      "reason": "Eligible reminder for fault_photo (69.0h since last request)",
+      "draft_channel": "email",
+      "draft_contact": "case-024@example.invalid"
+    },
+    {
+      "request_id": "R025",
+      "case_id": "C009",
+      "item": "site_access",
+      "disposition": "propose",
+      "reason": "Eligible reminder for site_access (117.0h since last request)",
+      "draft_channel": "email",
+      "draft_contact": "case-009@example.invalid"
+    },
+    {
+      "request_id": "R026",
+      "case_id": "C024",
+      "item": "serial_number",
+      "disposition": "propose",
+      "reason": "Eligible reminder for serial_number (69.0h since last request)",
+      "draft_channel": "email",
+      "draft_contact": "case-024@example.invalid"
+    },
+    {
+      "request_id": "R027",
+      "case_id": "C017",
+      "item": "quote_approval",
+      "disposition": "propose",
+      "reason": "Eligible reminder for quote_approval (118.0h since last request)",
+      "draft_channel": "email",
+      "draft_contact": "case-017@example.invalid"
+    },
+    {
+      "request_id": "R028",
+      "case_id": "C021",
+      "item": "quote_approval",
+      "disposition": "exclude",
+      "reason": "followup_allowed is 0",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R029",
+      "case_id": "C023",
+      "item": "quote_approval",
+      "disposition": "exclude",
+      "reason": "Only 46.0h since last request; need 48h",
+      "draft_channel": null,
+      "draft_contact": null
+    },
+    {
+      "request_id": "R030",
+      "case_id": "C016",
+      "item": "site_access",
+      "disposition": "exclude",
+      "reason": "Item already received",
+      "draft_channel": null,
+      "draft_contact": null
+    }
+  ]
+}

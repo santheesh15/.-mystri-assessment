@@ -1,0 +1,3241 @@
+{
+  "integrated_model": {
+    "name": "Daybreak Integrated Collaborating Model (DICM)",
+    "snapshot_at": "2026-09-07T09:00:00+05:30",
+    "one_line_pitch": "Keep inbox and spreadsheet; add rules, lanes, tiered techs, rotating lead, and capped AI drafts with file-upload links\u2014humans approve every customer touch.",
+    "collaboration_flow": [
+      {
+        "order": 0,
+        "name": "Data & policy validation",
+        "owner": "system -> coordinator on errors",
+        "output_summary": "errors=0 warnings=4 policy=4 pipeline_ok=True"
+      },
+      {
+        "order": 0.25,
+        "name": "Customer register verification",
+        "owner": "system discards spam; coordinator audit",
+        "output_summary": "verified=30 discarded=0 spam_or_unknown=[]"
+      },
+      {
+        "order": 0.5,
+        "name": "Customer file intake (multi-format)",
+        "owner": "media_intake + technician",
+        "output_summary": "4 sample files"
+      },
+      {
+        "order": 1,
+        "name": "Daily huddle",
+        "owner": "coordinator + duty lead T1",
+        "output_summary": "uncertain=2"
+      },
+      {
+        "order": 2,
+        "name": "Lane classification",
+        "owner": "rules + lane_model",
+        "output_summary": "{'park': 7, 'standard': 6}"
+      },
+      {
+        "order": 3,
+        "name": "Customer contact gate",
+        "owner": "coordinator (approve)",
+        "output_summary": "5 drafts vs 13 naive"
+      },
+      {
+        "order": 4,
+        "name": "Parallel technician work",
+        "owner": "tiered T1\u2013T4",
+        "output_summary": "{'coordinator': 8, 'T1': 2, 'T2': 2, 'T3': 2, 'T4': 2}"
+      },
+      {
+        "order": 5,
+        "name": "AI assist",
+        "owner": "coordinator + technicians",
+        "output_summary": "9 suggestions"
+      },
+      {
+        "order": 6,
+        "name": "Cost check",
+        "owner": "owner",
+        "output_summary": "net_min=89"
+      }
+    ],
+    "data_policy_validation": {
+      "ok_to_run_pipeline": true,
+      "note": "Warnings/policies do not stop the pipeline; rows are handled per finding.",
+      "counts": {
+        "error": 0,
+        "warning": 4,
+        "policy": 4
+      },
+      "findings": [
+        {
+          "severity": "policy",
+          "source": "customer_policy",
+          "record_id": "R001",
+          "field": "status+received_at",
+          "message": "pending conflicts with received_at (data standards breach)",
+          "handling": "Park automation; coordinator reconciles with customer"
+        },
+        {
+          "severity": "policy",
+          "source": "customer_policy",
+          "record_id": "R012",
+          "field": "followup_allowed",
+          "message": "Customer opt-out / no follow-up flag set",
+          "handling": "Never auto-contact; policy enforced in rules engine"
+        },
+        {
+          "severity": "policy",
+          "source": "customer_policy",
+          "record_id": "R018",
+          "field": "status+received_at",
+          "message": "pending conflicts with received_at (data standards breach)",
+          "handling": "Park automation; coordinator reconciles with customer"
+        },
+        {
+          "severity": "policy",
+          "source": "customer_policy",
+          "record_id": "R028",
+          "field": "followup_allowed",
+          "message": "Customer opt-out / no follow-up flag set",
+          "handling": "Never auto-contact; policy enforced in rules engine"
+        },
+        {
+          "severity": "warning",
+          "source": "events",
+          "record_id": "E005",
+          "field": "event_id",
+          "message": "Duplicate event delivery in export",
+          "handling": "Dedupe before effort metrics (already done in analysis)"
+        },
+        {
+          "severity": "warning",
+          "source": "events",
+          "record_id": "E032",
+          "field": "event_id",
+          "message": "Duplicate event delivery in export",
+          "handling": "Dedupe before effort metrics (already done in analysis)"
+        },
+        {
+          "severity": "warning",
+          "source": "events",
+          "record_id": "E059",
+          "field": "event_id",
+          "message": "Duplicate event delivery in export",
+          "handling": "Dedupe before effort metrics (already done in analysis)"
+        },
+        {
+          "severity": "warning",
+          "source": "events",
+          "record_id": "E087",
+          "field": "event_id",
+          "message": "Duplicate event delivery in export",
+          "handling": "Dedupe before effort metrics (already done in analysis)"
+        }
+      ]
+    },
+    "customer_verification": {
+      "verified_request_count": 30,
+      "discarded_request_count": 0,
+      "discarded_request_ids": [],
+      "checks": [
+        {
+          "request_id": "R001",
+          "case_id": "C001",
+          "contact_address": "case-001@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R002",
+          "case_id": "C002",
+          "contact_address": "case-002@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R003",
+          "case_id": "C003",
+          "contact_address": "case-003@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R004",
+          "case_id": "C004",
+          "contact_address": "case-004@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R005",
+          "case_id": "C005",
+          "contact_address": "case-005@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R006",
+          "case_id": "C006",
+          "contact_address": "case-006@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R007",
+          "case_id": "C007",
+          "contact_address": "case-007@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R008",
+          "case_id": "C008",
+          "contact_address": "case-008@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R009",
+          "case_id": "C009",
+          "contact_address": "case-009@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R010",
+          "case_id": "C010",
+          "contact_address": "case-010@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R011",
+          "case_id": "C011",
+          "contact_address": "case-011@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R012",
+          "case_id": "C012",
+          "contact_address": "case-012@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R013",
+          "case_id": "C013",
+          "contact_address": "case-013@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R014",
+          "case_id": "C014",
+          "contact_address": "case-014@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R015",
+          "case_id": "C015",
+          "contact_address": "case-015@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R016",
+          "case_id": "C016",
+          "contact_address": "case-016@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R017",
+          "case_id": "C017",
+          "contact_address": "case-017@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R018",
+          "case_id": "C018",
+          "contact_address": "case-018@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R019",
+          "case_id": "C019",
+          "contact_address": "case-019@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R020",
+          "case_id": "C020",
+          "contact_address": "case-020@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R021",
+          "case_id": "C021",
+          "contact_address": "case-021@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R022",
+          "case_id": "C022",
+          "contact_address": "case-022@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R023",
+          "case_id": "C023",
+          "contact_address": "case-023@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R024",
+          "case_id": "C024",
+          "contact_address": "case-024@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R025",
+          "case_id": "C009",
+          "contact_address": "case-009@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R026",
+          "case_id": "C024",
+          "contact_address": "case-024@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R027",
+          "case_id": "C017",
+          "contact_address": "case-017@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R028",
+          "case_id": "C021",
+          "contact_address": "case-021@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R029",
+          "case_id": "C023",
+          "contact_address": "case-023@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        },
+        {
+          "request_id": "R030",
+          "case_id": "C016",
+          "contact_address": "case-016@example.invalid",
+          "status": "verified",
+          "reason": "matches case register"
+        }
+      ],
+      "requests_for_automation": [
+        {
+          "request_id": "R001",
+          "case_id": "C001",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-08-24T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-001@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-24T16:00+05:30"
+        },
+        {
+          "request_id": "R002",
+          "case_id": "C002",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-24T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-002@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-24T18:00+05:30"
+        },
+        {
+          "request_id": "R003",
+          "case_id": "C003",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-25T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-003@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-25T16:00+05:30"
+        },
+        {
+          "request_id": "R004",
+          "case_id": "C004",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-25T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-004@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-25T18:00+05:30"
+        },
+        {
+          "request_id": "R005",
+          "case_id": "C005",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-08-26T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-005@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R006",
+          "case_id": "C006",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-26T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-006@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-26T18:00+05:30"
+        },
+        {
+          "request_id": "R007",
+          "case_id": "C007",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-27T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-007@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-27T16:00+05:30"
+        },
+        {
+          "request_id": "R008",
+          "case_id": "C008",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-27T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-008@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-27T18:00+05:30"
+        },
+        {
+          "request_id": "R009",
+          "case_id": "C009",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-09-02T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-009@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R010",
+          "case_id": "C010",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-28T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-010@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-28T18:00+05:30"
+        },
+        {
+          "request_id": "R011",
+          "case_id": "C011",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-29T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-011@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-29T16:00+05:30"
+        },
+        {
+          "request_id": "R012",
+          "case_id": "C012",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-09-03T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-012@example.invalid",
+          "followup_allowed": "0",
+          "received_at": ""
+        },
+        {
+          "request_id": "R013",
+          "case_id": "C013",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-08-30T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-013@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R014",
+          "case_id": "C014",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-30T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-014@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-30T18:00+05:30"
+        },
+        {
+          "request_id": "R015",
+          "case_id": "C015",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-08-31T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-015@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-08-31T16:00+05:30"
+        },
+        {
+          "request_id": "R016",
+          "case_id": "C016",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-09-05T11:00+05:30",
+          "channel": "email",
+          "contact_address": "case-016@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R017",
+          "case_id": "C017",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-09-01T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-017@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-09-01T16:00+05:30"
+        },
+        {
+          "request_id": "R018",
+          "case_id": "C018",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-09-02T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-018@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-09-03T14:00+05:30"
+        },
+        {
+          "request_id": "R019",
+          "case_id": "C019",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-09-02T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-019@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R020",
+          "case_id": "C020",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-09-02T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-020@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-09-02T18:00+05:30"
+        },
+        {
+          "request_id": "R021",
+          "case_id": "C021",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-09-03T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-021@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-09-03T16:00+05:30"
+        },
+        {
+          "request_id": "R022",
+          "case_id": "C022",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "",
+          "channel": "email",
+          "contact_address": "case-022@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R023",
+          "case_id": "C023",
+          "item": "fault_photo",
+          "status": "received",
+          "last_requested_at": "2026-09-04T10:00+05:30",
+          "channel": "email",
+          "contact_address": "case-023@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-09-04T16:00+05:30"
+        },
+        {
+          "request_id": "R024",
+          "case_id": "C024",
+          "item": "fault_photo",
+          "status": "pending",
+          "last_requested_at": "2026-09-04T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-024@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R025",
+          "case_id": "C009",
+          "item": "site_access",
+          "status": "pending",
+          "last_requested_at": "2026-09-02T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-009@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R026",
+          "case_id": "C024",
+          "item": "serial_number",
+          "status": "pending",
+          "last_requested_at": "2026-09-04T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-024@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R027",
+          "case_id": "C017",
+          "item": "quote_approval",
+          "status": "pending",
+          "last_requested_at": "2026-09-02T11:00+05:30",
+          "channel": "email",
+          "contact_address": "case-017@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R028",
+          "case_id": "C021",
+          "item": "quote_approval",
+          "status": "pending",
+          "last_requested_at": "2026-09-04T11:00+05:30",
+          "channel": "email",
+          "contact_address": "case-021@example.invalid",
+          "followup_allowed": "0",
+          "received_at": ""
+        },
+        {
+          "request_id": "R029",
+          "case_id": "C023",
+          "item": "quote_approval",
+          "status": "pending",
+          "last_requested_at": "2026-09-05T11:00+05:30",
+          "channel": "email",
+          "contact_address": "case-023@example.invalid",
+          "followup_allowed": "1",
+          "received_at": ""
+        },
+        {
+          "request_id": "R030",
+          "case_id": "C016",
+          "item": "site_access",
+          "status": "received",
+          "last_requested_at": "2026-09-01T12:00+05:30",
+          "channel": "email",
+          "contact_address": "case-016@example.invalid",
+          "followup_allowed": "1",
+          "received_at": "2026-09-02T14:00+05:30"
+        }
+      ]
+    },
+    "customer_media_intake_samples": [
+      {
+        "filename": "fault-tiny.png",
+        "detected_format": "png",
+        "confidence": "high",
+        "size_bytes": 70,
+        "width": 1,
+        "height": 1,
+        "quality_signals": [
+          "file_very_small_may_be_unusable",
+          "resolution_below_recommended_min",
+          "brightness_ok_proxy"
+        ],
+        "routing": "human_review",
+        "handling": "Technician review required due to quality signals",
+        "algorithms_applied": [
+          "magic_byte_sniff",
+          "extension_hint",
+          "png_ihdr_parse",
+          "min_resolution_gate",
+          "brightness_byte_proxy"
+        ]
+      },
+      {
+        "filename": "notes.txt",
+        "detected_format": "plain_text",
+        "confidence": "medium",
+        "size_bytes": 37,
+        "width": null,
+        "height": null,
+        "quality_signals": [
+          "file_very_small_may_be_unusable"
+        ],
+        "routing": "human_review",
+        "handling": "Coordinator validates document content before updating request row",
+        "algorithms_applied": [
+          "magic_byte_sniff",
+          "extension_hint",
+          "text_header_probe"
+        ]
+      },
+      {
+        "filename": "photo.heic",
+        "detected_format": "heic",
+        "confidence": "high",
+        "size_bytes": 53,
+        "width": null,
+        "height": null,
+        "quality_signals": [
+          "file_very_small_may_be_unusable"
+        ],
+        "routing": "human_review",
+        "handling": "Convert or relabel file manually; do not auto-attach to quote",
+        "algorithms_applied": [
+          "magic_byte_sniff",
+          "extension_hint"
+        ]
+      },
+      {
+        "filename": "scan.unknown",
+        "detected_format": "unknown",
+        "confidence": "low",
+        "size_bytes": 400,
+        "width": null,
+        "height": null,
+        "quality_signals": [
+          "file_very_small_may_be_unusable"
+        ],
+        "routing": "human_review",
+        "handling": "Convert or relabel file manually; do not auto-attach to quote",
+        "algorithms_applied": [
+          "magic_byte_sniff",
+          "extension_hint"
+        ]
+      }
+    ],
+    "hybrid_layers": [
+      {
+        "layer": "Keep (existing shop habit)",
+        "items": [
+          "Shared email inbox",
+          "Spreadsheet export",
+          "Saved reply templates"
+        ]
+      },
+      {
+        "layer": "Buy (lightweight)",
+        "items": [
+          "File-request link in reminder (OneDrive/Dropbox pattern)",
+          "Optional capped LLM API"
+        ]
+      },
+      {
+        "layer": "Build (our prototype)",
+        "items": [
+          "Rules engine",
+          "Tiered technician board",
+          "AI draft assist (mock)"
+        ]
+      },
+      {
+        "layer": "Out-of-box process",
+        "items": [
+          "Three-speed lanes",
+          "Departure-board sort",
+          "Weekly rotating duty lead",
+          "Daily 15-min huddle"
+        ]
+      }
+    ],
+    "duty_lead": {
+      "duty_lead": "T1",
+      "backup_lead": "T2",
+      "iso_week": 37,
+      "note": "Rotating duty lead runs daily huddle with coordinator; escalates uncertain rows"
+    },
+    "departure_board": [
+      {
+        "case_id": "C008",
+        "status": "scheduled",
+        "lane": "park",
+        "lane_reason": "Case scheduled \u2014 no chase",
+        "priority_score": 12.82,
+        "service_type": "air_conditioner"
+      },
+      {
+        "case_id": "C009",
+        "status": "waiting_info",
+        "lane": "standard",
+        "lane_reason": "Eligible for coordinated follow-up + parallel tech work",
+        "priority_score": 12.0,
+        "service_type": "washing_machine"
+      },
+      {
+        "case_id": "C011",
+        "status": "scheduled",
+        "lane": "park",
+        "lane_reason": "Case scheduled \u2014 no chase",
+        "priority_score": 11.28,
+        "service_type": "air_conditioner"
+      },
+      {
+        "case_id": "C012",
+        "status": "waiting_info",
+        "lane": "park",
+        "lane_reason": "Customer opt-out / do not follow up",
+        "priority_score": 10.92,
+        "service_type": "washing_machine"
+      },
+      {
+        "case_id": "C017",
+        "status": "quote_sent",
+        "lane": "standard",
+        "lane_reason": "Eligible for coordinated follow-up + parallel tech work",
+        "priority_score": 10.53,
+        "service_type": "air_conditioner"
+      },
+      {
+        "case_id": "C015",
+        "status": "scheduled",
+        "lane": "park",
+        "lane_reason": "Case scheduled \u2014 no chase",
+        "priority_score": 9.78,
+        "service_type": "washing_machine"
+      },
+      {
+        "case_id": "C021",
+        "status": "quote_sent",
+        "lane": "park",
+        "lane_reason": "Customer opt-out / do not follow up",
+        "priority_score": 9.03,
+        "service_type": "washing_machine"
+      },
+      {
+        "case_id": "C016",
+        "status": "waiting_info",
+        "lane": "standard",
+        "lane_reason": "Eligible for coordinated follow-up + parallel tech work",
+        "priority_score": 8.92,
+        "service_type": "refrigerator"
+      },
+      {
+        "case_id": "C020",
+        "status": "scheduled",
+        "lane": "park",
+        "lane_reason": "Case scheduled \u2014 no chase",
+        "priority_score": 8.32,
+        "service_type": "air_conditioner"
+      },
+      {
+        "case_id": "C023",
+        "status": "quote_sent",
+        "lane": "standard",
+        "lane_reason": "Eligible for coordinated follow-up + parallel tech work",
+        "priority_score": 8.28,
+        "service_type": "air_conditioner"
+      },
+      {
+        "case_id": "C018",
+        "status": "waiting_info",
+        "lane": "park",
+        "lane_reason": "Data conflict \u2014 coordinator reconcile (human)",
+        "priority_score": 7.92,
+        "service_type": "washing_machine"
+      },
+      {
+        "case_id": "C022",
+        "status": "waiting_info",
+        "lane": "standard",
+        "lane_reason": "Eligible for coordinated follow-up + parallel tech work",
+        "priority_score": 5.92,
+        "service_type": "refrigerator"
+      },
+      {
+        "case_id": "C024",
+        "status": "waiting_info",
+        "lane": "standard",
+        "lane_reason": "Eligible for coordinated follow-up + parallel tech work",
+        "priority_score": 4.92,
+        "service_type": "washing_machine"
+      }
+    ],
+    "lane_counts": {
+      "park": 7,
+      "standard": 6
+    },
+    "triage_counts": {
+      "propose": 5,
+      "exclude": 23,
+      "uncertain": 2
+    },
+    "triage_rows": [
+      {
+        "request_id": "R001",
+        "case_id": "C001",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C001 is completed"
+      },
+      {
+        "request_id": "R002",
+        "case_id": "C002",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C002 is completed"
+      },
+      {
+        "request_id": "R003",
+        "case_id": "C003",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C003 is completed"
+      },
+      {
+        "request_id": "R004",
+        "case_id": "C004",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C004 is completed"
+      },
+      {
+        "request_id": "R005",
+        "case_id": "C005",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C005 is cancelled"
+      },
+      {
+        "request_id": "R006",
+        "case_id": "C006",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C006 is completed"
+      },
+      {
+        "request_id": "R007",
+        "case_id": "C007",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C007 is completed"
+      },
+      {
+        "request_id": "R008",
+        "case_id": "C008",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C008 is scheduled"
+      },
+      {
+        "request_id": "R009",
+        "case_id": "C009",
+        "item": "fault_photo",
+        "disposition": "propose",
+        "reason": "Eligible reminder for fault_photo (117.0h since last request)"
+      },
+      {
+        "request_id": "R010",
+        "case_id": "C010",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C010 is completed"
+      },
+      {
+        "request_id": "R011",
+        "case_id": "C011",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C011 is scheduled"
+      },
+      {
+        "request_id": "R012",
+        "case_id": "C012",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "followup_allowed is 0"
+      },
+      {
+        "request_id": "R013",
+        "case_id": "C013",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C013 is cancelled"
+      },
+      {
+        "request_id": "R014",
+        "case_id": "C014",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C014 is completed"
+      },
+      {
+        "request_id": "R015",
+        "case_id": "C015",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C015 is scheduled"
+      },
+      {
+        "request_id": "R016",
+        "case_id": "C016",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Only 46.0h since last request; need 48h"
+      },
+      {
+        "request_id": "R017",
+        "case_id": "C017",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Item already received"
+      },
+      {
+        "request_id": "R018",
+        "case_id": "C018",
+        "item": "fault_photo",
+        "disposition": "uncertain",
+        "reason": "pending status conflicts with received_at; needs coordinator review"
+      },
+      {
+        "request_id": "R019",
+        "case_id": "C019",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C019 is cancelled"
+      },
+      {
+        "request_id": "R020",
+        "case_id": "C020",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Case C020 is scheduled"
+      },
+      {
+        "request_id": "R021",
+        "case_id": "C021",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Item already received"
+      },
+      {
+        "request_id": "R022",
+        "case_id": "C022",
+        "item": "fault_photo",
+        "disposition": "uncertain",
+        "reason": "Missing last_requested_at"
+      },
+      {
+        "request_id": "R023",
+        "case_id": "C023",
+        "item": "fault_photo",
+        "disposition": "exclude",
+        "reason": "Item already received"
+      },
+      {
+        "request_id": "R024",
+        "case_id": "C024",
+        "item": "fault_photo",
+        "disposition": "propose",
+        "reason": "Eligible reminder for fault_photo (69.0h since last request)"
+      },
+      {
+        "request_id": "R025",
+        "case_id": "C009",
+        "item": "site_access",
+        "disposition": "propose",
+        "reason": "Eligible reminder for site_access (117.0h since last request)"
+      },
+      {
+        "request_id": "R026",
+        "case_id": "C024",
+        "item": "serial_number",
+        "disposition": "propose",
+        "reason": "Eligible reminder for serial_number (69.0h since last request)"
+      },
+      {
+        "request_id": "R027",
+        "case_id": "C017",
+        "item": "quote_approval",
+        "disposition": "propose",
+        "reason": "Eligible reminder for quote_approval (118.0h since last request)"
+      },
+      {
+        "request_id": "R028",
+        "case_id": "C021",
+        "item": "quote_approval",
+        "disposition": "exclude",
+        "reason": "followup_allowed is 0"
+      },
+      {
+        "request_id": "R029",
+        "case_id": "C023",
+        "item": "quote_approval",
+        "disposition": "exclude",
+        "reason": "Only 46.0h since last request; need 48h"
+      },
+      {
+        "request_id": "R030",
+        "case_id": "C016",
+        "item": "site_access",
+        "disposition": "exclude",
+        "reason": "Item already received"
+      }
+    ],
+    "team_workboard": {
+      "team_size": {
+        "coordinators": 1,
+        "technicians": 4
+      },
+      "technician_hierarchy": [
+        {
+          "id": "T1",
+          "rank": 4,
+          "title": "Lead technician",
+          "capacity": 3
+        },
+        {
+          "id": "T2",
+          "rank": 3,
+          "title": "Senior technician",
+          "capacity": 3
+        },
+        {
+          "id": "T3",
+          "rank": 2,
+          "title": "Technician",
+          "capacity": 4
+        },
+        {
+          "id": "T4",
+          "rank": 1,
+          "title": "Apprentice technician",
+          "capacity": 4
+        }
+      ],
+      "task_work_levels": {
+        "human_photo_quality_check": 4,
+        "prep_quote_while_waiting_for_photo": 3,
+        "hold_parts_plan": 3,
+        "standby_case_brief": 1
+      },
+      "coordinator_tasks": [
+        {
+          "role": "coordinator",
+          "owner": "coordinator",
+          "case_id": "C009",
+          "task": "draft_customer_followup",
+          "reason": "Eligible reminder for fault_photo (117.0h since last request)",
+          "request_ids": [
+            "R009"
+          ],
+          "work_level": 1,
+          "owner_title": ""
+        },
+        {
+          "role": "coordinator",
+          "owner": "coordinator",
+          "case_id": "C018",
+          "task": "review_before_any_contact",
+          "reason": "pending status conflicts with received_at; needs coordinator review",
+          "request_ids": [
+            "R018"
+          ],
+          "work_level": 1,
+          "owner_title": ""
+        },
+        {
+          "role": "coordinator",
+          "owner": "coordinator",
+          "case_id": "C022",
+          "task": "review_before_any_contact",
+          "reason": "Missing last_requested_at",
+          "request_ids": [
+            "R022"
+          ],
+          "work_level": 1,
+          "owner_title": ""
+        },
+        {
+          "role": "coordinator",
+          "owner": "coordinator",
+          "case_id": "C024",
+          "task": "draft_customer_followup",
+          "reason": "Eligible reminder for fault_photo (69.0h since last request)",
+          "request_ids": [
+            "R024"
+          ],
+          "work_level": 1,
+          "owner_title": ""
+        },
+        {
+          "role": "coordinator",
+          "owner": "coordinator",
+          "case_id": "C009",
+          "task": "draft_customer_followup",
+          "reason": "Eligible reminder for site_access (117.0h since last request)",
+          "request_ids": [
+            "R025"
+          ],
+          "work_level": 1,
+          "owner_title": ""
+        },
+        {
+          "role": "coordinator",
+          "owner": "coordinator",
+          "case_id": "C024",
+          "task": "draft_customer_followup",
+          "reason": "Eligible reminder for serial_number (69.0h since last request)",
+          "request_ids": [
+            "R026"
+          ],
+          "work_level": 1,
+          "owner_title": ""
+        },
+        {
+          "role": "coordinator",
+          "owner": "coordinator",
+          "case_id": "C017",
+          "task": "draft_customer_followup",
+          "reason": "Eligible reminder for quote_approval (118.0h since last request)",
+          "request_ids": [
+            "R027"
+          ],
+          "work_level": 1,
+          "owner_title": ""
+        },
+        {
+          "role": "coordinator",
+          "owner": "coordinator",
+          "case_id": "C018",
+          "task": "reconcile_inbox_vs_request_row",
+          "reason": "Photo may exist off-thread; coordinator syncs status before tech quote work",
+          "request_ids": [
+            "R018"
+          ],
+          "work_level": 1,
+          "owner_title": ""
+        }
+      ],
+      "technician_tasks": [
+        {
+          "role": "technician",
+          "owner": "T1",
+          "case_id": "C016",
+          "task": "prep_quote_while_waiting_for_photo",
+          "reason": "Parallel prep on refrigerator while coordinator chases missing photo",
+          "request_ids": [
+            "R030"
+          ],
+          "work_level": 3,
+          "owner_title": "Lead technician"
+        },
+        {
+          "role": "technician",
+          "owner": "T2",
+          "case_id": "C017",
+          "task": "hold_parts_plan",
+          "reason": "Keep parts plan ready if customer approves quote",
+          "request_ids": [
+            "R027"
+          ],
+          "work_level": 3,
+          "owner_title": "Senior technician"
+        },
+        {
+          "role": "technician",
+          "owner": "T1",
+          "case_id": "C021",
+          "task": "hold_parts_plan",
+          "reason": "Keep parts plan ready if customer approves quote",
+          "request_ids": [
+            "R028"
+          ],
+          "work_level": 3,
+          "owner_title": "Lead technician"
+        },
+        {
+          "role": "technician",
+          "owner": "T2",
+          "case_id": "C023",
+          "task": "hold_parts_plan",
+          "reason": "Keep parts plan ready if customer approves quote",
+          "request_ids": [
+            "R029"
+          ],
+          "work_level": 3,
+          "owner_title": "Senior technician"
+        },
+        {
+          "role": "technician",
+          "owner": "T3",
+          "case_id": "C009",
+          "task": "standby_case_brief",
+          "reason": "Read case note; no customer contact\u2014ready when info arrives",
+          "request_ids": [
+            "R009"
+          ],
+          "work_level": 1,
+          "owner_title": "Technician"
+        },
+        {
+          "role": "technician",
+          "owner": "T4",
+          "case_id": "C012",
+          "task": "standby_case_brief",
+          "reason": "Read case note; no customer contact\u2014ready when info arrives",
+          "request_ids": [
+            "R012"
+          ],
+          "work_level": 1,
+          "owner_title": "Apprentice technician"
+        },
+        {
+          "role": "technician",
+          "owner": "T3",
+          "case_id": "C022",
+          "task": "standby_case_brief",
+          "reason": "Read case note; no customer contact\u2014ready when info arrives",
+          "request_ids": [
+            "R022"
+          ],
+          "work_level": 1,
+          "owner_title": "Technician"
+        },
+        {
+          "role": "technician",
+          "owner": "T4",
+          "case_id": "C024",
+          "task": "standby_case_brief",
+          "reason": "Read case note; no customer contact\u2014ready when info arrives",
+          "request_ids": [
+            "R024"
+          ],
+          "work_level": 1,
+          "owner_title": "Apprentice technician"
+        }
+      ],
+      "load_by_owner": {
+        "coordinator": 8,
+        "T1": 2,
+        "T2": 2,
+        "T3": 2,
+        "T4": 2
+      },
+      "load_by_work_level": {
+        "3": 4,
+        "1": 4
+      },
+      "baseline_all_work_on_coordinator": 19,
+      "coordinator_tasks_after_split": 8
+    },
+    "ai_assist": [
+      {
+        "step": "coordinator_customer_draft",
+        "case_id": "C009",
+        "suggestion": "Subject: Photo still needed for your washing machine repair (case C009)\nTo: c009@example.invalid\n\nHello,\n\nPlease reply to this email with the requested fault photo so we can prepare your quote.\n\nOptional: use our secure upload link (OneDrive/Dropbox file-request pattern) instead of an attachment if your inbox blocks images.\n\nThank you,\nDaybreak Repairs",
+        "confidence": "medium",
+        "human_gate": "Coordinator must edit/approve; never auto-send (assessment dry-run).",
+        "production_note": "Replace template with approved LLM prompt + audit log."
+      },
+      {
+        "step": "coordinator_customer_draft",
+        "case_id": "C024",
+        "suggestion": "Subject: Photo still needed for your washing machine repair (case C024)\nTo: c024@example.invalid\n\nHello,\n\nPlease reply to this email with the requested fault photo so we can prepare your quote.\n\nOptional: use our secure upload link (OneDrive/Dropbox file-request pattern) instead of an attachment if your inbox blocks images.\n\nThank you,\nDaybreak Repairs",
+        "confidence": "medium",
+        "human_gate": "Coordinator must edit/approve; never auto-send (assessment dry-run).",
+        "production_note": "Replace template with approved LLM prompt + audit log."
+      },
+      {
+        "step": "coordinator_customer_draft",
+        "case_id": "C009",
+        "suggestion": "Subject: Photo still needed for your washing machine repair (case C009)\nTo: c009@example.invalid\n\nHello,\n\nPlease reply to this email with the requested site access so we can prepare your quote.\n\nOptional: use our secure upload link (OneDrive/Dropbox file-request pattern) instead of an attachment if your inbox blocks images.\n\nThank you,\nDaybreak Repairs",
+        "confidence": "medium",
+        "human_gate": "Coordinator must edit/approve; never auto-send (assessment dry-run).",
+        "production_note": "Replace template with approved LLM prompt + audit log."
+      },
+      {
+        "step": "coordinator_customer_draft",
+        "case_id": "C024",
+        "suggestion": "Subject: Photo still needed for your washing machine repair (case C024)\nTo: c024@example.invalid\n\nHello,\n\nPlease reply to this email with the requested fault photo so we can prepare your quote.\n\nOptional: use our secure upload link (OneDrive/Dropbox file-request pattern) instead of an attachment if your inbox blocks images.\n\nThank you,\nDaybreak Repairs",
+        "confidence": "medium",
+        "human_gate": "Coordinator must edit/approve; never auto-send (assessment dry-run).",
+        "production_note": "Replace template with approved LLM prompt + audit log."
+      },
+      {
+        "step": "coordinator_customer_draft",
+        "case_id": "C017",
+        "suggestion": "Subject: Photo still needed for your air conditioner repair (case C017)\nTo: c017@example.invalid\n\nHello,\n\nPlease reply to this email with the requested fault photo so we can prepare your quote.\n\nOptional: use our secure upload link (OneDrive/Dropbox file-request pattern) instead of an attachment if your inbox blocks images.\n\nThank you,\nDaybreak Repairs",
+        "confidence": "medium",
+        "human_gate": "Coordinator must edit/approve; never auto-send (assessment dry-run).",
+        "production_note": "Replace template with approved LLM prompt + audit log."
+      },
+      {
+        "step": "technician_parallel_prep",
+        "case_id": "C016",
+        "suggestion": "Confirm typical parts list for refrigerator; Check warranty/serial location on unit; Note if quote needs site visit vs bench repair",
+        "confidence": "high",
+        "human_gate": "Technician validates checklist; no customer message.",
+        "production_note": "Optional LLM summarises case note\u2014technician still signs off."
+      },
+      {
+        "step": "technician_parallel_prep",
+        "case_id": "C017",
+        "suggestion": "Confirm typical parts list for air_conditioner; Check warranty/serial location on unit; Note if quote needs site visit vs bench repair",
+        "confidence": "high",
+        "human_gate": "Technician validates checklist; no customer message.",
+        "production_note": "Optional LLM summarises case note\u2014technician still signs off."
+      },
+      {
+        "step": "technician_parallel_prep",
+        "case_id": "C021",
+        "suggestion": "Confirm typical parts list for washing_machine; Check warranty/serial location on unit; Note if quote needs site visit vs bench repair",
+        "confidence": "high",
+        "human_gate": "Technician validates checklist; no customer message.",
+        "production_note": "Optional LLM summarises case note\u2014technician still signs off."
+      },
+      {
+        "step": "photo_quality_path",
+        "case_id": "C018",
+        "suggestion": "Data conflict on photo row \u2014 skip vision; coordinator reconciles inbox first.",
+        "confidence": "high",
+        "human_gate": "Technician human review mandatory; no auto-quote from image AI.",
+        "production_note": "Future vision API may pre-sort, but quote gate stays human."
+      }
+    ],
+    "cost_structure": {
+      "assumptions": {
+        "coordinator_hourly_inr": 400.0,
+        "technician_hourly_inr": 350.0,
+        "monthly_tool_budget_inr": 1500.0,
+        "note": "Labor rates are scenario placeholders, not measured Daybreak costs."
+      },
+      "workload_metrics": {
+        "solo_coordinator_items": 19,
+        "split_coordinator_tasks": 8,
+        "technician_parallel_tasks": 8,
+        "uncertain_rows": 2
+      },
+      "time_minutes_per_week": {
+        "gross_saved": 107,
+        "review_overhead": 18,
+        "net_saved": 89,
+        "breakdown": {
+          "rules_prevent_wrong_chase": 44,
+          "technician_parallel_prep": 48,
+          "ai_draft_and_triage_assist": 15
+        }
+      },
+      "inr_per_month_scenario": {
+        "tool_spend_cap": 900.0,
+        "labor_value_equivalent_saved": 642.28,
+        "net_after_tools": -257.72
+      },
+      "line_items": [
+        {
+          "category": "Rules workboard (self-hosted script)",
+          "assumption": "Python stdlib; runs on Windows/macOS/Linux",
+          "inr_per_month": 0,
+          "minutes_per_week": 0
+        },
+        {
+          "category": "Lightweight LLM API (optional pilot)",
+          "assumption": "Capped at \u2264900 INR/month of 1500 budget",
+          "inr_per_month": 900.0,
+          "minutes_per_week": -15
+        },
+        {
+          "category": "File-request link (optional)",
+          "assumption": "OneDrive/Dropbox free tier for uploads only",
+          "inr_per_month": 0,
+          "minutes_per_week": 0
+        },
+        {
+          "category": "Human oversight (non-negotiable)",
+          "assumption": "Coordinator + technician review time",
+          "inr_per_month": 0,
+          "minutes_per_week": 18
+        }
+      ]
+    },
+    "customer_delivery_simulation": [
+      {
+        "request_id": "R009",
+        "case_id": "C009",
+        "item": "fault_photo",
+        "contact": "case-009@example.invalid",
+        "channel": "email",
+        "draft_preview": "Subject: Photo still needed for your washing machine repair (case C009)\nTo: c009@example.invalid\n\nHello,\n\nPlease reply t"
+      },
+      {
+        "request_id": "R024",
+        "case_id": "C024",
+        "item": "fault_photo",
+        "contact": "case-024@example.invalid",
+        "channel": "email",
+        "draft_preview": "Subject: Photo still needed for your washing machine repair (case C024)\nTo: c024@example.invalid\n\nHello,\n\nPlease reply t"
+      },
+      {
+        "request_id": "R025",
+        "case_id": "C009",
+        "item": "site_access",
+        "contact": "case-009@example.invalid",
+        "channel": "email",
+        "draft_preview": "Subject: Photo still needed for your washing machine repair (case C009)\nTo: c009@example.invalid\n\nHello,\n\nPlease reply t"
+      },
+      {
+        "request_id": "R026",
+        "case_id": "C024",
+        "item": "serial_number",
+        "contact": "case-024@example.invalid",
+        "channel": "email",
+        "draft_preview": "Subject: Photo still needed for your washing machine repair (case C024)\nTo: c024@example.invalid\n\nHello,\n\nPlease reply t"
+      },
+      {
+        "request_id": "R027",
+        "case_id": "C017",
+        "item": "quote_approval",
+        "contact": "case-017@example.invalid",
+        "channel": "email",
+        "draft_preview": "Subject: Photo still needed for your air conditioner repair (case C017)\nTo: c017@example.invalid\n\nHello,\n\nPlease reply t"
+      }
+    ],
+    "customer_structured_receipt_acks": [
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R001",
+        "case_id": "C001",
+        "item": "fault_photo",
+        "ok": false,
+        "receipt_outcome": "under_review",
+        "message": {
+          "title": "We are confirming your fault photo (case C001)",
+          "summary": "We see a submission timestamp on your case, but our records need a quick coordinator check before we mark it fully accepted.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "pending",
+          "received_at": "2026-08-24T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C001 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "A coordinator will email you within one business day with a final yes/no.",
+          "You do not need to resend unless we ask."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-001@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R002",
+        "case_id": "C002",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C002)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-24T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C002 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R002."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-002@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R003",
+        "case_id": "C003",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C003)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-25T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C003 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R003."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-003@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R004",
+        "case_id": "C004",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C004)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-25T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C004 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R004."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-004@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R006",
+        "case_id": "C006",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C006)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-26T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C006 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R006."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-006@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R007",
+        "case_id": "C007",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C007)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-27T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C007 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R007."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-007@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R008",
+        "case_id": "C008",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C008)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-27T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C008 is scheduled"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R008."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-008@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R010",
+        "case_id": "C010",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C010)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-28T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C010 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R010."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-010@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R011",
+        "case_id": "C011",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C011)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-29T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C011 is scheduled"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R011."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-011@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R014",
+        "case_id": "C014",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C014)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-30T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C014 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R014."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-014@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R015",
+        "case_id": "C015",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C015)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-31T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C015 is scheduled"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R015."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-015@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R017",
+        "case_id": "C017",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C017)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-09-01T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Item already received"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R017."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-017@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R018",
+        "case_id": "C018",
+        "item": "fault_photo",
+        "ok": false,
+        "receipt_outcome": "under_review",
+        "message": {
+          "title": "We are confirming your fault photo (case C018)",
+          "summary": "We see a submission timestamp on your case, but our records need a quick coordinator check before we mark it fully accepted.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "pending",
+          "received_at": "2026-09-03T14:00+05:30",
+          "triage_disposition": "uncertain",
+          "triage_reason": "pending status conflicts with received_at; needs coordinator review"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "A coordinator will email you within one business day with a final yes/no.",
+          "You do not need to resend unless we ask."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-018@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R020",
+        "case_id": "C020",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C020)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-09-02T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C020 is scheduled"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R020."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-020@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R021",
+        "case_id": "C021",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C021)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-09-03T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Item already received"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R021."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-021@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R023",
+        "case_id": "C023",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C023)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-09-04T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Item already received"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R023."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-023@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R030",
+        "case_id": "C016",
+        "item": "site_access",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your site access \u2014 OK (case C016)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-09-02T14:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Item already received"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R030."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-016@example.invalid"
+        }
+      }
+    ],
+    "customer_structured_intake_examples": [
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R-DEMO-01",
+        "case_id": "C-DEMO-01",
+        "item": "fault_photo",
+        "ok": false,
+        "receipt_outcome": "received_not_ok",
+        "message": {
+          "title": "Please resend your photo (case C-DEMO-01)",
+          "summary": "We could not auto-accept `fault-tiny.png`: Technician review required due to quality signals",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "pending",
+          "received_at": null,
+          "triage_disposition": "n/a",
+          "triage_reason": "intake_quality_gate"
+        },
+        "quality": {
+          "accepted": false,
+          "signals": [
+            "file_very_small_may_be_unusable",
+            "resolution_below_recommended_min",
+            "brightness_ok_proxy"
+          ],
+          "routing": "human_review",
+          "format": "png",
+          "notes": [
+            "Technician review required due to quality signals"
+          ]
+        },
+        "next_steps": [
+          "Resend as JPEG or PNG with the full appliance visible.",
+          "Technician review required due to quality signals"
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "demo-1@example.invalid",
+          "sample_filename": "fault-tiny.png"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R-DEMO-02",
+        "case_id": "C-DEMO-02",
+        "item": "fault_photo",
+        "ok": false,
+        "receipt_outcome": "received_not_ok",
+        "message": {
+          "title": "Please resend your photo (case C-DEMO-02)",
+          "summary": "We could not auto-accept `notes.txt`: Coordinator validates document content before updating request row",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "pending",
+          "received_at": null,
+          "triage_disposition": "n/a",
+          "triage_reason": "intake_quality_gate"
+        },
+        "quality": {
+          "accepted": false,
+          "signals": [
+            "file_very_small_may_be_unusable"
+          ],
+          "routing": "human_review",
+          "format": "plain_text",
+          "notes": [
+            "Coordinator validates document content before updating request row"
+          ]
+        },
+        "next_steps": [
+          "Resend as JPEG or PNG with the full appliance visible.",
+          "Coordinator validates document content before updating request row"
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "demo-2@example.invalid",
+          "sample_filename": "notes.txt"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R-DEMO-03",
+        "case_id": "C-DEMO-03",
+        "item": "fault_photo",
+        "ok": false,
+        "receipt_outcome": "received_not_ok",
+        "message": {
+          "title": "Please resend your photo (case C-DEMO-03)",
+          "summary": "We could not auto-accept `photo.heic`: Convert or relabel file manually; do not auto-attach to quote",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "pending",
+          "received_at": null,
+          "triage_disposition": "n/a",
+          "triage_reason": "intake_quality_gate"
+        },
+        "quality": {
+          "accepted": false,
+          "signals": [
+            "file_very_small_may_be_unusable"
+          ],
+          "routing": "human_review",
+          "format": "heic",
+          "notes": [
+            "Convert or relabel file manually; do not auto-attach to quote"
+          ]
+        },
+        "next_steps": [
+          "Resend as JPEG or PNG with the full appliance visible.",
+          "Convert or relabel file manually; do not auto-attach to quote"
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "demo-3@example.invalid",
+          "sample_filename": "photo.heic"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R-DEMO-04",
+        "case_id": "C-DEMO-04",
+        "item": "fault_photo",
+        "ok": false,
+        "receipt_outcome": "received_not_ok",
+        "message": {
+          "title": "Please resend your photo (case C-DEMO-04)",
+          "summary": "We could not auto-accept `scan.unknown`: Convert or relabel file manually; do not auto-attach to quote",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "pending",
+          "received_at": null,
+          "triage_disposition": "n/a",
+          "triage_reason": "intake_quality_gate"
+        },
+        "quality": {
+          "accepted": false,
+          "signals": [
+            "file_very_small_may_be_unusable"
+          ],
+          "routing": "human_review",
+          "format": "unknown",
+          "notes": [
+            "Convert or relabel file manually; do not auto-attach to quote"
+          ]
+        },
+        "next_steps": [
+          "Resend as JPEG or PNG with the full appliance visible.",
+          "Convert or relabel file manually; do not auto-attach to quote"
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "demo-4@example.invalid",
+          "sample_filename": "scan.unknown"
+        }
+      }
+    ],
+    "pipeline_trace_lines": [
+      "2026-09-23T07:17:21Z seq=0001 phase=START message=Track B DICM pipeline run begins detail=snapshot=2026-09-07T09:00:00+05:30",
+      "2026-09-23T07:17:21Z seq=0002 phase=START message=Assessment mode detail=dry_run_only",
+      "2026-09-23T07:17:21Z seq=0003 phase=LOAD message=Input registers loaded detail=cases=24 requests=30 events=128",
+      "2026-09-23T07:17:21Z seq=0004 phase=VALIDATE message=errors=0 warnings=4 policy=4 pipeline_ok=True",
+      "2026-09-23T07:17:21Z seq=0005 phase=VALIDATE message=policy:customer_policy detail=R001 status+received_at pending conflicts with received_at (data standards breach)",
+      "2026-09-23T07:17:21Z seq=0006 phase=VALIDATE message=policy:customer_policy detail=R012 followup_allowed Customer opt-out / no follow-up flag set",
+      "2026-09-23T07:17:21Z seq=0007 phase=VALIDATE message=policy:customer_policy detail=R018 status+received_at pending conflicts with received_at (data standards breach)",
+      "2026-09-23T07:17:21Z seq=0008 phase=VALIDATE message=policy:customer_policy detail=R028 followup_allowed Customer opt-out / no follow-up flag set",
+      "2026-09-23T07:17:21Z seq=0009 phase=VALIDATE message=warning:events detail=E005 event_id Duplicate event delivery in export",
+      "2026-09-23T07:17:21Z seq=0010 phase=VALIDATE message=warning:events detail=E032 event_id Duplicate event delivery in export",
+      "2026-09-23T07:17:21Z seq=0011 phase=VALIDATE message=warning:events detail=E059 event_id Duplicate event delivery in export",
+      "2026-09-23T07:17:21Z seq=0012 phase=VALIDATE message=warning:events detail=E087 event_id Duplicate event delivery in export",
+      "2026-09-23T07:17:21Z seq=0013 phase=CUSTOMER_REGISTRY message=verified=30 discarded=0 spam_or_unknown=[]",
+      "2026-09-23T07:17:21Z seq=0014 phase=MEDIA message=format=png routing=human_review detail=file=fault-tiny.png signals=('file_very_small_may_be_unusable', 'resolution_below_recommended_min', 'brightness_ok_proxy')",
+      "2026-09-23T07:17:21Z seq=0015 phase=MEDIA message=format=plain_text routing=human_review detail=file=notes.txt signals=('file_very_small_may_be_unusable',)",
+      "2026-09-23T07:17:21Z seq=0016 phase=MEDIA message=format=heic routing=human_review detail=file=photo.heic signals=('file_very_small_may_be_unusable',)",
+      "2026-09-23T07:17:21Z seq=0017 phase=MEDIA message=format=unknown routing=human_review detail=file=scan.unknown signals=('file_very_small_may_be_unusable',)",
+      "2026-09-23T07:17:21Z seq=0018 phase=RULES message=R001 disposition=exclude detail=C001 fault_photo Case C001 is completed",
+      "2026-09-23T07:17:21Z seq=0019 phase=RULES message=R002 disposition=exclude detail=C002 fault_photo Case C002 is completed",
+      "2026-09-23T07:17:21Z seq=0020 phase=RULES message=R003 disposition=exclude detail=C003 fault_photo Case C003 is completed",
+      "2026-09-23T07:17:21Z seq=0021 phase=RULES message=R004 disposition=exclude detail=C004 fault_photo Case C004 is completed",
+      "2026-09-23T07:17:21Z seq=0022 phase=RULES message=R005 disposition=exclude detail=C005 fault_photo Case C005 is cancelled",
+      "2026-09-23T07:17:21Z seq=0023 phase=RULES message=R006 disposition=exclude detail=C006 fault_photo Case C006 is completed",
+      "2026-09-23T07:17:21Z seq=0024 phase=RULES message=R007 disposition=exclude detail=C007 fault_photo Case C007 is completed",
+      "2026-09-23T07:17:21Z seq=0025 phase=RULES message=R008 disposition=exclude detail=C008 fault_photo Case C008 is scheduled",
+      "2026-09-23T07:17:21Z seq=0026 phase=RULES message=R009 disposition=propose detail=C009 fault_photo Eligible reminder for fault_photo (117.0h since last request)",
+      "2026-09-23T07:17:21Z seq=0027 phase=RULES message=R010 disposition=exclude detail=C010 fault_photo Case C010 is completed",
+      "2026-09-23T07:17:21Z seq=0028 phase=RULES message=R011 disposition=exclude detail=C011 fault_photo Case C011 is scheduled",
+      "2026-09-23T07:17:21Z seq=0029 phase=RULES message=R012 disposition=exclude detail=C012 fault_photo followup_allowed is 0",
+      "2026-09-23T07:17:21Z seq=0030 phase=RULES message=R013 disposition=exclude detail=C013 fault_photo Case C013 is cancelled",
+      "2026-09-23T07:17:21Z seq=0031 phase=RULES message=R014 disposition=exclude detail=C014 fault_photo Case C014 is completed",
+      "2026-09-23T07:17:21Z seq=0032 phase=RULES message=R015 disposition=exclude detail=C015 fault_photo Case C015 is scheduled",
+      "2026-09-23T07:17:21Z seq=0033 phase=RULES message=R016 disposition=exclude detail=C016 fault_photo Only 46.0h since last request; need 48h",
+      "2026-09-23T07:17:21Z seq=0034 phase=RULES message=R017 disposition=exclude detail=C017 fault_photo Item already received",
+      "2026-09-23T07:17:21Z seq=0035 phase=RULES message=R018 disposition=uncertain detail=C018 fault_photo pending status conflicts with received_at; needs coordinator review",
+      "2026-09-23T07:17:21Z seq=0036 phase=RULES message=R019 disposition=exclude detail=C019 fault_photo Case C019 is cancelled",
+      "2026-09-23T07:17:21Z seq=0037 phase=RULES message=R020 disposition=exclude detail=C020 fault_photo Case C020 is scheduled",
+      "2026-09-23T07:17:21Z seq=0038 phase=RULES message=R021 disposition=exclude detail=C021 fault_photo Item already received",
+      "2026-09-23T07:17:21Z seq=0039 phase=RULES message=R022 disposition=uncertain detail=C022 fault_photo Missing last_requested_at",
+      "2026-09-23T07:17:21Z seq=0040 phase=RULES message=R023 disposition=exclude detail=C023 fault_photo Item already received",
+      "2026-09-23T07:17:21Z seq=0041 phase=RULES message=R024 disposition=propose detail=C024 fault_photo Eligible reminder for fault_photo (69.0h since last request)",
+      "2026-09-23T07:17:21Z seq=0042 phase=RULES message=R025 disposition=propose detail=C009 site_access Eligible reminder for site_access (117.0h since last request)",
+      "2026-09-23T07:17:21Z seq=0043 phase=RULES message=R026 disposition=propose detail=C024 serial_number Eligible reminder for serial_number (69.0h since last request)",
+      "2026-09-23T07:17:21Z seq=0044 phase=RULES message=R027 disposition=propose detail=C017 quote_approval Eligible reminder for quote_approval (118.0h since last request)",
+      "2026-09-23T07:17:21Z seq=0045 phase=RULES message=R028 disposition=exclude detail=C021 quote_approval followup_allowed is 0",
+      "2026-09-23T07:17:21Z seq=0046 phase=RULES message=R029 disposition=exclude detail=C023 quote_approval Only 46.0h since last request; need 48h",
+      "2026-09-23T07:17:21Z seq=0047 phase=RULES message=R030 disposition=exclude detail=C016 site_access Item already received",
+      "2026-09-23T07:17:21Z seq=0048 phase=CUSTOMER_ACK message=structured_acks=17 ok=15 not_ok_or_review=2",
+      "2026-09-23T07:17:21Z seq=0049 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R001 case_id=C001 ok=False outcome=under_review to=case-001@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0050 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C001\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"We see a submission timestamp on your case, but our records need a quick coordinator check before we mark it fully accepted.\",     \"title\": \"We are confirming your fault photo (case C001)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-001@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"A coordinator will email you within one business day with a final yes/no.\",     \"You do not need to resend unless we ask.\"   ],   \"ok\": false,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-08-24T16:00+05:30\",     \"status_on_file\": \"pending\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Case C001 is completed\"   },   \"receipt_outcome\": \"under_review\",   \"request_id\": \"R001\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0051 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R002 case_id=C002 ok=True outcome=received_ok to=case-002@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0052 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C002\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C002)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-002@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R002.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-08-24T18:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Case C002 is completed\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R002\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0053 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R003 case_id=C003 ok=True outcome=received_ok to=case-003@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0054 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C003\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C003)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-003@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R003.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-08-25T16:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Case C003 is completed\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R003\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0055 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R004 case_id=C004 ok=True outcome=received_ok to=case-004@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0056 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C004\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C004)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-004@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R004.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-08-25T18:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Case C004 is completed\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R004\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0057 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R006 case_id=C006 ok=True outcome=received_ok to=case-006@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0058 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C006\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C006)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-006@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R006.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-08-26T18:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Case C006 is completed\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R006\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0059 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R007 case_id=C007 ok=True outcome=received_ok to=case-007@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0060 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C007\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C007)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-007@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R007.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-08-27T16:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Case C007 is completed\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R007\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0061 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R008 case_id=C008 ok=True outcome=received_ok to=case-008@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0062 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C008\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C008)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-008@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R008.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-08-27T18:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Case C008 is scheduled\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R008\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0063 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R010 case_id=C010 ok=True outcome=received_ok to=case-010@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0064 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C010\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C010)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-010@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R010.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-08-28T18:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Case C010 is completed\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R010\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0065 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R011 case_id=C011 ok=True outcome=received_ok to=case-011@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0066 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C011\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C011)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-011@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R011.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-08-29T16:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Case C011 is scheduled\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R011\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0067 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R014 case_id=C014 ok=True outcome=received_ok to=case-014@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0068 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C014\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C014)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-014@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R014.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-08-30T18:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Case C014 is completed\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R014\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0069 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R015 case_id=C015 ok=True outcome=received_ok to=case-015@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0070 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C015\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C015)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-015@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R015.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-08-31T16:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Case C015 is scheduled\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R015\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0071 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R017 case_id=C017 ok=True outcome=received_ok to=case-017@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0072 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C017\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C017)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-017@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R017.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-09-01T16:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Item already received\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R017\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0073 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R018 case_id=C018 ok=False outcome=under_review to=case-018@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0074 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C018\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"We see a submission timestamp on your case, but our records need a quick coordinator check before we mark it fully accepted.\",     \"title\": \"We are confirming your fault photo (case C018)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-018@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"A coordinator will email you within one business day with a final yes/no.\",     \"You do not need to resend unless we ask.\"   ],   \"ok\": false,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-09-03T14:00+05:30\",     \"status_on_file\": \"pending\",     \"triage_disposition\": \"uncertain\",     \"triage_reason\": \"pending status conflicts with received_at; needs coordinator review\"   },   \"receipt_outcome\": \"under_review\",   \"request_id\": \"R018\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0075 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R020 case_id=C020 ok=True outcome=received_ok to=case-020@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0076 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C020\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C020)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-020@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R020.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-09-02T18:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Case C020 is scheduled\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R020\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0077 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R021 case_id=C021 ok=True outcome=received_ok to=case-021@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0078 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C021\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C021)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-021@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R021.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-09-03T16:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Item already received\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R021\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0079 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R023 case_id=C023 ok=True outcome=received_ok to=case-023@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0080 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C023\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your fault photo \\u2014 OK (case C023)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-023@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R023.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-09-04T16:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Item already received\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R023\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0081 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R030 case_id=C016 ok=True outcome=received_ok to=case-016@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0082 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C016\",   \"item\": \"site_access\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"Thank you \\u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.\",     \"title\": \"We received your site access \\u2014 OK (case C016)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"case-016@example.invalid\",     \"dry_run\": true   },   \"next_steps\": [     \"No action needed unless we contact you for more detail.\",     \"Request reference: R030.\"   ],   \"ok\": true,   \"quality\": {     \"accepted\": true,     \"notes\": [],     \"routing\": \"not_checked\",     \"signals\": []   },   \"receipt\": {     \"received_at\": \"2026-09-02T14:00+05:30\",     \"status_on_file\": \"received\",     \"triage_disposition\": \"exclude\",     \"triage_reason\": \"Item already received\"   },   \"receipt_outcome\": \"received_ok\",   \"request_id\": \"R030\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0083 phase=CUSTOMER_ACK message=intake_template_examples=4 (demo media pack)",
+      "2026-09-23T07:17:21Z seq=0084 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R-DEMO-01 case_id=C-DEMO-01 ok=False outcome=received_not_ok to=demo-1@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0085 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C-DEMO-01\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"We could not auto-accept `fault-tiny.png`: Technician review required due to quality signals\",     \"title\": \"Please resend your photo (case C-DEMO-01)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"demo-1@example.invalid\",     \"dry_run\": true,     \"sample_filename\": \"fault-tiny.png\"   },   \"next_steps\": [     \"Resend as JPEG or PNG with the full appliance visible.\",     \"Technician review required due to quality signals\"   ],   \"ok\": false,   \"quality\": {     \"accepted\": false,     \"format\": \"png\",     \"notes\": [       \"Technician review required due to quality signals\"     ],     \"routing\": \"human_review\",     \"signals\": [       \"file_very_small_may_be_unusable\",       \"resolution_below_recommended_min\",       \"brightness_ok_proxy\"     ]   },   \"receipt\": {     \"received_at\": null,     \"status_on_file\": \"pending\",     \"triage_disposition\": \"n/a\",     \"triage_reason\": \"intake_quality_gate\"   },   \"receipt_outcome\": \"received_not_ok\",   \"request_id\": \"R-DEMO-01\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0086 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R-DEMO-02 case_id=C-DEMO-02 ok=False outcome=received_not_ok to=demo-2@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0087 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C-DEMO-02\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"We could not auto-accept `notes.txt`: Coordinator validates document content before updating request row\",     \"title\": \"Please resend your photo (case C-DEMO-02)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"demo-2@example.invalid\",     \"dry_run\": true,     \"sample_filename\": \"notes.txt\"   },   \"next_steps\": [     \"Resend as JPEG or PNG with the full appliance visible.\",     \"Coordinator validates document content before updating request row\"   ],   \"ok\": false,   \"quality\": {     \"accepted\": false,     \"format\": \"plain_text\",     \"notes\": [       \"Coordinator validates document content before updating request row\"     ],     \"routing\": \"human_review\",     \"signals\": [       \"file_very_small_may_be_unusable\"     ]   },   \"receipt\": {     \"received_at\": null,     \"status_on_file\": \"pending\",     \"triage_disposition\": \"n/a\",     \"triage_reason\": \"intake_quality_gate\"   },   \"receipt_outcome\": \"received_not_ok\",   \"request_id\": \"R-DEMO-02\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0088 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R-DEMO-03 case_id=C-DEMO-03 ok=False outcome=received_not_ok to=demo-3@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0089 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C-DEMO-03\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"We could not auto-accept `photo.heic`: Convert or relabel file manually; do not auto-attach to quote\",     \"title\": \"Please resend your photo (case C-DEMO-03)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"demo-3@example.invalid\",     \"dry_run\": true,     \"sample_filename\": \"photo.heic\"   },   \"next_steps\": [     \"Resend as JPEG or PNG with the full appliance visible.\",     \"Convert or relabel file manually; do not auto-attach to quote\"   ],   \"ok\": false,   \"quality\": {     \"accepted\": false,     \"format\": \"heic\",     \"notes\": [       \"Convert or relabel file manually; do not auto-attach to quote\"     ],     \"routing\": \"human_review\",     \"signals\": [       \"file_very_small_may_be_unusable\"     ]   },   \"receipt\": {     \"received_at\": null,     \"status_on_file\": \"pending\",     \"triage_disposition\": \"n/a\",     \"triage_reason\": \"intake_quality_gate\"   },   \"receipt_outcome\": \"received_not_ok\",   \"request_id\": \"R-DEMO-03\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0090 phase=CUSTOMER_ACK message=DRY-RUN structured receipt to customer (no real send) detail=request_id=R-DEMO-04 case_id=C-DEMO-04 ok=False outcome=received_not_ok to=demo-4@example.invalid channel=email",
+      "2026-09-23T07:17:21Z seq=0091 phase=CUSTOMER_ACK message=Structured JSON body detail={   \"case_id\": \"C-DEMO-04\",   \"item\": \"fault_photo\",   \"message\": {     \"locale\": \"en-IN\",     \"summary\": \"We could not auto-accept `scan.unknown`: Convert or relabel file manually; do not auto-attach to quote\",     \"title\": \"Please resend your photo (case C-DEMO-04)\"   },   \"meta\": {     \"channel\": \"email\",     \"contact\": \"demo-4@example.invalid\",     \"dry_run\": true,     \"sample_filename\": \"scan.unknown\"   },   \"next_steps\": [     \"Resend as JPEG or PNG with the full appliance visible.\",     \"Convert or relabel file manually; do not auto-attach to quote\"   ],   \"ok\": false,   \"quality\": {     \"accepted\": false,     \"format\": \"unknown\",     \"notes\": [       \"Convert or relabel file manually; do not auto-attach to quote\"     ],     \"routing\": \"human_review\",     \"signals\": [       \"file_very_small_may_be_unusable\"     ]   },   \"receipt\": {     \"received_at\": null,     \"status_on_file\": \"pending\",     \"triage_disposition\": \"n/a\",     \"triage_reason\": \"intake_quality_gate\"   },   \"receipt_outcome\": \"received_not_ok\",   \"request_id\": \"R-DEMO-04\",   \"schema_version\": \"daybreak.customer_ack.v1\" }",
+      "2026-09-23T07:17:21Z seq=0092 phase=HUDDLE message=duty_lead=T1 backup=T2",
+      "2026-09-23T07:17:21Z seq=0093 phase=DEPARTURE_BOARD message=C008 lane=park detail=score=12.82 Case scheduled \u2014 no chase",
+      "2026-09-23T07:17:21Z seq=0094 phase=DEPARTURE_BOARD message=C009 lane=standard detail=score=12.0 Eligible for coordinated follow-up + parallel tech work",
+      "2026-09-23T07:17:21Z seq=0095 phase=DEPARTURE_BOARD message=C011 lane=park detail=score=11.28 Case scheduled \u2014 no chase",
+      "2026-09-23T07:17:21Z seq=0096 phase=DEPARTURE_BOARD message=C012 lane=park detail=score=10.92 Customer opt-out / do not follow up",
+      "2026-09-23T07:17:21Z seq=0097 phase=DEPARTURE_BOARD message=C017 lane=standard detail=score=10.53 Eligible for coordinated follow-up + parallel tech work",
+      "2026-09-23T07:17:21Z seq=0098 phase=DEPARTURE_BOARD message=C015 lane=park detail=score=9.78 Case scheduled \u2014 no chase",
+      "2026-09-23T07:17:21Z seq=0099 phase=DEPARTURE_BOARD message=C021 lane=park detail=score=9.03 Customer opt-out / do not follow up",
+      "2026-09-23T07:17:21Z seq=0100 phase=DEPARTURE_BOARD message=C016 lane=standard detail=score=8.92 Eligible for coordinated follow-up + parallel tech work",
+      "2026-09-23T07:17:21Z seq=0101 phase=LANES message=Three-speed lane counts detail={'park': 7, 'standard': 6}",
+      "2026-09-23T07:17:21Z seq=0102 phase=AI_ASSIST message=coordinator_customer_draft detail=C009 gate=Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "2026-09-23T07:17:21Z seq=0103 phase=AI_ASSIST message=coordinator_customer_draft detail=C024 gate=Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "2026-09-23T07:17:21Z seq=0104 phase=AI_ASSIST message=coordinator_customer_draft detail=C009 gate=Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "2026-09-23T07:17:21Z seq=0105 phase=AI_ASSIST message=coordinator_customer_draft detail=C024 gate=Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "2026-09-23T07:17:21Z seq=0106 phase=AI_ASSIST message=coordinator_customer_draft detail=C017 gate=Coordinator must edit/approve; never auto-send (assessment dry-run).",
+      "2026-09-23T07:17:21Z seq=0107 phase=AI_ASSIST message=technician_parallel_prep detail=C016 gate=Technician validates checklist; no customer message.",
+      "2026-09-23T07:17:21Z seq=0108 phase=AI_ASSIST message=technician_parallel_prep detail=C017 gate=Technician validates checklist; no customer message.",
+      "2026-09-23T07:17:21Z seq=0109 phase=AI_ASSIST message=technician_parallel_prep detail=C021 gate=Technician validates checklist; no customer message.",
+      "2026-09-23T07:17:21Z seq=0110 phase=AI_ASSIST message=photo_quality_path detail=C018 gate=Technician human review mandatory; no auto-quote from image AI.",
+      "2026-09-23T07:17:21Z seq=0111 phase=TECH message=T1 L3 prep_quote_while_waiting_for_photo detail=C016 Parallel prep on refrigerator while coordinator chases missing photo",
+      "2026-09-23T07:17:21Z seq=0112 phase=TECH message=T2 L3 hold_parts_plan detail=C017 Keep parts plan ready if customer approves quote",
+      "2026-09-23T07:17:21Z seq=0113 phase=TECH message=T1 L3 hold_parts_plan detail=C021 Keep parts plan ready if customer approves quote",
+      "2026-09-23T07:17:21Z seq=0114 phase=TECH message=T2 L3 hold_parts_plan detail=C023 Keep parts plan ready if customer approves quote",
+      "2026-09-23T07:17:21Z seq=0115 phase=TECH message=T3 L1 standby_case_brief detail=C009 Read case note; no customer contact\u2014ready when info arrives",
+      "2026-09-23T07:17:21Z seq=0116 phase=TECH message=T4 L1 standby_case_brief detail=C012 Read case note; no customer contact\u2014ready when info arrives",
+      "2026-09-23T07:17:21Z seq=0117 phase=TECH message=T3 L1 standby_case_brief detail=C022 Read case note; no customer contact\u2014ready when info arrives",
+      "2026-09-23T07:17:21Z seq=0118 phase=TECH message=T4 L1 standby_case_brief detail=C024 Read case note; no customer contact\u2014ready when info arrives",
+      "2026-09-23T07:17:21Z seq=0119 phase=COST message=Weekly time and tool cap check detail=net_min_saved=89 monthly_tool_budget_inr=1500.0",
+      "2026-09-23T07:17:21Z seq=0120 phase=COORDINATOR message=Approve draft follow-up (simulated) detail=R009 preview=Subject: Photo still needed for your washing machine repair (case C009)\nTo: c009...",
+      "2026-09-23T07:17:21Z seq=0121 phase=COORDINATOR message=Approve draft follow-up (simulated) detail=R024 preview=Subject: Photo still needed for your washing machine repair (case C024)\nTo: c024...",
+      "2026-09-23T07:17:21Z seq=0122 phase=COORDINATOR message=Approve draft follow-up (simulated) detail=R025 preview=Subject: Photo still needed for your washing machine repair (case C009)\nTo: c009...",
+      "2026-09-23T07:17:21Z seq=0123 phase=COORDINATOR message=Approve draft follow-up (simulated) detail=R026 preview=Subject: Photo still needed for your washing machine repair (case C024)\nTo: c024...",
+      "2026-09-23T07:17:21Z seq=0124 phase=COORDINATOR message=Approve draft follow-up (simulated) detail=R027 preview=Subject: Photo still needed for your air conditioner repair (case C017)\nTo: c017...",
+      "2026-09-23T07:17:21Z seq=0125 phase=CUSTOMER message=DRY-RUN delivery simulated (no real email sent) detail=request_id=R009 case_id=C009 to=case-009@example.invalid channel=email coordinator_approval=simulated_yes item=fault_photo",
+      "2026-09-23T07:17:21Z seq=0126 phase=CUSTOMER message=DRY-RUN delivery simulated (no real email sent) detail=request_id=R024 case_id=C024 to=case-024@example.invalid channel=email coordinator_approval=simulated_yes item=fault_photo",
+      "2026-09-23T07:17:21Z seq=0127 phase=CUSTOMER message=DRY-RUN delivery simulated (no real email sent) detail=request_id=R025 case_id=C009 to=case-009@example.invalid channel=email coordinator_approval=simulated_yes item=site_access",
+      "2026-09-23T07:17:21Z seq=0128 phase=CUSTOMER message=DRY-RUN delivery simulated (no real email sent) detail=request_id=R026 case_id=C024 to=case-024@example.invalid channel=email coordinator_approval=simulated_yes item=serial_number",
+      "2026-09-23T07:17:21Z seq=0129 phase=CUSTOMER message=DRY-RUN delivery simulated (no real email sent) detail=request_id=R027 case_id=C017 to=case-017@example.invalid channel=email coordinator_approval=simulated_yes item=quote_approval",
+      "2026-09-23T07:17:21Z seq=0130 phase=END message=Pipeline trace complete detail=structured_receipt_acks=21 followup_deliveries_simulated=5"
+    ],
+    "comparison": {
+      "solo_coordinator_load": 19,
+      "coordinator_after_split": 8,
+      "naive_pending_reminders": 13,
+      "rules_based_drafts": 5,
+      "prevented_bad_reminders": [
+        "R001",
+        "R005",
+        "R013",
+        "R016",
+        "R018",
+        "R019",
+        "R022",
+        "R029"
+      ]
+    },
+    "pipeline_trace_file": "output/dicm_pipeline_trace.log"
+  },
+  "approach_ranking_top5": [
+    {
+      "name": "Three-speed lanes (out-of-box process)",
+      "idea": "Express / Standard / Park instead of one list",
+      "scores": {
+        "feasibility": 5,
+        "uniqueness": 4,
+        "fit": 5
+      },
+      "incorporated_as": "lane_model.classify_case_lane"
+    },
+    {
+      "name": "Rules + tiered technicians (build)",
+      "idea": "Skill hierarchy + load balancing",
+      "scores": {
+        "feasibility": 5,
+        "uniqueness": 3,
+        "fit": 5
+      },
+      "incorporated_as": "team_workboard.py"
+    },
+    {
+      "name": "Departure-board priority (out-of-box UX)",
+      "idea": "Sort open work by wait + value like an airport board",
+      "scores": {
+        "feasibility": 5,
+        "uniqueness": 4,
+        "fit": 4
+      },
+      "incorporated_as": "lane_model.prioritized_board"
+    },
+    {
+      "name": "Rotating duty lead (out-of-box ops)",
+      "idea": "T1 lead role rotates weekly so one person is not permanent bottleneck",
+      "scores": {
+        "feasibility": 5,
+        "uniqueness": 4,
+        "fit": 4
+      },
+      "incorporated_as": "lane_model.duty_lead_for_snapshot"
+    },
+    {
+      "name": "Human-in-loop AI assist (build/buy API)",
+      "idea": "Drafts and inbox labels only",
+      "scores": {
+        "feasibility": 4,
+        "uniqueness": 3,
+        "fit": 5
+      },
+      "incorporated_as": "ai_assist.py"
+    }
+  ],
+  "pipeline_trace_file": "output/dicm_pipeline_trace.log",
+  "customer_structured_responses": {
+    "schema_version": "daybreak.customer_ack_bundle.v1",
+    "submission_receipts": [
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R001",
+        "case_id": "C001",
+        "item": "fault_photo",
+        "ok": false,
+        "receipt_outcome": "under_review",
+        "message": {
+          "title": "We are confirming your fault photo (case C001)",
+          "summary": "We see a submission timestamp on your case, but our records need a quick coordinator check before we mark it fully accepted.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "pending",
+          "received_at": "2026-08-24T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C001 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "A coordinator will email you within one business day with a final yes/no.",
+          "You do not need to resend unless we ask."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-001@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R002",
+        "case_id": "C002",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C002)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-24T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C002 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R002."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-002@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R003",
+        "case_id": "C003",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C003)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-25T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C003 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R003."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-003@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R004",
+        "case_id": "C004",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C004)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-25T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C004 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R004."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-004@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R006",
+        "case_id": "C006",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C006)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-26T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C006 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R006."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-006@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R007",
+        "case_id": "C007",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C007)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-27T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C007 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R007."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-007@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R008",
+        "case_id": "C008",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C008)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-27T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C008 is scheduled"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R008."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-008@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R010",
+        "case_id": "C010",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C010)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-28T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C010 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R010."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-010@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R011",
+        "case_id": "C011",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C011)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-29T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C011 is scheduled"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R011."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-011@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R014",
+        "case_id": "C014",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C014)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-30T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C014 is completed"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R014."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-014@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R015",
+        "case_id": "C015",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C015)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-08-31T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C015 is scheduled"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R015."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-015@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R017",
+        "case_id": "C017",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C017)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-09-01T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Item already received"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R017."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-017@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R018",
+        "case_id": "C018",
+        "item": "fault_photo",
+        "ok": false,
+        "receipt_outcome": "under_review",
+        "message": {
+          "title": "We are confirming your fault photo (case C018)",
+          "summary": "We see a submission timestamp on your case, but our records need a quick coordinator check before we mark it fully accepted.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "pending",
+          "received_at": "2026-09-03T14:00+05:30",
+          "triage_disposition": "uncertain",
+          "triage_reason": "pending status conflicts with received_at; needs coordinator review"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "A coordinator will email you within one business day with a final yes/no.",
+          "You do not need to resend unless we ask."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-018@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R020",
+        "case_id": "C020",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C020)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-09-02T18:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Case C020 is scheduled"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R020."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-020@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R021",
+        "case_id": "C021",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C021)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-09-03T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Item already received"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R021."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-021@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R023",
+        "case_id": "C023",
+        "item": "fault_photo",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your fault photo \u2014 OK (case C023)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-09-04T16:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Item already received"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R023."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-023@example.invalid"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R030",
+        "case_id": "C016",
+        "item": "site_access",
+        "ok": true,
+        "receipt_outcome": "received_ok",
+        "message": {
+          "title": "We received your site access \u2014 OK (case C016)",
+          "summary": "Thank you \u2014 your submission is on file and passed our initial checks. Our team will use it for the next step on your repair.",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "received",
+          "received_at": "2026-09-02T14:00+05:30",
+          "triage_disposition": "exclude",
+          "triage_reason": "Item already received"
+        },
+        "quality": {
+          "accepted": true,
+          "signals": [],
+          "routing": "not_checked",
+          "notes": []
+        },
+        "next_steps": [
+          "No action needed unless we contact you for more detail.",
+          "Request reference: R030."
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "case-016@example.invalid"
+        }
+      }
+    ],
+    "intake_quality_examples": [
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R-DEMO-01",
+        "case_id": "C-DEMO-01",
+        "item": "fault_photo",
+        "ok": false,
+        "receipt_outcome": "received_not_ok",
+        "message": {
+          "title": "Please resend your photo (case C-DEMO-01)",
+          "summary": "We could not auto-accept `fault-tiny.png`: Technician review required due to quality signals",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "pending",
+          "received_at": null,
+          "triage_disposition": "n/a",
+          "triage_reason": "intake_quality_gate"
+        },
+        "quality": {
+          "accepted": false,
+          "signals": [
+            "file_very_small_may_be_unusable",
+            "resolution_below_recommended_min",
+            "brightness_ok_proxy"
+          ],
+          "routing": "human_review",
+          "format": "png",
+          "notes": [
+            "Technician review required due to quality signals"
+          ]
+        },
+        "next_steps": [
+          "Resend as JPEG or PNG with the full appliance visible.",
+          "Technician review required due to quality signals"
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "demo-1@example.invalid",
+          "sample_filename": "fault-tiny.png"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R-DEMO-02",
+        "case_id": "C-DEMO-02",
+        "item": "fault_photo",
+        "ok": false,
+        "receipt_outcome": "received_not_ok",
+        "message": {
+          "title": "Please resend your photo (case C-DEMO-02)",
+          "summary": "We could not auto-accept `notes.txt`: Coordinator validates document content before updating request row",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "pending",
+          "received_at": null,
+          "triage_disposition": "n/a",
+          "triage_reason": "intake_quality_gate"
+        },
+        "quality": {
+          "accepted": false,
+          "signals": [
+            "file_very_small_may_be_unusable"
+          ],
+          "routing": "human_review",
+          "format": "plain_text",
+          "notes": [
+            "Coordinator validates document content before updating request row"
+          ]
+        },
+        "next_steps": [
+          "Resend as JPEG or PNG with the full appliance visible.",
+          "Coordinator validates document content before updating request row"
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "demo-2@example.invalid",
+          "sample_filename": "notes.txt"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R-DEMO-03",
+        "case_id": "C-DEMO-03",
+        "item": "fault_photo",
+        "ok": false,
+        "receipt_outcome": "received_not_ok",
+        "message": {
+          "title": "Please resend your photo (case C-DEMO-03)",
+          "summary": "We could not auto-accept `photo.heic`: Convert or relabel file manually; do not auto-attach to quote",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "pending",
+          "received_at": null,
+          "triage_disposition": "n/a",
+          "triage_reason": "intake_quality_gate"
+        },
+        "quality": {
+          "accepted": false,
+          "signals": [
+            "file_very_small_may_be_unusable"
+          ],
+          "routing": "human_review",
+          "format": "heic",
+          "notes": [
+            "Convert or relabel file manually; do not auto-attach to quote"
+          ]
+        },
+        "next_steps": [
+          "Resend as JPEG or PNG with the full appliance visible.",
+          "Convert or relabel file manually; do not auto-attach to quote"
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "demo-3@example.invalid",
+          "sample_filename": "photo.heic"
+        }
+      },
+      {
+        "schema_version": "daybreak.customer_ack.v1",
+        "request_id": "R-DEMO-04",
+        "case_id": "C-DEMO-04",
+        "item": "fault_photo",
+        "ok": false,
+        "receipt_outcome": "received_not_ok",
+        "message": {
+          "title": "Please resend your photo (case C-DEMO-04)",
+          "summary": "We could not auto-accept `scan.unknown`: Convert or relabel file manually; do not auto-attach to quote",
+          "locale": "en-IN"
+        },
+        "receipt": {
+          "status_on_file": "pending",
+          "received_at": null,
+          "triage_disposition": "n/a",
+          "triage_reason": "intake_quality_gate"
+        },
+        "quality": {
+          "accepted": false,
+          "signals": [
+            "file_very_small_may_be_unusable"
+          ],
+          "routing": "human_review",
+          "format": "unknown",
+          "notes": [
+            "Convert or relabel file manually; do not auto-attach to quote"
+          ]
+        },
+        "next_steps": [
+          "Resend as JPEG or PNG with the full appliance visible.",
+          "Convert or relabel file manually; do not auto-attach to quote"
+        ],
+        "meta": {
+          "dry_run": true,
+          "channel": "email",
+          "contact": "demo-4@example.invalid",
+          "sample_filename": "scan.unknown"
+        }
+      }
+    ]
+  }
+}
