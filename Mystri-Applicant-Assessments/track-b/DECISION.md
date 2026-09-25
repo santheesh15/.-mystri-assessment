@@ -4,6 +4,8 @@
 
 **Time taken(Mystri Track B) :** **3 hours 50 minutes (230 min)** — activity split in **`HANDOVER.md`**.
 
+I kept this decision note to **about 617 words excluding tables**, within the Track B brief band of **500–700 words**.
+
 ## Problem and user
 
 **Users:** **one coordinator** (customer email, reminders, data cleanup) and **four technicians** (technical clearance—not bulk customer chasing).  
@@ -15,7 +17,7 @@ The export supports this focus: 24 cases include six still `waiting_info`, and 2
 ## Calculations (with data treatment)
 
 1. **Logged coordinator effort:** `events.csv` has duplicate `event_id` deliveries; I counted each `event_id` once. Unique events = 124; summed `active_minutes` where present = **400 minutes** over the observation window (24 Aug–6 Sep 2026). That is ~**29 minutes per calendar day**, or ~**2.4 hours per five-day week** of *logged* admin time—not 8 hours. Many calls are unlogged per the coordinator note.
-2. **Pending vs actionable:** At snapshot, **15** requests are `pending`. A naive spreadsheet rule (“remind every pending row with `followup_allowed=1`”) would target **13** rows. The rules engine in `experiment.py` proposes **5** dry-run drafts and flags **2** uncertain rows (e.g. R018: `pending` but `received_at` set).
+2. **Pending vs actionable:** At snapshot, **15** requests are `pending`. A naive spreadsheet rule (“remind every pending row with `followup_allowed=1`”) would target **13** rows. The rules engine in `experiment.py` proposes **5** dry-run drafts and flags **2** uncertain rows (e.g. **R018**: `pending` but `received_at` set — I route that to **uncertain**, not auto-contact, matching `DATA_DICTIONARY.md`).
 3. **Mistake prevention on this snapshot:** The same naive baseline would include **8** request IDs that the rules engine rejects (closed cases, opt-out, 48-hour gap, or conflicting fields). Example: **R012** (`followup_allowed=0` on a case the customer asked not to chase) and **R029** (only ~46 hours since last request—below the 48-hour policy).
 
 Duplicates in `events.csv` are ignored for counts. Blank `active_minutes` are treated as unknown, not zero. Conflicting `status` vs `received_at` are routed to **uncertain**, not auto-contact.
@@ -35,9 +37,18 @@ Duplicates in `events.csv` are ignored for counts. Blank `active_minutes` are tr
 **Check:** Microsoft’s OneDrive file-request documentation describes collecting files via a link—it does **not** enforce cooldowns, opt-outs, or inbox reconciliation.  
 **Second claim (AI):** A general “AI assistant” can safely replace coordinator judgment. **Check:** In this prototype, AI only **suggests** drafts/labels; rules + humans send or reject. That matches a feasible production pattern (human-in-the-loop), not full autonomy.
 
+## Counterargument (why I did not stop at file-request or full AI)
+
+I considered two simpler paths and rejected them for this snapshot.
+
+1. **“Buy a file-request link and stop chasing.”** I read Microsoft and Dropbox file-request documentation (see **`SOURCES.md`**). Those products help **collect** uploads; they do **not** enforce Daybreak’s **48-hour** gap, **opt-outs**, or reconciliation when spreadsheet rows disagree with the inbox. Wrong reminders would still be possible if status lags.
+2. **“Let AI handle all follow-ups.”** That could speed drafting but raises **wrong-send** risk on rows like **R012** (opt-out) and **R018** (conflicting fields). I kept AI to **drafts only** and put policy in **`queue_engine.py`** with humans approving sends.
+
+I still recommend **DICM** because it keeps existing inbox/spreadsheet habits while adding rules, lanes, and human gates—without pretending one vendor link replaces coordinator discipline.
+
 ## Recommendation
 
-**Adopt one combined operating model — DICM (Daybreak Integrated Collaborating Model),** documented in **`INTEGRATED_MODEL.md`**. It merges existing inbox/spreadsheet habits, lightweight buy patterns (file-request link), rules + three-speed lanes + departure board, rotating duty lead, tiered four technicians, and capped human-in-loop AI into **a single daily pipeline**—not separate tools fighting each other. Run `python3 experiment.py` for the unified report. Adopt one combined operating model — DICM … Run python3 experiment.py for the unified report.
+**Adopt one combined operating model — DICM (Daybreak Integrated Collaborating Model),** documented in **`INTEGRATED_MODEL.md`**. It merges existing inbox/spreadsheet habits, lightweight buy patterns (file-request link), rules + three-speed lanes + departure board, rotating duty lead, tiered four technicians, and capped human-in-loop AI into **a single daily pipeline**—not separate tools fighting each other. I run **`python experiment.py`** (Windows: `python`; macOS/Linux: `python3`) for the unified report.
 
 ## Net value estimate (selected workflow: rules-assisted follow-up)
 

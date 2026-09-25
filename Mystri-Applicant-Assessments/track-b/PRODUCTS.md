@@ -10,6 +10,12 @@
 
 **Applicant total time:** **3 hours 50 minutes (230 min)** — **`HANDOVER.md`**.
 
+### What I scoped for grading (Product 1 only)
+
+**In scope for this submission:** decision note, `experiment.py` / DICM pipeline, dry-run outputs, `verify_product1.py`, unit tests, `SOURCES.md`, handover—**no live messaging or paid APIs**.
+
+**Explicitly out of scope (documented in `docs/FUTURE_SCOPE.md`):** Product 2 pilot UI, Product 3 production Graph/LLM/messaging, real email/SMS send, cloud deployment.
+
 ---
 
 ## Product 1 — DICM Core (in scope)

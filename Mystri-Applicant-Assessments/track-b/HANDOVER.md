@@ -5,6 +5,19 @@
 - Approximate total time, including setup and handover: 3 hours 50 minutes (230 min)
 - Chosen track: **B**
 
+### Reviewer quick path (Windows)
+
+I verified this path on my machine after `git checkout cursor/track-b-submission-edb7`:
+
+```powershell
+cd "<REPO_ROOT>\Mystri-Applicant-Assessments\track-b"
+python product1\verify_product1.py
+```
+
+(`<REPO_ROOT>` = folder that contains **`Mystri-Applicant-Assessments`**, e.g. `...\-.-mystri-assessment`.)
+
+I wrote **`DECISION.md`** at **about 617 words excluding tables** (Mystri brief: **500–700**). I kept this handover under **500 words excluding command blocks**, per the brief.
+
 ## Time budget
 
 | Activity | Minutes |
@@ -73,9 +86,6 @@ python product1\verify_product1.py
 
 Expected terminal line: **`PRODUCT 1 PASS`**.
 
-**Author example path (not for reviewers):**  
-`C:\Users\SantheeshS\Documents\.-mystri-assessment-cursor-track-b-submission-edb7\Mystri-Applicant-Assessments\track-b`
-
 ![Example: PRODUCT 1 PASS then opening output and docs in Notepad](docs/assets/verify-product1-pass-windows.png)
 
 **Step 2 — open saved outputs:**
@@ -133,6 +143,7 @@ Expected: **`experiment.py`** prints the DICM collaboration summary; writes **`o
 | Edge case | `test_conflicting_pending_and_received_is_uncertain` | R018 → uncertain |
 | End-to-end audit log | `output/dicm_pipeline_trace.log` + `tests/test_pipeline_trace.py` | START → CUSTOMER dry-run → END |
 | Structured receipt OK/not-OK | `output/customer_structured_responses.json` + `tests/test_customer_acknowledgment.py` | JSON `receipt_outcome` + trace `CUSTOMER_ACK` |
+| Pack snapshot counts locked in tests | `tests/test_queue.py` `test_pack_snapshot_baseline_thirteen_rules_five` | Baseline **13** vs rules **5** on unchanged `data/` |
 
 **Changed-input expectation:** Setting R009’s `last_requested_at` to one hour before snapshot should block a draft; observed `exclude` with “need 48h” reason.
 

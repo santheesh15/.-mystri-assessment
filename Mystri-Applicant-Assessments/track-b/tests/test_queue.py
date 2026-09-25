@@ -54,6 +54,13 @@ class QueueTests(unittest.TestCase):
         rules = proposed_ids(triage_all(self.inputs['cases'], self.inputs['requests'], self.inputs['scenario']))
         self.assertGreater(len(baseline), len(rules))
 
+    def test_pack_snapshot_baseline_thirteen_rules_five(self):
+        """Locks DECISION.md counts (13 naive vs 5 rules propose) to pack data."""
+        baseline = baseline_naive_pending(self.inputs['requests'])
+        rules = proposed_ids(triage_all(self.inputs['cases'], self.inputs['requests'], self.inputs['scenario']))
+        self.assertEqual(len(baseline), 13)
+        self.assertEqual(len(rules), 5)
+
 
 if __name__ == '__main__':
     unittest.main()
