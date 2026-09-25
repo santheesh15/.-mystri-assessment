@@ -21,7 +21,7 @@ This file is the **reviewer entry point** on branch **`cursor/track-b-submission
 
 ## Step 1 — Switch branch on GitHub (`main` → submission)
 
-1. Sign in to GitHub (private repo — access must be granted).
+1. Sign in to GitHub.
 2. Open `https://github.com/santheesh15/.-mystri-assessment`.
 3. Click the **branch** menu (left of the file list; it often says **`main`**).
 4. Type or select **`cursor/track-b-submission-edb7`**.
