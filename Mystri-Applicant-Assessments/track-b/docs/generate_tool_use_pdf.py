@@ -6,7 +6,7 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import inch
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from reportlab.platypus import PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 OUT = Path(__file__).resolve().parent / "TOOL_USE_SUMMARY_Santheesh_S_TrackB.pdf"
 
@@ -171,6 +171,7 @@ def build_pdf() -> Path:
     )
     story.append(Spacer(1, 6))
 
+    story.append(PageBreak())
     story.append(Paragraph("Example I caught during implementation", lead))
     story.append(
         Paragraph(
