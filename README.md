@@ -46,7 +46,11 @@ Only then use **Clone**, **Download ZIP**, or browse files for grading.
 git clone https://github.com/santheesh15/.-mystri-assessment.git
 cd .-mystri-assessment
 git checkout cursor/track-b-submission-edb7
+cd Mystri-Applicant-Assessments\track-b
+dir experiment.py
 ```
+
+**Important:** `experiment.py` is **not** in the repo root and **not** in `Mystri-Applicant-Assessments\` alone — only inside **`Mystri-Applicant-Assessments\track-b\`**.
 
 **If you already cloned and stayed on `main`:**
 
@@ -54,6 +58,8 @@ git checkout cursor/track-b-submission-edb7
 cd .-mystri-assessment
 git fetch origin
 git checkout cursor/track-b-submission-edb7
+cd Mystri-Applicant-Assessments\track-b
+dir experiment.py
 ```
 
 ### Option B — ZIP
