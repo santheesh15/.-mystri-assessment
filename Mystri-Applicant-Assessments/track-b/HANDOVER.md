@@ -99,8 +99,17 @@ Rules and limits: **`docs\RULES_AND_LIMITATIONS.md`**. Full command reference: *
 
 Or step by step (optional, without the Product 1 gate):
 
-```text
-cd Mystri-Applicant-Assessments/track-b
+**Windows (from `track-b`):**
+
+```powershell
+python starter.py
+python experiment.py
+python -m unittest discover -s tests -v
+```
+
+**macOS / Linux (from `track-b`):**
+
+```bash
 python3 starter.py
 python3 experiment.py
 python3 -m unittest discover -s tests -v
