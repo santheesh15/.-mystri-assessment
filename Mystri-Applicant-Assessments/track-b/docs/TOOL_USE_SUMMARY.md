@@ -22,7 +22,14 @@ Mystri asks for transparency on how I produced the submission. I treat **AI assi
 
 ## 3. Tools I used (mandatory disclosure)
 
-### 3.1 Cursor — Composer (AI coding assistant)
+| Tool | What I used it for | How I checked / corrected / rejected |
+| --- | --- | --- |
+| **Cursor — Composer** | Scaffolding `queue_engine.py`, parts of `integrated_model.py`, test stubs, doc structure. Composer in Cursor; no paid LLM API for graded runs. | `verify_product1.py` + full `unittest` after edits; matched `DATA_DICTIONARY.md`; fixed conflicts → **uncertain**. |
+| **Python 3.10+ (stdlib)** | Loader, `experiment.py`, verify gate, 39 tests, dry-run outputs. | **PRODUCT 1 PASS**; baseline **13** vs rules **5** in `test_pack_snapshot_baseline_thirteen_rules_five`. |
+| **Manual analysis** | Deduped `event_id`; counts for `DECISION.md`. | Cross-checked CSVs/tests; rejected owner 8 h/week as unmeasured. |
+| **Web / vendor docs** | OneDrive/Dropbox file-request; Microsoft Learn share-files; Jotform (limited). | `SOURCES.md` with dates, claims, limits. |
+
+### 3.1 Cursor — Composer (detail)
 
 | | |
 | --- | --- |
@@ -59,18 +66,28 @@ Mystri asks for transparency on how I produced the submission. I treat **AI assi
 
 ---
 
-## 4. What I deliberately did not use
+## 4. AI vs my responsibility
 
-- Paid **LLM API** keys or external inference for grading runs  
-- **Deployment**, containers, or production messaging (email/SMS/WhatsApp)  
-- **Customer interviews** or live CRM writes  
-- Edits to Mystri **`data/*.csv`** for graded results  
-
-This matches Track B constraints and keeps the experiment runnable offline after clone.
+| Role | Responsibility |
+| --- | --- |
+| **AI (Composer)** | Boilerplate code, test skeletons, first-pass documentation. |
+| **Me (applicant)** | Rule semantics, evidence numbers, Product 1 scope, pass/fail gate. |
+| **Reject rule** | Verify or tests fail → I fix or revert; no failing AI output shipped. |
 
 ---
 
-## 5. Concrete example — issue I caught and fixed
+## 5. What I deliberately did not use
+
+| Category | Reason |
+| --- | --- |
+| Paid LLM API keys | Graded proof uses stdlib + local verify. |
+| Deployment / hosting | Dry-run assessment only. |
+| Live email / SMS / WhatsApp | Simulated in trace/JSON only. |
+| Editing Mystri `data/` for grades | Verify assumes original pack CSVs. |
+
+---
+
+## 6. Concrete example — issue I caught and fixed
 
 **Situation:** While implementing queue logic, Composer produced an **invalid dataclass update pattern**.
 
@@ -82,11 +99,28 @@ This matches Track B constraints and keeps the experiment runnable offline after
 
 **Verification:** Full **`unittest`** run, then **`python product1\verify_product1.py`** until **PRODUCT 1 PASS**.
 
-**Lesson I apply:** AI output is a **draft** until verify + tests pass on the pack snapshot.
+| Step | What happened |
+| --- | --- |
+| Problem | Invalid dataclass update from Composer in queue code. |
+| Signal | Unit tests failed. |
+| My decision | Rejected assistant version. |
+| Fix | `dataclasses.replace`. |
+| Verification | Full unittest + verify → **PRODUCT 1 PASS**. |
 
 ---
 
-## 6. AI vs my judgment (summary)
+## 7. How this links to my submission
+
+| Artifact | Role |
+| --- | --- |
+| `DECISION.md` | ~617 words (excl. tables); problem, claim, counterargument. |
+| `HANDOVER.md` | Commands, evidence, tool judgment. |
+| `SOURCES.md` | URLs + how I used each source. |
+| `product1/verify_product1.py` | Reviewer gate → **PRODUCT 1 PASS**. |
+
+---
+
+## 8. AI vs my judgment (summary)
 
 | AI (Composer) | Me |
 | --- | --- |
@@ -96,7 +130,7 @@ This matches Track B constraints and keeps the experiment runnable offline after
 
 ---
 
-## 7. Repository pointer (for reviewers)
+## 9. Repository pointer (for reviewers)
 
 **Repo:** `https://github.com/santheesh15/.-mystri-assessment`  
 **Branch:** `cursor/track-b-submission-edb7`  
