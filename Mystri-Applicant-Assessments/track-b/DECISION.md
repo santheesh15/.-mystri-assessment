@@ -4,8 +4,6 @@
 
 **Time taken(Mystri Track B) :** **3 hours 50 minutes (230 min)** — activity split in **`HANDOVER.md`**.
 
-I kept this decision note to **about 617 words excluding tables**, within the Track B brief band of **500–700 words**.
-
 ## Problem and user
 
 **Users:** **one coordinator** (customer email, reminders, data cleanup) and **four technicians** (technical clearance—not bulk customer chasing).  
