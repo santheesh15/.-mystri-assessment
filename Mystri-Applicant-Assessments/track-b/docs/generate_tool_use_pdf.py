@@ -6,17 +6,7 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import inch
-from reportlab.platypus import (
-    HRFlowable,
-    ListFlowable,
-    ListItem,
-    PageBreak,
-    Paragraph,
-    SimpleDocTemplate,
-    Spacer,
-    Table,
-    TableStyle,
-)
+from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 OUT = Path(__file__).resolve().parent / "TOOL_USE_SUMMARY_Santheesh_S_TrackB.pdf"
 
@@ -25,25 +15,31 @@ def build_pdf() -> Path:
     doc = SimpleDocTemplate(
         str(OUT),
         pagesize=letter,
-        leftMargin=0.7 * inch,
-        rightMargin=0.7 * inch,
-        topMargin=0.6 * inch,
-        bottomMargin=0.6 * inch,
+        leftMargin=0.75 * inch,
+        rightMargin=0.75 * inch,
+        topMargin=0.65 * inch,
+        bottomMargin=0.65 * inch,
     )
     w = doc.width
 
-    title = ParagraphStyle("T", fontName="Helvetica-Bold", fontSize=14, spaceAfter=5)
-    meta = ParagraphStyle("M", fontName="Helvetica", fontSize=9, textColor=colors.HexColor("#444"), spaceAfter=6)
-    h1 = ParagraphStyle("H1", fontName="Helvetica-Bold", fontSize=11, spaceBefore=8, spaceAfter=4)
-    h2 = ParagraphStyle("H2", fontName="Helvetica-Bold", fontSize=10, spaceBefore=6, spaceAfter=3)
-    body = ParagraphStyle("B", fontName="Helvetica", fontSize=9.5, leading=12, spaceAfter=5)
-    cell = ParagraphStyle("C", fontName="Helvetica", fontSize=8.5, leading=11)
+    title = ParagraphStyle(
+        "T", fontName="Helvetica-Bold", fontSize=15, spaceAfter=6, textColor=colors.HexColor("#1a1a1a")
+    )
+    meta = ParagraphStyle(
+        "M", fontName="Helvetica", fontSize=9, textColor=colors.HexColor("#555555"), spaceAfter=10, leading=12
+    )
+    lead = ParagraphStyle(
+        "L", fontName="Helvetica-Bold", fontSize=10, spaceBefore=12, spaceAfter=5, textColor=colors.HexColor("#222222")
+    )
+    body = ParagraphStyle("B", fontName="Helvetica", fontSize=9.5, leading=13, spaceAfter=8)
+    foot = ParagraphStyle("F", fontName="Helvetica", fontSize=8.5, textColor=colors.HexColor("#666666"), leading=11)
+    cell = ParagraphStyle("C", fontName="Helvetica", fontSize=8.5, leading=11.5)
     cell_b = ParagraphStyle("CB", parent=cell, fontName="Helvetica-Bold")
 
     def P(text: str, style=cell):
         return Paragraph(text, style)
 
-    def table3(headers, rows, col_fracs=(0.22, 0.38, 0.40)):
+    def table3(headers, rows, col_fracs=(0.21, 0.39, 0.40)):
         cw = [w * f for f in col_fracs]
         data = [[P(f"<b>{h}</b>", cell_b) for h in headers]]
         for r in rows:
@@ -52,19 +48,19 @@ def build_pdf() -> Path:
         t.setStyle(
             TableStyle(
                 [
-                    ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#e6e6e6")),
-                    ("GRID", (0, 0), (-1, -1), 0.35, colors.HexColor("#bbbbbb")),
+                    ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#f2f2f2")),
+                    ("GRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#cccccc")),
                     ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                    ("LEFTPADDING", (0, 0), (-1, -1), 5),
-                    ("RIGHTPADDING", (0, 0), (-1, -1), 5),
-                    ("TOPPADDING", (0, 0), (-1, -1), 5),
-                    ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 6),
+                    ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+                    ("TOPPADDING", (0, 0), (-1, -1), 6),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
                 ]
             )
         )
         return t
 
-    def table2(headers, rows, col_fracs=(0.35, 0.65)):
+    def table2(headers, rows, col_fracs=(0.32, 0.68)):
         cw = [w * f for f in col_fracs]
         data = [[P(f"<b>{h}</b>", cell_b) for h in headers]]
         for a, b in rows:
@@ -73,13 +69,13 @@ def build_pdf() -> Path:
         t.setStyle(
             TableStyle(
                 [
-                    ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#e6e6e6")),
-                    ("GRID", (0, 0), (-1, -1), 0.35, colors.HexColor("#bbbbbb")),
+                    ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#f2f2f2")),
+                    ("GRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#cccccc")),
                     ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                    ("LEFTPADDING", (0, 0), (-1, -1), 5),
-                    ("RIGHTPADDING", (0, 0), (-1, -1), 5),
-                    ("TOPPADDING", (0, 0), (-1, -1), 5),
-                    ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 6),
+                    ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+                    ("TOPPADDING", (0, 0), (-1, -1), 6),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
                 ]
             )
         )
@@ -89,142 +85,133 @@ def build_pdf() -> Path:
     story.append(Paragraph("Tool-Use Summary", title))
     story.append(
         Paragraph(
-            "<b>Santheesh S</b> · Mystri Track B · Product 1 (DICM Core) · <b>3 h 50 min (230 min)</b>",
+            "Santheesh S · Mystri Track B · Product 1 · 3 h 50 min · sivasandy509@gmail.com",
             meta,
         )
     )
-    story.append(Paragraph("sivasandy509@gmail.com", meta))
-    story.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#cccccc")))
-    story.append(Spacer(1, 4))
 
-    story.append(Paragraph("1. Purpose and evidence standard", h1))
     story.append(
         Paragraph(
-            "I document tools because Mystri requires transparency. My <b>authoritative evidence</b> is: "
-            "<b>python product1\\verify_product1.py</b> → <b>PRODUCT 1 PASS</b>, 39 unit tests, unchanged "
-            "<b>data/</b>, plus <b>DECISION.md</b> and <b>SOURCES.md</b>. AI assists drafts; I own decisions.",
+            "I used AI and local tools under Mystri’s transparency requirement. My submission stands on what "
+            "a reviewer can replay: <b>python product1\\verify_product1.py</b> returning <b>PRODUCT 1 PASS</b>, "
+            "39 unit tests on unchanged pack <b>data/</b>, and the narrative in <b>DECISION.md</b> and "
+            "<b>SOURCES.md</b>. I treat Composer as a fast draft layer; I own the decision, the rules, and the "
+            "pass/fail gate.",
             body,
         )
     )
 
-    story.append(Paragraph("2. Working principles (theory)", h1))
-    principles = [
-        "<b>Human decision, AI draft</b> — recommendation and rules are mine after review.",
-        "<b>Verify before trust</b> — no AI code ships without verify + tests on the pack.",
-        "<b>Collection ≠ policy</b> — file-request tools do not replace 48h/opt-out/reconciliation.",
-        "<b>Fail closed</b> — ambiguous rows (e.g. R018) → uncertain, not auto-send.",
-        "<b>Honest limits</b> — I do not claim live ROI or the owner’s 8 h/week as measured.",
-    ]
     story.append(
-        ListFlowable(
-            [ListItem(Paragraph(p, body), leftIndent=10) for p in principles],
-            bulletType="bullet",
-            start="•",
+        Paragraph(
+            "I work with five habits on a timed build: keep the <b>human decision</b> and let AI handle drafts; "
+            "<b>verify before trust</b> on every substantive code change; separate <b>file collection from follow-up "
+            "policy</b>; <b>fail closed</b> on ambiguous rows such as R018; and state <b>honest limits</b> rather "
+            "than overstating ROI or the owner’s eight-hour claim.",
+            body,
         )
     )
 
-    story.append(Paragraph("3. Tool disclosure table (mandatory)", h1))
+    story.append(Paragraph("Tools and how I governed their output", lead))
     story.append(
         table3(
             ["Tool", "What I used it for", "How I checked / corrected / rejected"],
             [
                 (
                     "Cursor — Composer",
-                    "Scaffolded <b>queue_engine.py</b>, parts of <b>integrated_model.py</b>, test stubs, doc structure. "
-                    "Composer in Cursor; no separate paid LLM API for graded runs.",
-                    "After edits: <b>verify_product1.py</b> + full <b>unittest</b>. Compared logic to "
-                    "<b>DATA_DICTIONARY.md</b>. Fixed conflicting fields → <b>uncertain</b>.",
+                    "Scaffolded <b>queue_engine.py</b>, parts of <b>integrated_model.py</b>, test stubs, and doc structure. "
+                    "No separate paid LLM API for graded runs.",
+                    "After edits: <b>verify_product1.py</b> and full <b>unittest</b>; aligned with "
+                    "<b>DATA_DICTIONARY.md</b>; conflicting fields routed to <b>uncertain</b>.",
                 ),
                 (
-                    "Python 3.10+<br/>(stdlib)",
-                    "Loader, <b>experiment.py</b>, verify gate, 39 tests, dry-run outputs.",
-                    "<b>PRODUCT 1 PASS</b> on pack data. Baseline <b>13</b> vs rules <b>5</b> in "
+                    "Python 3.10+",
+                    "Loader, <b>experiment.py</b>, verify gate, 39 tests, dry-run JSON and trace.",
+                    "<b>PRODUCT 1 PASS</b>; baseline <b>13</b> vs rules <b>5</b> in "
                     "<b>test_pack_snapshot_baseline_thirteen_rules_five</b>.",
                 ),
                 (
                     "Manual analysis",
-                    "Deduped <b>event_id</b>; counts for <b>DECISION.md</b>.",
-                    "Cross-checked CSVs and tests; rejected owner 8 h/week as unmeasured.",
+                    "Deduped <b>event_id</b>; naive vs rules counts for <b>DECISION.md</b>.",
+                    "Cross-checked CSVs and tests; did not treat owner 8 h/week as measured.",
                 ),
                 (
-                    "Web / vendor docs",
-                    "OneDrive/Dropbox file-request; Microsoft Learn share-files; Jotform (limited).",
-                    "Recorded in <b>SOURCES.md</b> with dates, claims, limits.",
+                    "Vendor documentation",
+                    "OneDrive/Dropbox file-request; Microsoft Learn share-files; Jotform for context.",
+                    "Logged in <b>SOURCES.md</b> with dates, claims, and limits.",
                 ),
             ],
         )
     )
+    story.append(Spacer(1, 6))
 
-    story.append(Paragraph("4. AI vs my responsibility", h1))
+    story.append(Paragraph("Division of responsibility", lead))
     story.append(
         table2(
             ["Role", "Responsibility"],
             [
-                ("AI (Composer)", "Boilerplate code, test skeletons, first-pass documentation."),
-                (
-                    "Me (applicant)",
-                    "Rule semantics, evidence numbers, Product 1 scope, pass/fail gate, SOURCES claims.",
-                ),
-                (
-                    "Reject rule",
-                    "If verify or tests fail → I fix or revert; I do not accept failing AI output.",
-                ),
+                ("Composer", "Boilerplate, test skeletons, first-pass documentation."),
+                ("Me", "Rule semantics, evidence, Product 1 scope, SOURCES claims, pass/fail criteria."),
+                ("Reject rule", "If verify or tests fail, I fix or revert — I do not ship failing AI output."),
             ],
         )
     )
+    story.append(Spacer(1, 6))
 
-    story.append(Paragraph("5. What I did not use", h1))
+    story.append(Paragraph("Excluded from this submission", lead))
     story.append(
         table2(
             ["Category", "Reason"],
             [
-                ("Paid LLM API keys", "Track B allows free tools; graded proof uses stdlib + local verify."),
-                ("Deployment / hosting", "Out of scope; dry-run only."),
-                ("Live email / SMS / WhatsApp", "Not required; simulated in trace/JSON only."),
-                ("Editing Mystri data/ for grades", "Verify assumes original pack CSVs."),
+                ("Paid LLM APIs", "Graded proof uses stdlib and local verify only."),
+                ("Deployment / hosting", "Dry-run assessment scope."),
+                ("Live messaging", "Simulated in trace and JSON only."),
+                ("Editing pack data/", "Verify assumes original Mystri CSVs."),
             ],
         )
     )
+    story.append(Spacer(1, 6))
 
-    story.append(PageBreak())
-
-    story.append(Paragraph("6. Concrete example (issue I caught)", h1))
+    story.append(Paragraph("Example I caught during implementation", lead))
+    story.append(
+        Paragraph(
+            "Composer once emitted an invalid dataclass update in queue code. Unit tests failed immediately. "
+            "I rejected that version, rewrote with <b>dataclasses.replace</b>, and re-ran the full suite and verify "
+            "until <b>PRODUCT 1 PASS</b>. That is the standard I apply to any AI-generated change.",
+            body,
+        )
+    )
     story.append(
         table2(
-            ["Step", "What happened"],
+            ["Step", "Outcome"],
             [
-                ("Problem", "Composer produced an <b>invalid dataclass update</b> in queue-related code."),
-                ("Signal", "<b>Unit tests failed</b> — not a cosmetic warning."),
-                ("My decision", "I <b>rejected</b> the assistant’s version."),
-                ("Fix", "Rewrote using <b>dataclasses.replace</b>."),
-                ("Verification", "Full unittest, then verify → <b>PRODUCT 1 PASS</b>."),
-                ("Lesson", "AI output is provisional until verify + tests pass on pack data."),
+                ("Problem", "Invalid dataclass update in generated code."),
+                ("Signal", "Unit tests failed."),
+                ("Action", "Rejected assistant output; fixed with dataclasses.replace."),
+                ("Proof", "Full unittest + verify → PRODUCT 1 PASS."),
             ],
         )
     )
+    story.append(Spacer(1, 6))
 
-    story.append(Paragraph("7. How this links to my submission", h1))
+    story.append(Paragraph("Where this lives in the repo", lead))
     story.append(
         table2(
             ["Artifact", "Role"],
             [
-                ("DECISION.md", "~617 words (excl. tables); problem, claim, alternatives, counterargument."),
-                ("HANDOVER.md", "Run commands, evidence table, tool judgment."),
-                ("SOURCES.md", "External URLs + how I used each source."),
-                ("product1/verify_product1.py", "Single reviewer gate → PRODUCT 1 PASS."),
+                ("DECISION.md", "Decision note with claim, alternatives, counterargument."),
+                ("HANDOVER.md", "Run steps, evidence, tool judgment."),
+                ("SOURCES.md", "External references and limitations."),
+                ("product1/verify_product1.py", "Single reviewer gate."),
             ],
         )
     )
 
-    story.append(Spacer(1, 8))
-    story.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#cccccc")))
-    story.append(Spacer(1, 4))
+    story.append(Spacer(1, 14))
     story.append(
         Paragraph(
-            "<b>Repository:</b> github.com/santheesh15/.-mystri-assessment · "
-            "<b>Branch:</b> cursor/track-b-submission-edb7 · "
-            "<b>Markdown source:</b> track-b/docs/TOOL_USE_SUMMARY.md",
-            meta,
+            "github.com/santheesh15/.-mystri-assessment · branch cursor/track-b-submission-edb7 · "
+            "track-b/docs/TOOL_USE_SUMMARY.md",
+            foot,
         )
     )
 
