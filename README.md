@@ -21,16 +21,28 @@ This file is the **reviewer entry point** on branch **`cursor/track-b-submission
 
 ## Step 1 — Switch branch on GitHub (`main` → submission)
 
+<<<<<<< HEAD
 1. Sign in to GitHub.
 2. Open `https://github.com/santheesh15/.-mystri-assessment`.
 3. Click the **branch** menu (left of the file list; it often says **`main`**).
 4. Type or select **`cursor/track-b-submission-edb7`**.
 5. Confirm:
+=======
+1. Open `https://github.com/santheesh15/.-mystri-assessment` (repo is **public**; sign in only if you use a private fork).
+2. Click the **branch** menu (left of the file list; default is **`main`**).
+3. Select **`cursor/track-b-submission-edb7`** (not `main`, not `cursor/env-setup-edb7`).
+
+![On GitHub: open the branch menu and select cursor/track-b-submission-edb7](Mystri-Applicant-Assessments/track-b/docs/assets/github-switch-submission-branch.png)
+
+4. Confirm:
+>>>>>>> e5c4cbe (docs: add GitHub branch-switch screenshot to root README)
    - URL contains **`/tree/cursor/track-b-submission-edb7/`**
    - You see **`Mystri-Applicant-Assessments/`** and this **`README.md`**
    - Under **`Mystri-Applicant-Assessments/track-b/`** you see **`experiment.py`** and **`product1/`**
 
 Only then use **Clone**, **Download ZIP**, or browse files for grading.
+
+**Note:** On **`main`** you may only see an empty tree or “Add a README” — that is normal. Graded files are on **`cursor/track-b-submission-edb7`** only.
 
 ---
 
